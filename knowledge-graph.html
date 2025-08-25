@@ -278,7 +278,64 @@
     return Object.values(NS).some(base => iriStr.startsWith(base));
   }
 
-  function literalToFriendly(lit){ return isLiteral(lit) ? lit.value : ''; }
+// Humanizers for classes & properties
+
+function localFromIri(iriStr){
+  if (!iriStr) return '';
+  const parts = iriStr.split(/[\/#]/);
+  return parts[parts.length - 1] || iriStr;
+}
+
+// Title Case but preserve hyphenated parts (e.g., "Human-Made")
+function titleCase(s){
+  return s.split(' ').map(w =>
+    w.split('-').map(p => p ? p[0].toUpperCase()+p.slice(1).toLowerCase() : p).join('-')
+  ).join(' ');
+}
+
+// Properties (predicates)
+function humanizeProperty(iriStr){
+  if (!iriStr) return '';
+
+  // explicit specials
+  if (iriStr === NS.rdf + 'type') return 'type';
+  if (iriStr === NS.rdfs + 'label') return 'label';
+
+  const isCidoc = iriStr.startsWith(NS.crm) || iriStr.startsWith(NS.crmarchaeo);
+  let local = localFromIri(iriStr);
+
+  if (isCidoc){
+    // Strip P-code with optional trailing letter (e.g., P70i_, P82a_, P46_)
+    local = local.replace(/^P\d+[a-z]?_/, '');
+    // Convert remaining underscores to spaces
+    local = local.replace(/_/g, ' ');
+    return local.toLowerCase();
+  }
+
+  // Generic fallback: use fragment, turn underscores to spaces, lower-case
+  return localFromIri(iriStr).replace(/_/g, ' ').toLowerCase();
+}
+
+// Classes
+function humanizeClass(iriStr){
+  if (!iriStr) return '';
+  const isCidoc = iriStr.startsWith(NS.crm) || iriStr.startsWith(NS.crmarchaeo);
+  let local = localFromIri(iriStr);
+
+  if (isCidoc){
+    // Strip E-code like E27_ / E18_ (number-only after E)
+    local = local.replace(/^E\d+_/, '');
+    local = local.replace(/_/g, ' ');
+    return titleCase(local);
+  }
+
+  // Generic fallback
+  return titleCase(local.replace(/_/g, ' '));
+}
+
+  function literalToFriendly(lit){ 
+    return isLiteral(lit) ? lit.value : ''; 
+  }
 
   function parseWKTPoint(wkt){
     const m = /^POINT\s*\(\s*([-\d.]+)\s+([-\d.]+)\s*\)$/i.exec(String(wkt||'').trim());
@@ -391,25 +448,34 @@
 
   // Badge builder
   function makeIdBadge(iriStr, kind = 'property'){
-    const txt = shortId(iriStr);
-    const isLinked = isOntologyIri(iriStr) && !txt.startsWith('ex:');
+    // Human-friendly label
+    let txt;
+    if (kind === 'class') {
+      txt = humanizeClass ? humanizeClass(iriStr) : shortId(iriStr);
+    } else if (kind === 'property') {
+      txt = humanizeProperty ? humanizeProperty(iriStr) : shortId(iriStr);
+    } else {
+      txt = shortId(iriStr);
+    }
+
+    const isLinked = isOntologyIri(iriStr);
     const cls = kind === 'class' ? 'id-badge id-badge--class' : 'id-badge';
 
+    const el = isLinked ? document.createElement('a') : document.createElement('span');
+    el.className = cls;
     if (isLinked) {
-      const a = document.createElement('a');
-      a.className = cls;
-      a.href = iriStr;
-      a.target = '_blank';
-      a.rel = 'noopener';
-      a.textContent = txt;
-      return a;
-    } else {
-      const s = document.createElement('span');
-      s.className = cls;
-      s.textContent = txt;
-      return s;
+      el.href = iriStr;
+      el.target = '_blank';
+      el.rel = 'noopener';
     }
+    el.textContent = txt;
+
+    // Tooltip: show full prefixed IRI (e.g., crm:P1_is_identified_by)
+    el.title = shortId(iriStr);
+
+    return el;
   }
+
 
   // Load & init
   async function loadFromUrl(url){
@@ -972,6 +1038,7 @@
     }[s]));
   }
 })();
+
 </script>
   </div>
 
