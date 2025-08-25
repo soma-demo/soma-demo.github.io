@@ -1,0 +1,114 @@
+.navbar {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-transparent {
+  background-color: transparent !important;
+}
+
+/* Solid navbar after scroll */
+.navbar-solid {
+  background-color: white !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.inner-page .navbar {
+   background-color: white !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar .nav-link.active {
+  color: #e9b02b;
+}
+
+
+
+h1, h2, h3, h4, .navbar-brand {
+  font-family: 'Merriweather', serif;
+}
+.title-inner-page{
+  color: #e9b02b;
+}
+
+.hero {
+  background: url("img/pottery.avif") center/cover no-repeat;
+  color: white;
+  padding: 8rem 1rem;
+  text-align: center;
+  position: relative;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+.stats-icon {
+  font-size: 2rem;
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+
+.btn-primary {
+  background-color: white;
+  border-color: #e9b02b;
+  color: #e9b02b;
+}
+.btn-primary:hover {
+  background-color: #e9b02b;
+  border-color: #e9b02b;
+  color:white;
+}
+
+.explore-button{
+  background-color: #e9b02b;
+  border-color: #e9b02b;
+  color:white;
+}
+.explore-button:hover {
+  background-color: white;
+  border-color: #e9b02b;
+  color: #e9b02b;
+}
+
+.icon p{
+  color: #e28756;
+}
+
+
+.inner-page{
+  margin-top: 70px;
+}
+footer {
+  /*background: #4b3d36;
+  background: #413631!important;*/
+  background-color: #e9b02b;
+  color: #fff;
+  padding: 2rem;
+}
+
+
+/*Data-model*/
+#cy {
+  width: 100%;
+  height: 80vh;
+  background: #fffaf3;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/*MAP*/
+#map {
+  height: 80vh;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 20px;
+}
