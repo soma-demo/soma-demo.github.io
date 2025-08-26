@@ -161,7 +161,7 @@ ex:hr01 a crm:E20_Biological_Object ;
 # Object
 ex:obj01 a crm:E22_Human-Made_Object ;
   rdfs:label "Object 01 (vase)"@en ;
-  crm:crm:P138i_is_represented_by [ a crm:E38_Image ; 
+  crm:P138i_is_represented_by [ a crm:E38_Image ; 
     rdfs:label "Photo of vase 01"@en ;
     schema:contentUrl      <https://soma-demo.github.io/img/Parlama-Stampolidis2000S276Abb249.jpg> ;
     ] ;

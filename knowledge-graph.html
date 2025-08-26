@@ -714,12 +714,26 @@ function humanizeClass(iriStr){
       }
       // 4) external links
       else {
+        const url = obj.id;
+
+        // clickable link (always shown)
         const a = document.createElement('a');
-        a.href = obj.id;
-        a.textContent = labelOf(obj) || obj.id;
+        a.href = url;
+        a.textContent = labelOf(obj) || url;
         a.target = "_blank";
         a.rel = "noopener";
         frag.appendChild(a);
+
+        // special case: image file: embed <img>
+        if (/\.(jpe?g|png|gif|webp)$/i.test(url)) {
+          const img = document.createElement('img');
+          img.src = url;
+          img.alt = labelOf(obj) || 'Image';
+          img.style.maxWidth = '20%';
+          img.style.marginTop = '0.5rem';
+          img.style.borderRadius = '8px';
+          frag.appendChild(img);
+        }
 
         // Special case: Sketchfab model link (embed viewer)
         if (obj.id.includes("sketchfab.com/3d-models/")) {
