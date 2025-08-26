@@ -678,6 +678,11 @@ function humanizeClass(iriStr){
     }
   }
 
+  function isInternalEntity(node){
+    // Internal = appears as a subject in the store
+    return q(node, null, null).length > 0;
+  }
+
   function renderObjectValue(obj, depth = 0, visited = new Set(), contextPredIri = null){
     const frag = document.createDocumentFragment();
 
@@ -690,17 +695,55 @@ function humanizeClass(iriStr){
 
     if (isURI(obj)) {
       const isTypeContext = contextPredIri === P.type.id;
+
+      // 1) type/class: orange badge
       if (isTypeContext || isClass(obj)) {
-        frag.appendChild(makeIdBadge(obj.id, 'class'));  // orange class badge
-      } else {
+        frag.appendChild(makeIdBadge(obj.id, 'class'));
+      }
+      // 2) ontology IRIs: badges with external docs
+      else if (isOntologyIri(obj.id)) {
+        frag.appendChild(makeIdBadge(obj.id, 'property'));
+      }
+      // 3) internal entities in our dataset: navigate inside the app
+      else if (isInternalEntity(obj)) {
         const link = document.createElement('a');
         link.href = '#';
         link.textContent = labelOf(obj) || shortId(obj.id);
         link.onclick = (ev) => { ev.preventDefault(); navigateToNode(obj); };
         frag.appendChild(link);
       }
+      // 4) external links
+      else {
+        const a = document.createElement('a');
+        a.href = obj.id;
+        a.textContent = labelOf(obj) || obj.id;
+        a.target = "_blank";
+        a.rel = "noopener";
+        frag.appendChild(a);
+
+        // Special case: Sketchfab model link (embed viewer)
+        if (obj.id.includes("sketchfab.com/3d-models/")) {
+          const match = obj.id.match(/([0-9a-f]{32})$/); // extract 32-char model ID at the end
+          if (match) {
+            const modelId = match[1];
+            const wrapper = document.createElement('div');
+            wrapper.className = "sketchfab-embed-wrapper";
+            wrapper.style.marginTop = "0.5rem";
+            wrapper.innerHTML = `
+              <iframe title="Sketchfab Model" frameborder="0"
+                allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                src="https://sketchfab.com/models/${modelId}/embed"
+                style="width:100%; height:480px; border-radius:8px;">
+              </iframe>`;
+            frag.appendChild(wrapper);
+          }
+        }
+      }
+
       return frag;
     }
+
 
     if (isBlank(obj)) {
       if (visited.has(obj.id)) {
