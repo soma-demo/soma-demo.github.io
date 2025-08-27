@@ -215,6 +215,7 @@
     xsd:  "http://www.w3.org/2001/XMLSchema#",
     crm:  "http://www.cidoc-crm.org/cidoc-crm/",
     crmarchaeo: "http://www.cidoc-crm.org/extensions/crmarchaeo/",
+    schema: "http://schema.org/",
   };
 
   const T = {
@@ -223,6 +224,7 @@
     Burial:   iri('crm','E24_Physical_Human-Made_Thing'),
     HumanRemains: iri('crm','E20_Biological_Object'),
     Object:       iri('crm','E22_Human-Made_Object'),
+    VisualItem:   iri('crm','E36_Visual_Item'),
   };
 
   const P = {
@@ -233,6 +235,8 @@
     idText: nn(NS.crm+'P190_has_symbolic_content'),
     isComposedOf: nn(NS.crm+'P46_is_composed_of'),
     placeWkt: nn(NS.crm+'P168_place_is_defined_by'),
+    isRepBy: nn(NS.crm+'P138i_is_represented_by'),
+    schemaUrl: nn(NS.schema+'url'),
   };
 
   let store = new Store();
@@ -788,6 +792,7 @@ function humanizeClass(iriStr){
     frag.appendChild(span);
     return frag;
   }
+  
 
   // Details (with incoming triples one-line S - P - O)
   function showEntityDetails(node) {
@@ -1095,6 +1100,7 @@ function humanizeClass(iriStr){
     }[s]));
   }
 })();
+
 
 </script>
   </div>
