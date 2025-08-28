@@ -1,0 +1,79 @@
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix crmarchaeo: <http://www.cidoc-crm.org/extensions/crmarchaeo/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix soma: <http://example.org/soma/> .
+@prefix somavoc: <http://example.org/somavoc/> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+
+#Type of enclosure (tomb)
+somavoc:cist_tomb a crm:E55_Type ;
+    rdfs:label "Cist Tomb"@en . 
+
+#Unit of measurement
+somavoc:centimeter a crm:E58_Measurement_Unit ;
+        rdfs:label "centimeter"@en .
+
+#Measurement
+somavoc:lenght_outside a crm:E55_Type ; 
+  rdfs:label "Length - outside"@en  .
+
+somavoc:width_outside a crm:E55_Type ; 
+  rdfs:label "Width - outside"@en  .
+
+somavoc:lenght_inside a crm:E55_Type ; 
+  rdfs:label "Length - inside"@en  .
+
+somavoc:width_inside a crm:E55_Type ; 
+  rdfs:label "Width - inside"@en  .
+
+somavoc:depth_inside a crm:E55_Type ; 
+  rdfs:label "Depth - inside"@en  .
+
+somavoc:width_slabs_of_schist a crm:E55_Type ; 
+  rdfs:label "Width - slabs of schist"@en  .
+
+
+#Type of individual
+somavoc:number_individuals a crm:E55_Type ; 
+  rdfs:label "Number of individuals"@en .
+
+somavoc:number_inhumated_individuals a crm:E55_Type ; 
+  rdfs:label "Number of inhumated individuals"@en .
+
+somavoc:number_children a crm:E55_Type ; 
+  rdfs:label "Number of children"@en .
+
+
+#Type of ritual
+somavoc:inhumation a crm:E55_Type ; 
+  rdfs:label "Inhumation"@en .
+
+#Type of burial
+somavoc:primary_burial a crm:E55_Type ; 
+  rdfs:label "Primary burial"@en .
+
+#Burial goods
+#Type of individual
+somavoc:total_obj a crm:E55_Type ; 
+  rdfs:label "Total number of objects"@en .
+
+somavoc:internal_goods a crm:E55_Type ; 
+  rdfs:label "Number of internal goods"@en .
+
+somavoc:external_goods a crm:E55_Type ; 
+  rdfs:label "Number of external goods"@en .
+
+somavoc:clay_obj a crm:E55_Type ; 
+  rdfs:label "Number of clay objects"@en .
+
+somavoc:metal_obj a crm:E55_Type ; 
+  rdfs:label "Number of metal objects"@en .
+
+somavoc:pottery_shapes a crm:E55_Type ; 
+  rdfs:label "Number of differentiable pottery shapes"@en .
+
+
+somavoc:underground_structures a crm:E55_Type;
+  rdfs:label "Underground structures"@en .

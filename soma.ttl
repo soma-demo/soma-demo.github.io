@@ -1,0 +1,365 @@
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix crmarchaeo: <http://www.cidoc-crm.org/extensions/crmarchaeo/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix soma: <http://example.org/soma/> .
+@prefix somavoc: <http://example.org/somavoc/> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+
+#################################################################
+# Cemetery & Cemetery Excavation
+#################################################################
+
+# Cemetery C3 Excavation event
+soma:excavation-cemeteryC3 a crmarchaeo:A9_Archeological_Excavation ;
+  rdfs:label "Exacavation of Cemetery at the South Bank of the Eridanos"@en ;
+  crm:P7_took_place_at [a crm:E53_Place;
+    rdfs:label "Excavation area" ;
+    crm:P89_falls_within [a crm:E53_Place;
+      rdfs:label "Athens" ;
+      crm:P168_place_is_defined_by "POINT(37.984027 23.727683)"] 
+  ] ;
+  crm:P8_took_place_on_or_within soma:cemeteryC3 ;
+  crm:P134i_was_continued_by soma:excavation-tomb70.
+
+#Cemetery C3
+soma:cemeteryC3 a crm:E27_Site ;
+  rdfs:label "Cemetery at the South Bank of the Eridanos"@en ;
+  crm:P48_has_preferred_identifier [ a crm:E42_Identifier ;
+    crm:P190_has_symbolic_content "C3"@en
+  ] ;
+  crm:P1_is_identified_by [ a crm:E41_Appellation ;
+    crm:P190_has_symbolic_content "Cemetery at the South Bank of the Eridanos"@en
+  ] ;
+  crm:P92i_was_brought_into_existence_by [ a crm:E63_Beginning_of_Existence ;
+  crm:P4_has_time-span [ a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "-1750-01-01"^^xsd:date ;
+    crm:P82b_end_of_the_end "-1050-12-31"^^xsd:date 
+  ]] ;
+  crm:P70i_is_documented_in soma:D1 ;
+  crm:P70i_is_documented_in soma:D14 ;
+  crm:P46_is_composed_of soma:tomb70 .
+
+
+#################################################################
+# Tomb
+#################################################################
+
+# Tomb 79 Excavation event
+soma:excavation-tomb70 a crmarchaeo:A9_Archeological_Excavation ;
+  rdfs:label "Excavation of Tomb 70"@en ;
+  crm:P7_took_place_at soma:excavation-area-tomb;
+  crm:P4_has_time-span [a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "1954-08-18"^^xsd:date ;
+    crm:P82b_end_of_the_end "1954-08-19"^^xsd:date 
+  ] ;
+  crm:P14_carried_out_by [
+    a crm:E21_Person ;
+    rdfs:label "Homer A.Thompson"
+  ] ;
+  crm:P8_took_place_on_or_within soma:tomb70 ;
+  crm:P134i_was_continued_by soma:excavation-burialAA152.
+
+soma:excavation-area-tomb a crm:E53_Place;
+  rdfs:label "Section ΣA: North-West of the Stoa Pier 19" . #TODO
+
+# Tomb 70
+soma:tomb70 a crm:E18_Physical_Thing ;
+  rdfs:label "Tomb 70"@en ;
+  crm:P48_has_preferred_identifier [ a crm:E42_Identifier ;
+    crm:P190_has_symbolic_content "T70"@en
+  ] ;
+  crm:P1_is_identified_by [ a crm:E41_Appellation ;
+    crm:P190_has_symbolic_content "Tomb 70 (Agora XXXVI)"@en
+  ] ;
+  crm:P3_has_note "Earlier to Middle Protogeometric Grave to the northwest of the Stoa Pier 19, 1.2 m southeast of T71, 0.5 m south-southwest of T69. The Grave is a cist tomb that was cat into the bedrock and lined on the sides as well as paved with unworked or roughly worked hewn slabs of schist, that had a thickness between 10 and 15 cm. The tomb was covered with a stone slab. The floor was additionally covered by a thin line of sand. The dimensions of the tomb meassure 1.17 x 0.5 m on the outside and 1.08 x 0.3 m with a depth of 21 cm inside. The tomb was occupied by a skelleton of a child and was stocked with rich grave goods."@en ;
+  crm:P2_has_type somavoc:cist_tomb ;
+  #Period of origin: Early Protogeometric to Middle Protogeometric
+  crm:P92i_was_brought_into_existence_by [ a crm:E63_Beginning_of_Existence ;
+    crm:P4_has_time-span [ a crm:E52_Time-Span ;
+      crm:P82a_begin_of_the_begin "-1025-01-01"^^xsd:date ;
+      crm:P82b_end_of_the_end "-950-12-31"^^xsd:date 
+  ]] ;
+  crm:P39i_was_measured_by [ a crm:E16_Measurement ;
+    crm:P40_observed_dimension [ a crm:E54_Dimension ;
+      crm:P2_has_type somavoc:lenght_outside ;
+      crm:P90_has_value 117 ; 
+      crm:P91_has_unit somavoc:centimeter
+    ] ;
+    crm:P40_observed_dimension [ a crm:E54_Dimension ;
+      crm:P2_has_type somavoc:width_outside ;
+      crm:P90_has_value 50 ; 
+      crm:P91_has_unit somavoc:centimeter 
+    ] ;
+    crm:P40_observed_dimension [ a crm:E54_Dimension ;
+      crm:P2_has_type somavoc:lenght_inside ;
+      crm:P90_has_value 108 ; 
+      crm:P91_has_unit somavoc:centimeter  
+    ] ;
+    crm:P40_observed_dimension [ a crm:E54_Dimension ;
+      crm:P2_has_type somavoc:width_inside ;
+      crm:P90_has_value 30 ; 
+      crm:P91_has_unit somavoc:centimeter  
+    ] ;
+    crm:P40_observed_dimension [ a crm:E54_Dimension ;
+      crm:P2_has_type somavoc:depth_inside ;
+      crm:P90_has_value 21 ; 
+      crm:P91_has_unit somavoc:centimeter 
+    ] ;
+    crm:P40_observed_dimension [ a crm:E54_Dimension ;
+      crm:P2_has_type somavoc:width_slabs_of_schist ;
+      crm:P90_has_value 10 ; 
+      crm:P91_has_unit somavoc:centimeter  
+    ] 
+  ] ;
+  crm:P43_has_dimension [
+    a crm:E54_Dimension ;
+    crm:P2_has_type somavoc:number_individuals ;
+    crm:P90_has_value 1
+  ] ;
+  crm:P43_has_dimension [
+    a crm:E54_Dimension ;
+    crm:P2_has_type somavoc:number_inhumated_individuals ;
+    crm:P90_has_value 1
+  ] ;
+  crm:P43_has_dimension [
+    a crm:E54_Dimension ;
+    crm:P2_has_type somavoc:number_children ;
+    crm:P90_has_value 1
+  ] ;
+  crm:P70i_is_documented_in soma:D1 , soma:D2;
+  dct:source
+    [ a schema:CreativeWork ; schema:isPartOf soma:D1 ; schema:pageStart "445" ; schema:pageEnd "450" ],
+    [ a schema:CreativeWork ; schema:isPartOf soma:D1 ; schema:pageStart "505" ; schema:pageEnd "507" ], 
+    [ a schema:CreativeWork ; schema:isPartOf soma:D1 ; schema:pageStart "553" ], 
+    [ a schema:CreativeWork ; schema:isPartOf soma:D2 ; schema:pageStart "57" ; schema:pageEnd "58" ] ;
+  crm:P138i_is_represented_by [ a crm:E36_Visual_Item ; 
+    rdfs:label "Photo of the tomb"@en ;
+    schema:url      <https://soma-demo.github.io/img/tomb70-photo.png> ;
+    schema:creator "Homer A. Thompson" ;
+    schema:dateCreated "1953" 
+    ] ;
+  crm:P138i_is_represented_by [ a crm:E36_Visual_Item ; 
+    rdfs:label "Plan and section of T70"@en ;
+    schema:url      <https://soma-demo.github.io/img/tomb70-plan.png> ;
+    schema:creator "S. Martin-McAuliffe" ;
+    schema:dateCreated "2017" 
+    ] ;
+  crm:P46_is_composed_of soma:burialAA152 .
+
+
+#################################################################
+# Burials
+#################################################################
+
+# Burial AA 152 Excavation event
+soma:excavation-burialAA152 a crmarchaeo:A9_Archeological_Excavation ;
+  rdfs:label "Burial AA 152 Excavation"@en ;
+  crm:P4_has_time-span [a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "1954-08-18"^^xsd:date ;
+    crm:P82b_end_of_the_end "1954-08-19"^^xsd:date 
+  ] ;
+  crm:P14_carried_out_by [
+    a crm:E21_Person ;
+    rdfs:label "Homer A.Thompson"
+  ] ;
+  crm:P8_took_place_on_or_within soma:burialAA152 .
+
+
+# Burial AA 152
+soma:burialAA152 a crm:E24_Physical_Human-Made_Thing ;
+  rdfs:label "Burial AA 152"@en ;
+  crm:P48_has_preferred_identifier [ a crm:E42_Identifier ;
+    crm:P190_has_symbolic_content "AA 152"@en
+  ] ;
+  crm:P1_is_identified_by [ a crm:E41_Appellation ;
+    crm:P190_has_symbolic_content "Burial AA 152"@en
+  ] ;
+  crm:P3_has_note "Single inhumation burial with the back fully extended in a supine position with the head in the south of a 7 to 8 year old girl with rich assemble of burial goods (8 inside the tomb, 2 outside). The burial goods consist out of 5 ceramic vases, 2 pins,  2 bracelets and a ring." @en ;
+  crm:P2_has_type somavoc:cist_tomb ;
+  #Period of origin: Early Protogeometric to Middle Protogeometric
+  crm:P92i_was_brought_into_existence_by [ a crm:E63_Beginning_of_Existence ;
+    crm:P4_has_time-span [ a crm:E52_Time-Span ;
+      crm:P82a_begin_of_the_begin "-1025-01-01"^^xsd:date ;
+      crm:P82b_end_of_the_end "-950-12-31"^^xsd:date 
+  ]] ;
+  crm:P39i_was_measured_by [ a crm:E16_Measurement ;
+    crm:P40_observed_dimension [ a crm:E54_Dimension ;
+      rdfs:label "Dimension of grave pit - Depth"@en ;
+      crm:P2_has_type somavoc:depth ;
+      crm:P90_has_value 21 ; 
+      crm:P91_has_unit somavoc:centimeter
+    ] ;
+    crm:P40_observed_dimension [ a crm:E54_Dimension ;
+      rdfs:label "Dimension of grave pit - Width"@en ;
+      crm:P2_has_type somavoc:width ;
+      crm:P90_has_value 50 ; 
+      crm:P91_has_unit somavoc:centimeter 
+    ] ;
+    crm:P40_observed_dimension [ a crm:E54_Dimension ;
+      rdfs:label "Dimension of grave pit - Lenght"@en ;
+      crm:P2_has_type somavoc:lenght ;
+      crm:P90_has_value 117 ; 
+      crm:P91_has_unit somavoc:centimeter  
+    ] ;
+  ] ;
+  crm:P19i_was_made_for [ a crm:E7_Activity ;
+    rdfs:label "Burial ritual"@en ;
+    crm:P2_has_type somavoc:inhumation ;
+    crm:P2_has_type somavoc:primary_burial 
+  ] ;
+  crm:P43_has_dimension [
+    a crm:E54_Dimension ;
+    crm:P2_has_type somavoc:total_obj ;
+    crm:P90_has_value 10
+  ] ;
+  crm:P43_has_dimension [
+    a crm:E54_Dimension ;
+    crm:P2_has_type somavoc:internal_goods ;
+    crm:P90_has_value 8
+  ] ;
+  crm:P43_has_dimension [
+    a crm:E54_Dimension ;
+    crm:P2_has_type somavoc:external_goods ;
+    crm:P90_has_value 2
+  ] ;
+  crm:P43_has_dimension [
+    a crm:E54_Dimension ;
+    crm:P2_has_type somavoc:clay_obj ;
+    crm:P90_has_value 5
+  ] ;
+  crm:P43_has_dimension [
+    a crm:E54_Dimension ;
+    crm:P2_has_type somavoc:metal_obj ;
+    crm:P90_has_value 5
+  ] ;
+  crm:P43_has_dimension [
+    a crm:E54_Dimension ;
+    crm:P2_has_type somavoc:pottery_shapes ;
+    crm:P90_has_value 2
+  ] ;
+  crm:P140i_was_attributed_by [ a  crm:E13_Attribute_Assignment ;
+    crm:P177_assigned_property_of_type somavoc:underground_structures ;
+    crm:P3_has_note "dug into the bedrock; sides lined with limestone; floor paved with slabs of schist"@en
+  ] ;
+  crm:P70i_is_documented_in soma:D1 ;
+  crm:P46_is_composed_of soma:objT70-1 .
+
+
+
+#################################################################
+# Objects
+#################################################################
+
+# Object T70-1 Excavation event
+soma:excavation-objT70-1 a crmarchaeo:A9_Archeological_Excavation ;
+  rdfs:label "Object T70-1 Excavation"@en ;
+  crm:P4_has_time-span [a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "1954-08-18"^^xsd:date ;
+    crm:P82b_end_of_the_end "1954-08-19"^^xsd:date 
+  ] ;
+  crm:P14_carried_out_by [
+    a crm:E21_Person ;
+    rdfs:label "Homer A.Thompson"
+  ] ;
+  crm:P8_took_place_on_or_within soma:burialAA152 .
+
+# Object T70-1
+soma:objT70-1 a crm:E22_Human-Made_Object ;
+  rdfs:label "Object T70-1"@en ;
+  crm:P138i_is_represented_by [ a crm:E36_Visual_Item ; 
+    rdfs:label "Photo 01 of vase 01"@en ;
+    schema:url      <https://soma-demo.github.io/img/Parlama-Stampolidis2000S276Abb249.jpg> ;
+    ] ;
+  crm:P138i_is_represented_by [ a crm:E36_Visual_Item ; 
+    rdfs:label "Photo 02 of vase 01"@en ;
+    schema:url      <https://soma-demo.github.io/img/Parlama-Stampolidis2000S281.jpg> ;
+    ] ;
+  crm:P138i_is_represented_by [ a crm:E36_Visual_Item ; 
+    rdfs:label "Photo 03 of vase 01"@en ;
+    schema:url      <https://soma-demo.github.io/img/Parlama-Stampolidis2000S289.jpg> ;
+    ] ;
+  crm:P138i_is_represented_by [ a crm:E36_Visual_Item ; 
+    schema:url      <https://sketchfab.com/3d-models/ancient-greek-vase-2a4cb00cb1dc484d8ab8ea2fc87e502d> ;
+    ] .
+
+
+#################################################################
+# Documentation
+#################################################################
+soma:D1 a crm:E31_Document;
+  rdfs:label "The Early Iron Age. The Cemeteries"@en ;
+  crm:P48_has_preferred_identifier [ a crm:E42_Identifier ;
+    crm:P190_has_symbolic_content "D1"
+  ] ;
+  crm:P102_has_title [ a crm:E35_Title ;
+    crm:P190_has_symbolic_content "The Early Iron Age. The Cemeteries"@en
+  ] ;
+  crm:P2_has_type [
+    a crm:E55_Type ;
+    rdfs:label "Publication"@en
+  ] ;
+  crm:P94_was_created_by [
+    a crm:E65_Creation ;
+    crm:P14_carried_out_by [
+      a crm:E21_Person ;
+      rdfs:label "J. K. Papadopoulos"
+    ] ;
+    crm:P14_carried_out_by [
+      a crm:E21_Person ;
+      rdfs:label "E. L. Smith"
+    ] ;
+    crm:P4_has_time-span [ crm:P4_has_time-span [ a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "2017-01-01"^^xsd:date ;
+    crm:P82b_end_of_the_end "2017-12-31"^^xsd:date 
+    ]]
+  ] .
+
+soma:D2 a crm:E31_Document;
+  rdfs:label "Excavation in the Athenian Agora: 1953"@en ;
+  crm:P48_has_preferred_identifier [ a crm:E42_Identifier ;
+    crm:P190_has_symbolic_content "D2"
+  ] ;
+  crm:P102_has_title [ a crm:E35_Title ;
+    crm:P190_has_symbolic_content "Excavation in the Athenian Agora: 1953"@en
+  ] ;
+  crm:P2_has_type [
+    a crm:E55_Type ;
+    rdfs:label "Publication"@en
+  ] ;
+  crm:P94_was_created_by [
+    a crm:E65_Creation ;
+    crm:P14_carried_out_by [
+      a crm:E21_Person ;
+      rdfs:label "Homer A.Thompson"
+    ] ;
+    crm:P4_has_time-span [ crm:P4_has_time-span [ a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "1954-01-01"^^xsd:date ;
+    crm:P82b_end_of_the_end "1954-12-31"^^xsd:date 
+    ]]
+  ] .
+
+soma:D14 a crm:E31_Document;
+  rdfs:label "The Neolithic and Bronze Ages"@en ;
+  crm:P48_has_preferred_identifier [ a crm:E42_Identifier ;
+    crm:P190_has_symbolic_content "D14"
+  ] ;
+  crm:P102_has_title [ a crm:E35_Title ;
+    crm:P190_has_symbolic_content "The Neolithic and Bronze Ages"@en
+  ] ;
+  crm:P2_has_type [
+    a crm:E55_Type ;
+    rdfs:label "Publication"@en
+  ] ;
+  crm:P94_was_created_by [
+    a crm:E65_Creation ;
+    crm:P14_carried_out_by [
+      a crm:E21_Person ;
+      rdfs:label "Sara Anderson Immerwahr"
+    ] ;
+    crm:P4_has_time-span [ crm:P4_has_time-span [ a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "1971-01-01"^^xsd:date ;
+    crm:P82b_end_of_the_end "1971-12-31"^^xsd:date 
+    ]]
+  ] .
