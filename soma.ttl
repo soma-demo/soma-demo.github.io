@@ -244,6 +244,10 @@ soma:burialAA152 a crm:E24_Physical_Human-Made_Thing ;
     crm:P3_has_note "dug into the bedrock; sides lined with limestone; floor paved with slabs of schist"@en
   ] ;
   crm:P70i_is_documented_in soma:D1 ;
+  dct:source
+    [ a schema:CreativeWork ; schema:isPartOf soma:D1 ; schema:pageStart "445" ; schema:pageEnd "447" ],
+    [ a schema:CreativeWork ; schema:isPartOf soma:D1 ; schema:pageStart "505" ; schema:pageEnd "507" ], 
+    [ a schema:CreativeWork ; schema:isPartOf soma:D1 ; schema:pageStart "553" ];
   crm:P46_is_composed_of soma:objT70-1 .
 
 
@@ -263,22 +267,45 @@ soma:excavation-objT70-1 a crmarchaeo:A9_Archeological_Excavation ;
     a crm:E21_Person ;
     rdfs:label "Homer A.Thompson"
   ] ;
-  crm:P8_took_place_on_or_within soma:burialAA152 .
+  crmarchaeo:AP4_produce_surface [ a crmarchaeo:A8_Stratigraphic_Unit ;
+     crmarchaeo:AP21_contains soma:objT70-1
+  ] .
 
 # Object T70-1
 soma:objT70-1 a crm:E22_Human-Made_Object ;
   rdfs:label "Object T70-1"@en ;
+  crm:P48_has_preferred_identifier [ a crm:E42_Identifier ;
+    crm:P190_has_symbolic_content "T70-1"@en
+  ] ;
+  crm:P1_is_identified_by [ a crm:E42_Identifier ;
+    rdfs:label "Inventory number"
+    crm:P190_has_symbolic_content "P 23560"@en
+  ] ;
+  crm:P55_has_current_location soma:agora_museum_athens ;
+  crm:P3_has_note "A small trefoil oinochoe decorated with geometric motivs and produced with the three-phase firing technique. It was found outside the tomb T70."@en ;
+  crm:P2_has_type somavoc:cist_tomb ; #This is my error in the data sheet. I meant object type, but I wrote type of grave. 
+  #Period of production: Early Protogeometric to Middle Protogeometric
+  crm:P108i_was_produced_by [ a crm:E12_Production ;
+    crm:P4_has_time-span [ a crm:E52_Time-Span ;
+      crm:P82a_begin_of_the_begin "-1025-01-01"^^xsd:date ;
+      crm:P82b_end_of_the_end "-950-12-31"^^xsd:date 
+  ]] ;
+  crm:P44_has_condition [ a  crm:E3_Condition_State ; 
+    crm:P3_has_note "(Joining) fragments of preserving greater parts of the body, neck, rim, and most of the handle. The base is not preserved. The paint is dull  and has a tendency to be flakey in places."@en
+  ] ;
+  crm:P70i_is_documented_in soma:D1 ;
+  dct:source
+    [ a schema:CreativeWork ; schema:isPartOf soma:D1 ; schema:pageStart "447"  ],
+    [ a schema:CreativeWork ; schema:isPartOf soma:D1 ; schema:pageStart "729" ; schema:pageEnd "736" ];
   crm:P138i_is_represented_by [ a crm:E36_Visual_Item ; 
-    rdfs:label "Photo 01 of vase 01"@en ;
-    schema:url      <https://soma-demo.github.io/img/Parlama-Stampolidis2000S276Abb249.jpg> ;
-    ] ;
+    rdfs:label "Oinochoe and lekythoi from T70"@en ;
+    schema:url      <https://soma-demo.github.io/img/T70-1-drawing.png> ;
+    schema:creator "J. K. Papadopoulos – E. L. Smithson" ;
+    schema:dateCreated "2017" 
+  ] ;
   crm:P138i_is_represented_by [ a crm:E36_Visual_Item ; 
     rdfs:label "Photo 02 of vase 01"@en ;
     schema:url      <https://soma-demo.github.io/img/Parlama-Stampolidis2000S281.jpg> ;
-    ] ;
-  crm:P138i_is_represented_by [ a crm:E36_Visual_Item ; 
-    rdfs:label "Photo 03 of vase 01"@en ;
-    schema:url      <https://soma-demo.github.io/img/Parlama-Stampolidis2000S289.jpg> ;
     ] ;
   crm:P138i_is_represented_by [ a crm:E36_Visual_Item ; 
     schema:url      <https://sketchfab.com/3d-models/ancient-greek-vase-2a4cb00cb1dc484d8ab8ea2fc87e502d> ;
@@ -363,3 +390,8 @@ soma:D14 a crm:E31_Document;
     crm:P82b_end_of_the_end "1971-12-31"^^xsd:date 
     ]]
   ] .
+
+
+soma:agora_museum_athens a crm:E55_Place ; 
+  rdfs:label "Agora Museum Athens (Museum of the Ancient Agora)"@en ;
+  crm:P168_place_is_defined_by "POINT(23.717 37.974)" .
