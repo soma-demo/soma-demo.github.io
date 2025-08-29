@@ -74,7 +74,7 @@ soma:tomb70 a crm:E18_Physical_Thing ;
     crm:P190_has_symbolic_content "Tomb 70 (Agora XXXVI)"@en
   ] ;
   crm:P3_has_note "Earlier to Middle Protogeometric Grave to the northwest of the Stoa Pier 19, 1.2 m southeast of T71, 0.5 m south-southwest of T69. The Grave is a cist tomb that was cat into the bedrock and lined on the sides as well as paved with unworked or roughly worked hewn slabs of schist, that had a thickness between 10 and 15 cm. The tomb was covered with a stone slab. The floor was additionally covered by a thin line of sand. The dimensions of the tomb meassure 1.17 x 0.5 m on the outside and 1.08 x 0.3 m with a depth of 21 cm inside. The tomb was occupied by a skelleton of a child and was stocked with rich grave goods."@en ;
-  crm:P2_has_type somavoc:cist_tomb ;
+  crm:P2_has_type somavoc:Cist_tomb ;
   #Period of origin: Early Protogeometric to Middle Protogeometric
   crm:P92i_was_brought_into_existence_by [ a crm:E63_Beginning_of_Existence ;
     crm:P4_has_time-span [ a crm:E52_Time-Span ;
@@ -83,49 +83,49 @@ soma:tomb70 a crm:E18_Physical_Thing ;
   ]] ;
   crm:P39i_was_measured_by [ a crm:E16_Measurement ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
-      crm:P2_has_type somavoc:lenght_outside ;
+      crm:P2_has_type somavoc:Lenght_outside ;
       crm:P90_has_value 117 ; 
       crm:P91_has_unit somavoc:centimeter
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
-      crm:P2_has_type somavoc:width_outside ;
+      crm:P2_has_type somavoc:Width_outside ;
       crm:P90_has_value 50 ; 
       crm:P91_has_unit somavoc:centimeter 
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
-      crm:P2_has_type somavoc:lenght_inside ;
+      crm:P2_has_type somavoc:Lenght_inside ;
       crm:P90_has_value 108 ; 
       crm:P91_has_unit somavoc:centimeter  
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
-      crm:P2_has_type somavoc:width_inside ;
+      crm:P2_has_type somavoc:Width_inside ;
       crm:P90_has_value 30 ; 
       crm:P91_has_unit somavoc:centimeter  
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
-      crm:P2_has_type somavoc:depth_inside ;
+      crm:P2_has_type somavoc:Depth_inside ;
       crm:P90_has_value 21 ; 
       crm:P91_has_unit somavoc:centimeter 
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
-      crm:P2_has_type somavoc:width_slabs_of_schist ;
+      crm:P2_has_type somavoc:Width_slabs_of_schist ;
       crm:P90_has_value 10 ; 
       crm:P91_has_unit somavoc:centimeter  
     ] 
   ] ;
   crm:P43_has_dimension [
     a crm:E54_Dimension ;
-    crm:P2_has_type somavoc:number_individuals ;
+    crm:P2_has_type somavoc:Number_of_individuals ;
     crm:P90_has_value 1
   ] ;
   crm:P43_has_dimension [
     a crm:E54_Dimension ;
-    crm:P2_has_type somavoc:number_inhumated_individuals ;
+    crm:P2_has_type somavoc:Number_of_inhumated_individuals ;
     crm:P90_has_value 1
   ] ;
   crm:P43_has_dimension [
     a crm:E54_Dimension ;
-    crm:P2_has_type somavoc:number_children ;
+    crm:P2_has_type somavoc:Number_of_children ;
     crm:P90_has_value 1
   ] ;
   crm:P70i_is_documented_in soma:D1 , soma:D2;
@@ -177,7 +177,7 @@ soma:burialAA152 a crm:E24_Physical_Human-Made_Thing ;
     crm:P190_has_symbolic_content "Burial AA 152"@en
   ] ;
   crm:P3_has_note "Single inhumation burial with the back fully extended in a supine position with the head in the south of a 7 to 8 year old girl with rich assemble of burial goods (8 inside the tomb, 2 outside). The burial goods consist out of 5 ceramic vases, 2 pins,  2 bracelets and a ring." @en ;
-  crm:P2_has_type somavoc:cist_tomb ;
+  crm:P2_has_type somavoc:Cist_tomb ;
   #Period of origin: Early Protogeometric to Middle Protogeometric
   crm:P92i_was_brought_into_existence_by [ a crm:E63_Beginning_of_Existence ;
     crm:P4_has_time-span [ a crm:E52_Time-Span ;
@@ -206,41 +206,41 @@ soma:burialAA152 a crm:E24_Physical_Human-Made_Thing ;
   ] ;
   crm:P19i_was_made_for [ a crm:E7_Activity ;
     rdfs:label "Burial ritual"@en ;
-    crm:P2_has_type somavoc:inhumation ;
-    crm:P2_has_type somavoc:primary_burial 
+    crm:P2_has_type somavoc:Inhumation ;
+    crm:P2_has_type somavoc:Primary_burial 
   ] ;
   crm:P43_has_dimension [
     a crm:E54_Dimension ;
-    crm:P2_has_type somavoc:total_obj ;
+    crm:P2_has_type somavoc:Total_goods ;
     crm:P90_has_value 10
   ] ;
   crm:P43_has_dimension [
     a crm:E54_Dimension ;
-    crm:P2_has_type somavoc:internal_goods ;
+    crm:P2_has_type somavoc:Internal_goods ;
     crm:P90_has_value 8
   ] ;
   crm:P43_has_dimension [
     a crm:E54_Dimension ;
-    crm:P2_has_type somavoc:external_goods ;
+    crm:P2_has_type somavoc:External_goods ;
     crm:P90_has_value 2
   ] ;
   crm:P43_has_dimension [
     a crm:E54_Dimension ;
-    crm:P2_has_type somavoc:clay_obj ;
+    crm:P2_has_type somavoc:Clay_objects ;
     crm:P90_has_value 5
   ] ;
   crm:P43_has_dimension [
     a crm:E54_Dimension ;
-    crm:P2_has_type somavoc:metal_obj ;
+    crm:P2_has_type somavoc:Metal_objects ;
     crm:P90_has_value 5
   ] ;
   crm:P43_has_dimension [
     a crm:E54_Dimension ;
-    crm:P2_has_type somavoc:pottery_shapes ;
+    crm:P2_has_type somavoc:Pottery_shapes ;
     crm:P90_has_value 2
   ] ;
   crm:P140i_was_attributed_by [ a  crm:E13_Attribute_Assignment ;
-    crm:P177_assigned_property_of_type somavoc:underground_structures ;
+    crm:P177_assigned_property_of_type somavoc:Underground_structures ;
     crm:P3_has_note "dug into the bedrock; sides lined with limestone; floor paved with slabs of schist"@en
   ] ;
   crm:P70i_is_documented_in soma:D1 ;
@@ -278,12 +278,12 @@ soma:objT70-1 a crm:E22_Human-Made_Object ;
     crm:P190_has_symbolic_content "T70-1"@en
   ] ;
   crm:P1_is_identified_by [ a crm:E42_Identifier ;
-    rdfs:label "Inventory number"
+    rdfs:label "Inventory number" ;
     crm:P190_has_symbolic_content "P 23560"@en
   ] ;
   crm:P55_has_current_location soma:agora_museum_athens ;
   crm:P3_has_note "A small trefoil oinochoe decorated with geometric motivs and produced with the three-phase firing technique. It was found outside the tomb T70."@en ;
-  crm:P2_has_type somavoc:cist_tomb ; #This is my error in the data sheet. I meant object type, but I wrote type of grave. 
+  crm:P2_has_type somavoc:Cist_tomb ; #This is my error in the data sheet. I meant object type, but I wrote type of grave. 
   #Period of production: Early Protogeometric to Middle Protogeometric
   crm:P108i_was_produced_by [ a crm:E12_Production ;
     crm:P4_has_time-span [ a crm:E52_Time-Span ;

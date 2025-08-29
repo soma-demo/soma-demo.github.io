@@ -15,10 +15,51 @@
 </head>
 
 <style>
-  body {
-      font-family: 'Lato', sans-serif;
-      color: #4b3d36;
+
+    #pageTitle{
+      color:#e9b02b;
     }
+
+    .about-sections .accent {
+  width: 64px;
+  height: 6px;
+  background: #e9b02b; /* brand gold */
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.about-sections .image-wrap {
+  overflow: hidden;
+  border-radius: 1rem;
+  position: relative;
+}
+
+.about-sections .image-wrap img {
+  transform: scale(1.05);
+  transition: transform 800ms cubic-bezier(.2,.8,.2,1);
+}
+
+.about-sections .image-wrap:hover img {
+  transform: scale(1.12);
+}
+
+/* Animated bullet markers (optional, applied to any <ul> you add later) */
+.about-sections ul li::marker {
+  color: #e9b02b;
+}
+
+/* Reveal on scroll animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 </style>
 <body class="inner-page">
   <!-- NAVBAR -->
@@ -31,24 +72,125 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
-           <li class="nav-item"><a class="nav-link" href="knowledge-graph.html">Knowledge Graph</a></li>
-          <li class="nav-item"><a class="nav-link disabled" href="data-model.html">Data model</a></li>
+          <li class="nav-item"><a class="nav-link" href="knowledge-graph.html">Knowledge Graph</a></li>
+          <li class="nav-item"><a class="nav-link" href="somavoc.html">Vocabulary</a></li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="container py-4">
-    <h1 class="text-center mb-4 title-inner-page">About the Project</h1>
+
+  <div class="mt-3 ms-3">
+    <button id="btnBack" class="btn btn-sm btn-outline-warning back-btn" title="Go back">Back</button>
+  </div>
+
+  <!--<div class="container py-4">
+    <h1 id="pageTitle" class="h3 text-center">About the Project</h1>
     <p class="text-center">
       some text here
     </p>
+  </div>-->
+
+  <div class="container py-3 about-sections">
+  <h1 id="pageTitle" class="text-center mb-4">About the Project</h1>
+
+  <!-- Section 1 -->
+  <section class="about-row row align-items-center g-4 reveal">
     
-    <!--<div class="text-center mt-3">
-      <a href="index.html" class="btn btn-secondary">⬅ Back to Home</a>
-    </div>-->
-  </div>
+      <p class="lead mb-0">
+        The overall goal of SOMA is a Socio-cultural study of Human Remains and Objects from Mortuary Assemblages in Athens. We analyse the character and transformations of the local societies in the longue durée by creating, analysing, and publishing a corpus of ca 5.000 burials of the 2nd and 1st mill. BC excavated by the Greek Antiquities Authorities (“Ephorate”) in the area of the city of Athens. 
+      </p>
+    
+  </section>
+
+  <!-- Section 2 -->
+  <section class="about-row row align-items-center g-4 reveal mt-3">
+    <div class="col-lg-6 order-lg-2">
+      <div class="accent"></div>
+      <p>
+        SOMA’s potential is based on the unique collaboration with the Ephorate and the Greek Ministry of Culture, which invited us to access this corpus for study, which has remained almost inaccessible until now, and evaluate this material in close collaboration during the project. Thereby, we will go far beyond the very limited burial contexts published so far and contribute significantly to Archaeology and Ancient History by making this material accessible to the scientific and wider audience and providing answers to long-existing but so-far unanswerable questions. With its multimodal approach, SOMA sets new standards concerning the integration of Humanities and the Sciences in the framework of an Academy project by integrating archaeological, textual, physical anthropological, archaeogenetic and isotopic approaches based on an interactive web platform, featuring GIS-based and semantic web capabilities combined with AI-based tools. We will create the largest corpus of burials ever published from a single place, covering two millennia. The publication of the large scientific dataset and the contextual information of ca 20.000 objects (pottery, body adornments, grave stelae, inscriptions etc.) and the anthropological and scientific data for ca 5.000 burials from the Bronze Age to Hellenistic times will have a broad and lasting transdisciplinary impact. 
+      </p>
+    </div>
+    <div class="col-lg-6 order-lg-1">
+      <div class="image-wrap shadow-sm">
+        <img src="img/Parlama-Stampolidis2000S289.jpg" class="img-fluid rounded-3" alt="Artifacts and burial goods">
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <section class="about-row row align-items-center reveal mt-4">
+      
+      <p class="mb-4">
+        To create the corpus, SOMA undertakes the basic archaeological evaluation and publication of the 2nd–1st mill. BC burials integrating the physical anthropological evaluation of the skeletal material regarding age, sex, injuries etc. (Research Approach “Bioarchaeology”), the study of burial contexts (spatial setting, grave types/markers etc.) and burial goods (e.g. pottery, bronzes, jewellery) (Research Approach “Socio-Cultural Studies”). </p>
+        <p>
+        The evaluation is divided into 5 phases à 5 years following the chronological sequence, with ca 1.000 burials being evaluated within each phase. Our comprehensive and integrative study of burial contexts as assemblages will provide the largest qualitative and quantitative study of burials at a particular place and, thus, enable completely new approaches to the study of ancient Greek material culture also over a long period of time. All data will be united within Research Approach “Digital Humanities” (DH). 
+      </p>
+  </section>
+
+  <!-- Section 4 
+  <section class="about-row row align-items-center g-4 reveal mt-3">
+    <div class="col-lg-6 order-lg-2">
+      <div class="accent"></div>
+      <p>
+        
+      </p>
+    </div>
+    <div class="col-lg-6 order-lg-1">
+      <div class="image-wrap shadow-sm">
+        <img src="assets/soma-04.jpg" class="img-fluid rounded-3" alt="Phased evaluation approach">
+      </div>
+    </div>
+  </section>-->
+
+  <!-- Section 5 -->
+  <section class="about-row row align-items-center g-4 reveal">
+    <div class="col-lg-6 order-lg-1">
+      <div class="accent"></div>
+      <p class="mb-0">
+        DH will create a state-of-the-art web platform integrating a semantic database with geospatial capabilities, Large Language Models (LLMs) and Artificial Intelligence (AI)-powered tools for query, visualisation and data processing to be used by the scientific and general audience. The semantic character of the database enables the integration of existing databases from the Ephorate. Our database will be interlinked with further repositories and databases, e.g. with epigraphic, historical or bioarchaeological information. We will advance DH approaches to archaeology by developing a range of AI-based tools for knowledge discovery and image production. 
+      </p>
+    </div>
+    <div class="col-lg-6 order-lg-2">
+      <div class="image-wrap shadow-sm">
+        <img src="img/diagram.png" class="img-fluid rounded-3" alt="Digital Humanities platform and tools">
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6 -->
+  <section class="about-row row align-items-center g-4 reveal mt-3">
+    <div class="col-lg-6 order-lg-2">
+      <div class="accent"></div>
+      <p class="mb-0">
+        The Max Planck Institute (MPI) for Evolutionary Anthropology will take over and fund the scientific (aDNA, isotopes) and bioinformatic analyses. The integration of objects, practices, texts and genes will elucidate the dynamic histories of the societies living in the area of the city of Athens. We will trace the interplay of biological and social relatedness, of age, gender, (non)-local origin, nutrition and health with burial goods and grave architecture. We will compare population genomic and cultural transformations over time, correlate biological pedigrees with grave inscriptions and trace biological relatedness inside and between cemeteries. We will detect (age/gender-related) dynamics of culinary practices, infectious diseases, specific marital practices like cousin-cousin-unions and the role of material culture and images in this dynamic interplay of genes and practices.
+      </p>
+    </div>
+    <div class="col-lg-6 order-lg-1">
+      <div class="image-wrap shadow-sm">
+        <img src="img/pottery.avif" class="img-fluid rounded-3" alt="Genetic and cultural analyses integration">
+      </div>
+    </div>
+  </section>
+</div>
+
+
 
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+  // Back button (already in your file)
+  btnBack.onclick = () => history.back();
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('show');
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
