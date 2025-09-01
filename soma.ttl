@@ -18,7 +18,7 @@ soma:excavation-cemeteryC3 a crmarchaeo:A9_Archeological_Excavation ;
     rdfs:label "Excavation area" ;
     crm:P89_falls_within [a crm:E53_Place;
       rdfs:label "Athens" ;
-      crm:P168_place_is_defined_by "POINT(37.984027 23.727683)"] 
+      crm:P168_place_is_defined_by "POINT(23.727683 37.984027)"] 
   ] ;
   crm:P8_took_place_on_or_within soma:cemeteryC3 ;
   crm:P134i_was_continued_by soma:excavation-tomb70.
