@@ -14,9 +14,9 @@
 # Cemetery C3 Excavation event
 soma:excavation-cemeteryC3 a crmarchaeo:A9_Archeological_Excavation ;
   rdfs:label "Exacavation of Cemetery at the South Bank of the Eridanos"@en ;
-  crm:P7_took_place_at [a crm:E53_Place;
+  crm:P7_took_place_at [ a crm:E53_Place;
     rdfs:label "Excavation area" ;
-    crm:P89_falls_within [a crm:E53_Place;
+    crm:P89_falls_within [ a crm:E53_Place;
       rdfs:label "Athens" ;
       crm:P168_place_is_defined_by "POINT(23.727683 37.984027)"] 
   ] ;
@@ -50,7 +50,7 @@ soma:cemeteryC3 a crm:E27_Site ;
 soma:excavation-tomb70 a crmarchaeo:A9_Archeological_Excavation ;
   rdfs:label "Excavation of Tomb 70"@en ;
   crm:P7_took_place_at soma:excavation-area-tomb;
-  crm:P4_has_time-span [a crm:E52_Time-Span ;
+  crm:P4_has_time-span [ a crm:E52_Time-Span ;
     crm:P82a_begin_of_the_begin "1954-08-18"^^xsd:date ;
     crm:P82b_end_of_the_end "1954-08-19"^^xsd:date 
   ] ;
@@ -156,7 +156,7 @@ soma:tomb70 a crm:E18_Physical_Thing ;
 # Burial AA 152 Excavation event
 soma:excavation-burialAA152 a crmarchaeo:A9_Archeological_Excavation ;
   rdfs:label "Burial AA 152 Excavation"@en ;
-  crm:P4_has_time-span [a crm:E52_Time-Span ;
+  crm:P4_has_time-span [ a crm:E52_Time-Span ;
     crm:P82a_begin_of_the_begin "1954-08-18"^^xsd:date ;
     crm:P82b_end_of_the_end "1954-08-19"^^xsd:date 
   ] ;
@@ -259,7 +259,7 @@ soma:burialAA152 a crm:E24_Physical_Human-Made_Thing ;
 # Object T70-1 Excavation event
 soma:excavation-objT70-1 a crmarchaeo:A9_Archeological_Excavation ;
   rdfs:label "Object T70-1 Excavation"@en ;
-  crm:P4_has_time-span [a crm:E52_Time-Span ;
+  crm:P4_has_time-span [ a crm:E52_Time-Span ;
     crm:P82a_begin_of_the_begin "1954-08-18"^^xsd:date ;
     crm:P82b_end_of_the_end "1954-08-19"^^xsd:date 
   ] ;
@@ -361,10 +361,10 @@ soma:D2 a crm:E31_Document;
       a crm:E21_Person ;
       rdfs:label "Homer A.Thompson"
     ] ;
-    crm:P4_has_time-span [ crm:P4_has_time-span [ a crm:E52_Time-Span ;
+    crm:P4_has_time-span [ a crm:E52_Time-Span ;
     crm:P82a_begin_of_the_begin "1954-01-01"^^xsd:date ;
     crm:P82b_end_of_the_end "1954-12-31"^^xsd:date 
-    ]]
+    ]
   ] .
 
 soma:D14 a crm:E31_Document;
@@ -385,10 +385,10 @@ soma:D14 a crm:E31_Document;
       a crm:E21_Person ;
       rdfs:label "Sara Anderson Immerwahr"
     ] ;
-    crm:P4_has_time-span [ crm:P4_has_time-span [ a crm:E52_Time-Span ;
+    crm:P4_has_time-span [ a crm:E52_Time-Span ;
     crm:P82a_begin_of_the_begin "1971-01-01"^^xsd:date ;
     crm:P82b_end_of_the_end "1971-12-31"^^xsd:date 
-    ]]
+    ]
   ] .
 
 
