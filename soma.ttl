@@ -337,10 +337,10 @@ soma:D1 a crm:E31_Document;
       a crm:E21_Person ;
       rdfs:label "E. L. Smith"
     ] ;
-    crm:P4_has_time-span [ crm:P4_has_time-span [ a crm:E52_Time-Span ;
+    crm:P4_has_time-span [ a crm:E52_Time-Span ;
     crm:P82a_begin_of_the_begin "2017-01-01"^^xsd:date ;
     crm:P82b_end_of_the_end "2017-12-31"^^xsd:date 
-    ]]
+    ]
   ] .
 
 soma:D2 a crm:E31_Document;
