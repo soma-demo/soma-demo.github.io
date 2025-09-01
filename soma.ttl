@@ -187,19 +187,19 @@ soma:burialAA152 a crm:E24_Physical_Human-Made_Thing ;
   crm:P39i_was_measured_by [ a crm:E16_Measurement ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
       rdfs:label "Dimension of grave pit - Depth"@en ;
-      crm:P2_has_type somavoc:depth ;
+      crm:P2_has_type somavoc:Depth ;
       crm:P90_has_value 21 ; 
       crm:P91_has_unit somavoc:centimeter
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
       rdfs:label "Dimension of grave pit - Width"@en ;
-      crm:P2_has_type somavoc:width ;
+      crm:P2_has_type somavoc:Width ;
       crm:P90_has_value 50 ; 
       crm:P91_has_unit somavoc:centimeter 
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
       rdfs:label "Dimension of grave pit - Lenght"@en ;
-      crm:P2_has_type somavoc:lenght ;
+      crm:P2_has_type somavoc:Lenght ;
       crm:P90_has_value 117 ; 
       crm:P91_has_unit somavoc:centimeter  
     ] ;

@@ -19,6 +19,15 @@ somavoc:centimeter a crm:E58_Measurement_Unit ;
         skos:definition "This is a definition of centimeter" . 
 
 #Measurement
+somavoc:Lenght a crm:E55_Type ; 
+  rdfs:label "Length"@en  . 
+
+somavoc:Width a crm:E55_Type ; 
+  rdfs:label "Width"@en  . 
+
+somavoc:Depth a crm:E55_Type ; 
+  rdfs:label "Depth"@en  . 
+
 somavoc:Lenght_outside a crm:E55_Type ; 
   rdfs:label "Length - outside"@en  ;
   skos:definition "This is a definition of ..." . 
