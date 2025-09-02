@@ -56,13 +56,16 @@ somavoc:Width_slabs_of_schist a crm:E55_Type ;
 
 #Type of individual
 somavoc:Individuals a crm:E55_Type ; 
-  rdfs:label "Number of individuals"@en .
+  rdfs:label "Number of individuals"@en ;
+  skos:definition "The total count of individuals identified within a burial context." .
 
 somavoc:Inhumated_individuals a crm:E55_Type ; 
-  rdfs:label "Number of inhumated individuals"@en .
+  rdfs:label "Number of inhumated individuals"@en ;
+  skos:definition "The count of individuals who were buried through inhumation." .
 
 somavoc:Children a crm:E55_Type ; 
-  rdfs:label "Number of children"@en .
+  rdfs:label "Number of children"@en ;
+  skos:definition "The count of children identified within a burial context." .
 
 
 #Type of ritual
