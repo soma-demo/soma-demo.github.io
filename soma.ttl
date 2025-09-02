@@ -115,17 +115,17 @@ soma:tomb70 a crm:E18_Physical_Thing ;
   ] ;
   crm:P43_has_dimension [
     a crm:E54_Dimension ;
-    crm:P2_has_type somavoc:Number_of_individuals ;
+    crm:P2_has_type somavoc:Individuals ;
     crm:P90_has_value 1
   ] ;
   crm:P43_has_dimension [
     a crm:E54_Dimension ;
-    crm:P2_has_type somavoc:Number_of_inhumated_individuals ;
+    crm:P2_has_type somavoc:Inhumated_individuals ;
     crm:P90_has_value 1
   ] ;
   crm:P43_has_dimension [
     a crm:E54_Dimension ;
-    crm:P2_has_type somavoc:Number_of_children ;
+    crm:P2_has_type somavoc:Children ;
     crm:P90_has_value 1
   ] ;
   crm:P70i_is_documented_in soma:D1 , soma:D2;

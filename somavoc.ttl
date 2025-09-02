@@ -7,30 +7,36 @@
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix schema: <http://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix aat: <http://vocab.getty.edu/aat/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 #Type of enclosure (tomb)
 somavoc:Cist_tomb a crm:E55_Type ;
     rdfs:label "Cist Tomb"@en ;
-    skos:definition "This is a definition of Cist tomb" . 
+    skos:definition "This is a definition of Cist tomb" ;
+    owl:sameAs aat:300005941 . 
 
 #Unit of measurement
 somavoc:Centimeter a crm:E58_Measurement_Unit ;
         rdfs:label "Centimeter"@en ;
-        skos:definition "This is a definition of centimeter" . 
+        skos:definition "A unit of length in the metric system, equal to one hundredth (1/100) of a meter." ;
+        owl:sameAs aat:300379098 .
 
 #Measurement
 somavoc:Lenght a crm:E55_Type ; 
-  rdfs:label "Length"@en  . 
+  rdfs:label "Length"@en ;
+  skos:definition "The measurement of something from end to end, or the longest dimension of an object." .
 
 somavoc:Width a crm:E55_Type ; 
-  rdfs:label "Width"@en  . 
+  rdfs:label "Width"@en ;
+  skos:definition "The measurement of an object or space from side to side, perpendicular to its length." .
 
 somavoc:Depth a crm:E55_Type ; 
   rdfs:label "Depth"@en  . 
 
 somavoc:Lenght_outside a crm:E55_Type ; 
-  rdfs:label "Length - outside"@en  ;
-  skos:definition "This is a definition of ..." . 
+  rdfs:label "Length - outside"@en  .
+  #skos:broader somavoc:Lenght --> Lenght-outside has broader Length
 
 somavoc:Width_outside a crm:E55_Type ; 
   rdfs:label "Width - outside"@en  .
@@ -49,13 +55,13 @@ somavoc:Width_slabs_of_schist a crm:E55_Type ;
 
 
 #Type of individual
-somavoc:Number_of_individuals a crm:E55_Type ; 
+somavoc:Individuals a crm:E55_Type ; 
   rdfs:label "Number of individuals"@en .
 
-somavoc:Number_of_inhumated_individuals a crm:E55_Type ; 
+somavoc:Inhumated_individuals a crm:E55_Type ; 
   rdfs:label "Number of inhumated individuals"@en .
 
-somavoc:Number_of_children a crm:E55_Type ; 
+somavoc:Children a crm:E55_Type ; 
   rdfs:label "Number of children"@en .
 
 

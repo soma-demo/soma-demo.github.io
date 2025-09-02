@@ -31,6 +31,19 @@
       font-size: .75rem;
       text-decoration: none;
     }
+
+    .id-badge--ext {
+      display: inline-block;
+      background: #f3e5f5;   /* light violet */
+      color: #4a148c;        /* dark violet text */
+      border: 1px solid #e1bee7;
+      padding: .2rem .45rem;
+      border-radius: .375rem;
+      font-size: .75rem;
+      text-decoration: none;
+      margin-right: .25rem;
+    }
+
    
     .sticky-actions {
       position: sticky; top: -1px; background: #fff;
@@ -80,8 +93,9 @@
       <table class="table table-sm table-hover align-middle" id="typesTable">
         <thead class="table-light">
           <tr>
-            <th style="width: 30%">Term</th>
-            <th style="width: 70%">Definition</th>
+            <th style="width: 25%">Term</th>
+            <th style="width: 50%">Definition</th>
+            <th style="width: 25%">External vocabularies</th>
           </tr>
         </thead>
         <tbody id="tbody"></tbody>
@@ -106,7 +120,8 @@
   const P = {
     type: nn(NS.rdf + 'type'),
     label: nn(NS.rdfs + 'label'),
-    definition: nn(NS.skos + 'definition')
+    definition: nn(NS.skos + 'definition'),
+    sameAs: nn(NS.owl + 'sameAs')
   };
 
   let store = new Store();
@@ -122,6 +137,30 @@
     const parts = iriStr.split(/[\/#]/);
     return parts[parts.length-1] || iriStr;
   }
+
+  // Title Case but preserve hyphenated parts (e.g., "Human-Made")
+function titleCase(s){
+  return s.split(' ').map(w =>
+    w.split('-').map(p => p ? p[0].toUpperCase()+p.slice(1).toLowerCase() : p).join('-')
+  ).join(' ');
+}
+
+// Humanize class/type IRIs (underscores → spaces, Title Case)
+function humanizeClass(iriStr){
+  if (!iriStr) return '';
+  let local = localFromIri(iriStr);
+
+  // If CIDOC (E27_Site → "Site")
+  if (iriStr.startsWith(NS.crm) || iriStr.startsWith(NS.crmarchaeo)){
+    local = local.replace(/^E\d+_/, ''); // strip E-codes
+    local = local.replace(/_/g, ' ');
+    return titleCase(local);
+  }
+
+  // Generic fallback
+  return titleCase(local.replace(/_/g, ' '));
+}
+
 
   // Prefer @en label if present, else first label, else local name
   function labelOf(node){
@@ -141,11 +180,27 @@
     const a = document.createElement('a');
     a.href = '#';
     a.className = 'id-badge--type';
-    a.textContent = labelOf(nn(iriStr));
+    //a.textContent = labelOf(nn(iriStr));
+    a.textContent = humanizeClass(iriStr);
     a.title = iriStr; // keep the IRI visible on hover
     a.onclick = (e)=>{ e.preventDefault(); jumpTo(iriStr); };
     return a;
   }
+
+  function sameAsOf(node){
+    return q(node, P.sameAs, null).map(x => x.object).filter(isURI);
+  }
+
+  function makeExtBadge(iriStr){
+    const a = document.createElement('a');
+    a.href = iriStr;
+    a.target = "_blank";
+    a.className = 'id-badge--ext';
+    a.textContent = localFromIri(iriStr);
+    a.title = iriStr;
+    return a;
+  }
+
 
   function rowIdFromIri(iriStr){
     return 'row-' + encodeURIComponent(iriStr);
@@ -158,17 +213,14 @@
 
     // Term cell
     const tdTerm = document.createElement('td');
-    // If you want a fragment target, put it INSIDE the cell:
     const anchor = document.createElement('span');
-    anchor.id = localFromIri(nodeIri);  // optional, for native #fragment focus
+    anchor.id = localFromIri(nodeIri);
     tdTerm.appendChild(anchor);
-
-    // Term badge
     tdTerm.appendChild(makeTypeBadge(nodeIri));
 
     // Definition cell
     const tdDef = document.createElement('td');
-    const defs = definitionsOf(nn(nodeIri));
+    const defs = definitionsOf(node);
     if (defs.length) {
       for (const d of defs) {
         const p = document.createElement('div');
@@ -177,12 +229,21 @@
       }
     }
 
-    // Append cells to the row
+    // External vocabularies cell
+    const tdExt = document.createElement('td');
+    const sames = sameAsOf(node);
+    if (sames.length) {
+      for (const s of sames) {
+        tdExt.appendChild(makeExtBadge(s.id));
+      }
+    }
+
     tr.appendChild(tdTerm);
     tr.appendChild(tdDef);
+    tr.appendChild(tdExt);
     return tr;
-
   }
+
 
   function renderTable(items){
     const tbody = document.getElementById('tbody');
