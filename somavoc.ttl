@@ -36,7 +36,7 @@ somavoc:Depth a crm:E55_Type ;
 
 somavoc:Length_outside a crm:E55_Type ; 
   rdfs:label "Length - outside"@en  .
-  skos:broader somavoc:Length #--> Length-outside has broader Length
+  #skos:broader somavoc:Length --> Length-outside has broader Length
 
 somavoc:Width_outside a crm:E55_Type ; 
   rdfs:label "Width - outside"@en  .
