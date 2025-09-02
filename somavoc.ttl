@@ -23,7 +23,7 @@ somavoc:Centimeter a crm:E58_Measurement_Unit ;
         owl:sameAs aat:300379098 .
 
 #Measurement
-somavoc:Lenght a crm:E55_Type ; 
+somavoc:Length a crm:E55_Type ; 
   rdfs:label "Length"@en ;
   skos:definition "The measurement of something from end to end, or the longest dimension of an object." .
 
@@ -34,14 +34,14 @@ somavoc:Width a crm:E55_Type ;
 somavoc:Depth a crm:E55_Type ; 
   rdfs:label "Depth"@en  . 
 
-somavoc:Lenght_outside a crm:E55_Type ; 
+somavoc:Length_outside a crm:E55_Type ; 
   rdfs:label "Length - outside"@en  .
-  #skos:broader somavoc:Lenght --> Lenght-outside has broader Length
+  skos:broader somavoc:Length #--> Length-outside has broader Length
 
 somavoc:Width_outside a crm:E55_Type ; 
   rdfs:label "Width - outside"@en  .
 
-somavoc:Lenght_inside a crm:E55_Type ; 
+somavoc:Length_inside a crm:E55_Type ; 
   rdfs:label "Length - inside"@en  .
 
 somavoc:Width_inside a crm:E55_Type ; 

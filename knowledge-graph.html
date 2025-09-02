@@ -142,6 +142,7 @@
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link active" href="knowledge-graph.html">Knowledge Graph</a></li>
           <li class="nav-item"><a class="nav-link" href="somavoc.html">Vocabulary</a></li>
+          <li class="nav-item"><a class="nav-link" href="documentation.html">Documentation</a></li>
         </ul>
       </div>
     </div>
@@ -236,7 +237,6 @@
   };
 
   const P = {
-    // --- SOMAVOC support ---
     // load somavoc.ttl and use it to detect reusable Types
 
     type: nn(NS.rdf+'type'),
@@ -308,7 +308,6 @@
   }
 
 // Humanizers for classes & properties
-
 function localFromIri(iriStr){
   if (!iriStr) return '';
   const parts = iriStr.split(/[\/#]/);
@@ -379,8 +378,6 @@ function humanizeClass(iriStr){
     // small map box on the right
     const wrap = document.createElement('div');
     wrap.style.marginTop = '.25rem';
-    //wrap.style.display = 'flex';
-    //wrap.style.justifyContent = 'flex-end';
 
     const mapBox = document.createElement('div');
     mapBox.id = id;
@@ -425,7 +422,7 @@ function humanizeClass(iriStr){
       wktModal = new bootstrap.Modal(wktModalEl);
     }
 
-    // Build (or rebuild) the Leaflet map AFTER the modal content is inserted & shown
+    // Build (or rebuild) the Leaflet map after the modal content is inserted & shown
     const onShown = () => {
       wktModalEl.removeEventListener('shown.bs.modal', onShown);
       const host = document.getElementById('wktModalMap');
