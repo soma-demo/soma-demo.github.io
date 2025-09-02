@@ -283,7 +283,7 @@ soma:objT70-1 a crm:E22_Human-Made_Object ;
   ] ;
   crm:P55_has_current_location soma:agora_museum_athens ;
   crm:P3_has_note "A small trefoil oinochoe decorated with geometric motivs and produced with the three-phase firing technique. It was found outside the tomb T70."@en ;
-  crm:P2_has_type somavoc:Cist_tomb ; #This is my error in the data sheet. I meant object type, but I wrote type of grave. 
+  #crm:P2_has_type somavoc:Cist_tomb ; #This is my error in the data sheet. I meant object type, but I wrote type of grave. 
   #Period of production: Early Protogeometric to Middle Protogeometric
   crm:P108i_was_produced_by [ a crm:E12_Production ;
     crm:P4_has_time-span [ a crm:E52_Time-Span ;
