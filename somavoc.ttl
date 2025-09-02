@@ -14,8 +14,8 @@ somavoc:Cist_tomb a crm:E55_Type ;
     skos:definition "This is a definition of Cist tomb" . 
 
 #Unit of measurement
-somavoc:centimeter a crm:E58_Measurement_Unit ;
-        rdfs:label "centimeter"@en ;
+somavoc:Centimeter a crm:E58_Measurement_Unit ;
+        rdfs:label "Centimeter"@en ;
         skos:definition "This is a definition of centimeter" . 
 
 #Measurement

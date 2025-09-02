@@ -85,32 +85,32 @@ soma:tomb70 a crm:E18_Physical_Thing ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
       crm:P2_has_type somavoc:Lenght_outside ;
       crm:P90_has_value 117 ; 
-      crm:P91_has_unit somavoc:centimeter
+      crm:P91_has_unit somavoc:Centimeter
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
       crm:P2_has_type somavoc:Width_outside ;
       crm:P90_has_value 50 ; 
-      crm:P91_has_unit somavoc:centimeter 
+      crm:P91_has_unit somavoc:Centimeter 
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
       crm:P2_has_type somavoc:Lenght_inside ;
       crm:P90_has_value 108 ; 
-      crm:P91_has_unit somavoc:centimeter  
+      crm:P91_has_unit somavoc:Centimeter  
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
       crm:P2_has_type somavoc:Width_inside ;
       crm:P90_has_value 30 ; 
-      crm:P91_has_unit somavoc:centimeter  
+      crm:P91_has_unit somavoc:Centimeter  
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
       crm:P2_has_type somavoc:Depth_inside ;
       crm:P90_has_value 21 ; 
-      crm:P91_has_unit somavoc:centimeter 
+      crm:P91_has_unit somavoc:Centimeter 
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
       crm:P2_has_type somavoc:Width_slabs_of_schist ;
       crm:P90_has_value 10 ; 
-      crm:P91_has_unit somavoc:centimeter  
+      crm:P91_has_unit somavoc:Centimeter  
     ] 
   ] ;
   crm:P43_has_dimension [
@@ -189,19 +189,19 @@ soma:burialAA152 a crm:E24_Physical_Human-Made_Thing ;
       rdfs:label "Dimension of grave pit - Depth"@en ;
       crm:P2_has_type somavoc:Depth ;
       crm:P90_has_value 21 ; 
-      crm:P91_has_unit somavoc:centimeter
+      crm:P91_has_unit somavoc:Centimeter
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
       rdfs:label "Dimension of grave pit - Width"@en ;
       crm:P2_has_type somavoc:Width ;
       crm:P90_has_value 50 ; 
-      crm:P91_has_unit somavoc:centimeter 
+      crm:P91_has_unit somavoc:Centimeter 
     ] ;
     crm:P40_observed_dimension [ a crm:E54_Dimension ;
       rdfs:label "Dimension of grave pit - Lenght"@en ;
       crm:P2_has_type somavoc:Lenght ;
       crm:P90_has_value 117 ; 
-      crm:P91_has_unit somavoc:centimeter  
+      crm:P91_has_unit somavoc:Centimeter  
     ] ;
   ] ;
   crm:P19i_was_made_for [ a crm:E7_Activity ;
