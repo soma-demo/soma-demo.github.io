@@ -304,10 +304,6 @@ soma:objT70-1 a crm:E22_Human-Made_Object ;
     schema:dateCreated "2017" 
   ] ;
   crm:P138i_is_represented_by [ a crm:E36_Visual_Item ; 
-    rdfs:label "Photo 02 of vase 01"@en ;
-    schema:url      <https://soma-demo.github.io/img/Parlama-Stampolidis2000S281.jpg> ;
-    ] ;
-  crm:P138i_is_represented_by [ a crm:E36_Visual_Item ; 
     schema:url      <https://sketchfab.com/3d-models/ancient-greek-vase-2a4cb00cb1dc484d8ab8ea2fc87e502d> ;
     ] .
 
