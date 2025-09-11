@@ -12,12 +12,19 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato:wght@400;500&display=swap" rel="stylesheet">
    <link href="style.css" rel="stylesheet" />
+
+   <script src="https://unpkg.com/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script>
 </head>
 
 <style>
 
     #pageTitle{
       color:#e9b02b;
+    }
+
+    #wrap{
+      height:90vh;
+      border:1px solid #ddd
     }
 </style>
 <body class="inner-page">
@@ -31,6 +38,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="map.html">Map</a></li>
           <li class="nav-item"><a class="nav-link" href="knowledge-graph.html">Knowledge Graph</a></li>
           <li class="nav-item"><a class="nav-link" href="somavoc.html">Vocabulary</a></li>
           <li class="nav-item"><a class="nav-link active" href="documentation.html">Documentation</a></li>
@@ -45,13 +53,44 @@
 
   <div class="container py-3">
     <h1 id="pageTitle" class="text-center mb-4">Documentation</h1>
+    
+    <!--<div id="wrap"></div>-->
   </div>
-</div>
+
+
+
+
+
+
+
 
 <script>
   // Back button
   btnBack.onclick = () => history.back();
 </script>
 
+
+
+
+  <script>
+    fetch('data-model.svg')
+      .then(r => r.text())
+      .then(svg => {
+        document.getElementById('wrap').innerHTML = svg;
+        const s = document.querySelector('#wrap svg');
+        s.setAttribute('width','100%');
+        s.setAttribute('height','100%');
+      });
+  </script>
+  
+  <script>
+    // enable pan/zoom once the SVG is in the DOM
+    const z = setInterval(()=>{
+      const s = document.querySelector('#wrap svg');
+      if(!s) return;
+      clearInterval(z);
+      svgPanZoom(s, {controlIconsEnabled:true, fit:true, center:true});      
+    },50);
+  </script>
 </body>
 </html>
