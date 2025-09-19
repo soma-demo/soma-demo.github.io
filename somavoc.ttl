@@ -1,5 +1,6 @@
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix crmarchaeo: <http://www.cidoc-crm.org/extensions/crmarchaeo/> .
+@prefix crmarchaeo: <http://www.cidoc-crm.org/extensions/crmarchaeo/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix soma: <http://example.org/soma/> .
@@ -17,7 +18,7 @@ somavoc:Cist_tomb a crm:E55_Type ;
     owl:sameAs aat:300005941 . 
 
 #Unit of measurement
-somavoc:Centimeter a crm:E58_Measurement_Unit ;
+somavoc:Centimeter a crm:E55_Type ;
         rdfs:label "Centimeter"@en ;
         skos:definition "A unit of length in the metric system, equal to one hundredth (1/100) of a meter." ;
         owl:sameAs aat:300379098 .
@@ -33,6 +34,9 @@ somavoc:Width a crm:E55_Type ;
 
 somavoc:Depth a crm:E55_Type ; 
   rdfs:label "Depth"@en  . 
+
+somavoc:Height a crm:E55_Type ; 
+  rdfs:label "Height"@en  .
 
 somavoc:Length_outside a crm:E55_Type ; 
   rdfs:label "Length - outside"@en  .
@@ -53,6 +57,37 @@ somavoc:Depth_inside a crm:E55_Type ;
 somavoc:Width_slabs_of_schist a crm:E55_Type ; 
   rdfs:label "Width - slabs of schist"@en  .
 
+somavoc:Diameter_base a crm:E55_Type ; 
+  rdfs:label "Diameter - base"@en .
+
+somavoc:Diameter_rim_estimated a crm:E55_Type ; 
+  rdfs:label "Diameter Rim (estimated)"@en .
+
+somavoc:Diameter_Airhole a crm:E55_Type ; 
+  rdfs:label "Diameter Airhole"@en .
+
+somavoc:Restored_height a crm:E55_Type ; 
+  rdfs:label "Restored height"@en .
+
+somavoc:Preserved_height a crm:E55_Type ; 
+  rdfs:label "Preserved height"@en .
+
+somavoc:Width_rim a crm:E55_Type ; 
+  rdfs:label "Width Rim"@en .
+
+somavoc:Length_rim a crm:E55_Type ; 
+  rdfs:label "Length Rim"@en .
+  
+
+
+somavoc:Position_of_the_body a crm:E55_Type ; 
+  rdfs:label "Position of the body"@en  .
+
+somavoc:Placement_of_burial_goods a crm:E55_Type ; 
+  rdfs:label "Placement of burial goods"@en  .
+
+somavoc:Spatial_relation_to_human a crm:E55_Type ; 
+  rdfs:label "Spatial relation to human"@en  .
 
 #Type of individual
 somavoc:Individuals a crm:E55_Type ; 
@@ -99,3 +134,57 @@ somavoc:Pottery_shapes a crm:E55_Type ;
 
 somavoc:Underground_structures a crm:E55_Type;
   rdfs:label "Underground structures"@en .
+
+somavoc:Body_position a crm:E55_Type;
+  rdfs:label "Body position"@en .
+
+somavoc:Supine a crm:E55_Type;
+  rdfs:label "Supine"@en .
+
+somavoc:Age a crm:E55_Type;
+  rdfs:label "Age"@en .
+
+somavoc:Years a crm:E55_Type;
+  rdfs:label "Years"@en . 
+
+#Production Techniques
+somavoc:Wheelmade a crm:E55_Type;
+  rdfs:label "Wheelmade"@en . 
+
+somavoc:Three-phase_firing a crm:E55_Type;
+  rdfs:label "Three-phase firing"@en . 
+
+#Material 
+somavoc:Clay a crm:E55_Type;
+  rdfs:label "Clay"@en . 
+
+#Shape
+somavoc:Shape a crm:E55_Type;
+  rdfs:label "Shape"@en . 
+
+somavoc:Trefoil_oincochoe a crm:E55_Type;
+  rdfs:label "Trefoil oincochoe"@en ;
+  skos:broader somavoc:Shape . 
+
+somavoc:Lekythos a crm:E55_Type;
+  rdfs:label "Lekythos"@en ;
+  skos:broader somavoc:Shape . 
+
+#Ornament
+somavoc:Ornament a crm:E55_Type;
+  rdfs:label "Ornament"@en . 
+
+
+#Colour
+somavoc:Clay_colour a crm:E55_Type;
+  rdfs:label "Clay colour"@en .
+
+somavoc:Glaze_colour a crm:E55_Type;
+  rdfs:label "Glaze colour"@en .
+
+
+somavoc:Orientation_of_grave a crm:E55_Type;
+  rdfs:label "Orientation of grave"@en .
+
+somavoc:Distance_to_neighbour_grave a crm:E55_Type;
+  rdfs:label "Distance to neighbour grave"@en .

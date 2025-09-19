@@ -177,25 +177,38 @@
     <div class="card mb-3" id="hierarchySelector">
       <div class="card-body">
         <div class="row g-3">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">Cemetery</label>
             <select id="cemSelect" class="form-select">
               <option value="">Select…</option>
             </select>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-2">
             <label class="form-label">Tomb <span id="tombCount" class="text-secondary"></span></label>
             <select id="tombSelect" class="form-select" disabled>
               <option value="">—</option>
             </select>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-2">
+            <label class="form-label">Grave <span id="graveCount" class="text-secondary"></span></label>
+            <select id="graveSelect" class="form-select" disabled>
+              <option value="">—</option>
+            </select>
+          </div>
+          <div class="col-md-2">
             <label class="form-label">Burial <span id="burialCount" class="text-secondary"></span></label>
             <select id="burialSelect" class="form-select" disabled>
               <option value="">—</option>
             </select>
           </div>
+          <div class="col-md-3">
+            <label class="form-label">Objects / Human Remains <span id="goodsCount" class="text-secondary"></span></label>
+            <select id="goodsSelect" class="form-select" disabled>
+              <option value="">—</option>
+            </select>
+          </div>
         </div>
+        
 
         <div class="d-flex align-items-center mt-3 gap-2 flex-wrap">
           <nav aria-label="breadcrumb" class="me-2 mb-0">
@@ -234,6 +247,7 @@
     Cemetery: iri('crm','E27_Site'),
     Tomb:     iri('crm','E18_Physical_Thing'),
     Burial:   iri('crm','E24_Physical_Human-Made_Thing'),
+    Grave: iri('crm','E25_Man-Made_Feature'), 
     HumanRemains: iri('crm','E20_Biological_Object'),
     Object:       iri('crm','E22_Human-Made_Object'),
     VisualItem:   iri('crm','E36_Visual_Item'),
@@ -275,12 +289,20 @@
 
   // UI refs
   const pageTitle = document.getElementById('pageTitle');
+  
   const cemSelect = document.getElementById('cemSelect');
   const tombSelect = document.getElementById('tombSelect');
   const burialSelect = document.getElementById('burialSelect');
+  const graveSelect = document.getElementById('graveSelect');
+  const goodsSelect = document.getElementById('goodsSelect');
+  
   const crumbs = document.getElementById('crumbs');
+  
   const tombCount = document.getElementById('tombCount');
   const burialCount = document.getElementById('burialCount');
+  const graveCount = document.getElementById('graveCount');
+  const goodsCount = document.getElementById('goodsCount');
+
   const entityDetails = document.getElementById('entityDetails');
   const hierarchySelector = document.getElementById('hierarchySelector');
   const btnCopyUrl = document.getElementById('btnCopyUrl');
@@ -289,6 +311,8 @@
 
   const searchInput = document.getElementById('searchInput');
   const searchResults = document.getElementById('searchResults');
+
+
 
   // Helpers
   function iri(ns, local){ return NS[ns] + local; }
@@ -461,7 +485,7 @@ function humanizeClass(iriStr){
            q(node, P.type, nn(NS.owl+'Class')).length  > 0;
   }
 
-  function classify(node){
+  /*function classify(node){
     if (!node) return 'other';
     if (q(node, P.type, nn(T.Cemetery)).length) return 'cem';
     if (q(node, P.type, nn(T.Tomb)).length)     return 'tomb';
@@ -469,7 +493,19 @@ function humanizeClass(iriStr){
     if (q(node, P.type, nn(T.HumanRemains)).length) return 'hr';
     if (q(node, P.type, nn(T.Object)).length)       return 'obj';
     return 'other';
-  }
+  }*/
+ function classify(node){
+  if (!node) return 'other';
+  if (q(node, P.type, nn(T.Cemetery)).length) return 'cem';
+  if (q(node, P.type, nn(T.Tomb)).length)     return 'tomb';
+  if (q(node, P.type, nn(T.Grave)).length)    return 'grave';
+  if (q(node, P.type, nn(T.Burial)).length)   return 'burial';
+  if (q(node, P.type, nn(T.HumanRemains)).length) return 'hr';
+  if (q(node, P.type, nn(T.Object)).length)       return 'obj';
+  return 'other';
+}
+
+
 
   function setTitle(text){
     pageTitle.textContent = text && text.trim() ? text : 'SOMA Knowledge Graph';
@@ -624,20 +660,61 @@ function humanizeClass(iriStr){
   }
 
   function onTombChange(){
-    const tombIri = tombSelect.value;
+  const tombIri = tombSelect.value;
+  clearEntityPageParam();
+
+  graveSelect.innerHTML = '<option value="">—</option>'; graveSelect.disabled = true; graveCount.textContent = '';
+  burialSelect.innerHTML = '<option value="">—</option>'; burialSelect.disabled = true; burialCount.textContent = '';
+
+  if (!tombIri){
+    setCrumbs({ cemetery: currentCemLabel() });
+    updateUrl({push: true});
+    showEntityDetails(namedNodeSafe(cemSelect.value));
+    setTitle(currentCemLabel());
+    return;
+  }
+
+  const tomb = namedNode(tombIri);
+
+  // 👉 fetch graves inside this tomb
+  const graves = q(tomb, P.isComposedOf, null)
+    .map(t=>t.object)
+    .filter(g => q(g, P.type, nn(T.Grave)).length)
+    .sort((a,b)=>labelOf(a).localeCompare(labelOf(b)));
+
+  graveSelect.innerHTML = '<option value="">Select grave…</option>';
+  for (const g of graves){
+    const opt = document.createElement('option'); 
+    opt.value = g.id; 
+    opt.textContent = labelOf(g); 
+    graveSelect.appendChild(opt);
+  }
+  graveSelect.disabled = !graves.length;
+  graveCount.textContent = `(${graves.length})`;
+
+  setCrumbs({ cemetery: currentCemLabel(), tomb: labelOf(tomb) });
+  updateUrl({push: true});
+  showEntityDetails(tomb);
+  setTitle(labelOf(tomb));
+}
+
+
+  function onGraveChange(){
+    const graveIri = graveSelect.value;
     clearEntityPageParam();
 
-    if (!tombIri){
+    if (!graveIri){
       burialSelect.innerHTML = '<option value="">—</option>'; burialSelect.disabled = true; burialCount.textContent = '';
-      setCrumbs({ cemetery: currentCemLabel() }); updateUrl({push: true}); showEntityDetails(namedNodeSafe(cemSelect.value)); setTitle(currentCemLabel()); return;
+      setCrumbs({ cemetery: currentCemLabel(), tomb: currentTombLabel() });
+      updateUrl({push: true}); showEntityDetails(namedNodeSafe(tombSelect.value));
+      setTitle(currentTombLabel() || currentCemLabel()); return;
     }
 
-    const tomb = namedNode(tombIri);
-    const burials = q(tomb, P.isComposedOf, null)
+    const grave = namedNode(graveIri);
+    const burials = q(grave, P.isComposedOf, null)
       .map(t=>t.object)
       .filter(b => q(b, P.type, nn(T.Burial)).length)
       .sort((a,b)=>labelOf(a).localeCompare(labelOf(b)));
-
 
     burialSelect.innerHTML = '<option value="">Select burial…</option>';
     for (const b of burials){
@@ -646,25 +723,65 @@ function humanizeClass(iriStr){
     burialSelect.disabled = !burials.length;
     burialCount.textContent = `(${burials.length})`;
 
-    setCrumbs({ cemetery: currentCemLabel(), tomb: labelOf(tomb) });
+    setCrumbs({ cemetery: currentCemLabel(), tomb: currentTombLabel(), grave: labelOf(grave) });
     updateUrl({push: true});
-    showEntityDetails(tomb);
-    setTitle(labelOf(tomb));
+    showEntityDetails(grave);
+    setTitle(labelOf(grave));
   }
+
 
   function onBurialChange(){
     const burialIri = burialSelect.value;
     clearEntityPageParam();
 
+    goodsSelect.innerHTML = '<option value="">—</option>'; goodsSelect.disabled = true;
+
     if (!burialIri){
-      setCrumbs({ cemetery: currentCemLabel(), tomb: currentTombLabel() }); updateUrl({push: true}); showEntityDetails(namedNodeSafe(tombSelect.value)); setTitle(currentTombLabel() || currentCemLabel()); return;
+      setCrumbs({ cemetery: currentCemLabel(), tomb: currentTombLabel(), grave: labelOf(namedNodeSafe(graveSelect.value)) });
+      updateUrl({push: true}); showEntityDetails(namedNodeSafe(graveSelect.value));
+      setTitle(currentTombLabel() || currentCemLabel()); return;
     }
     const burial = namedNode(burialIri);
-    setCrumbs({ cemetery: currentCemLabel(), tomb: currentTombLabel(), burial: labelOf(burial) });
+
+    // find goods
+    const goods = q(burial, P.isComposedOf, null)
+      .map(t=>t.object)
+      .filter(g => q(g, P.type, nn(T.HumanRemains)).length || q(g, P.type, nn(T.Object)).length)
+      .sort((a,b)=>labelOf(a).localeCompare(labelOf(b)));
+
+    goodsSelect.innerHTML = '<option value="">Select…</option>';
+    for (const g of goods){
+      const opt = document.createElement('option'); 
+      opt.value = g.id; 
+      opt.textContent = labelOf(g); 
+      goodsSelect.appendChild(opt);
+    }
+    goodsSelect.disabled = !goods.length;
+    goodsCount.textContent = goods.length ? `(${goods.length})` : '';
+
+
+    setCrumbs({ cemetery: currentCemLabel(), tomb: currentTombLabel(), grave: labelOf(namedNodeSafe(graveSelect.value)), burial: labelOf(burial) });
     updateUrl({push: true});
     showEntityDetails(burial);
     setTitle(labelOf(burial));
   }
+
+  function onGoodsChange(){
+    const gIri = goodsSelect.value;
+    clearEntityPageParam();
+    if (!gIri){
+      setCrumbs({ cemetery: currentCemLabel(), tomb: currentTombLabel(), grave: labelOf(namedNodeSafe(graveSelect.value)), burial: labelOf(namedNodeSafe(burialSelect.value)) });
+      updateUrl({push: true}); showEntityDetails(namedNodeSafe(burialSelect.value));
+      return;
+    }
+    const g = namedNode(gIri);
+    setCrumbs({ cemetery: currentCemLabel(), tomb: currentTombLabel(), grave: labelOf(namedNodeSafe(graveSelect.value)), burial: labelOf(namedNodeSafe(burialSelect.value)), goods: labelOf(g) });
+    updateUrl({push: true});
+    showEntityDetails(g);
+    setTitle(labelOf(g));
+  }
+
+
 
   // Breadcrumbs
   function setCrumbs(parts = {}) {
@@ -675,13 +792,20 @@ function humanizeClass(iriStr){
     if (parts.tomb) {
       items.push(`<li class="breadcrumb-item"><a href="#" onclick="selectLevel('tomb')">${escape(parts.tomb)}</a></li>`);
     }
+    if (parts.grave) {
+      items.push(`<li class="breadcrumb-item"><a href="#" onclick="selectLevel('grave')">${escape(parts.grave)}</a></li>`);
+    }
     if (parts.burial) {
       items.push(`<li class="breadcrumb-item"><a href="#" onclick="selectLevel('burial')">${escape(parts.burial)}</a></li>`);
     }
+    if (parts.goods) {
+      items.push(`<li class="breadcrumb-item"><a href="#" onclick="selectLevel('goods')">${escape(parts.goods)}</a></li>`);
+    }
+
     crumbs.innerHTML = items.join('');
   }
 
-  window.selectLevel = function(level) {
+  /*window.selectLevel = function(level) {
     clearEntityPageParam();
     if (level === 'cem') {
       tombSelect.value = '';
@@ -692,7 +816,39 @@ function humanizeClass(iriStr){
       onTombChange();
     }
     updateUrl({push: true});
+  };*/
+  window.selectLevel = function(level) {
+    clearEntityPageParam();
+
+    if (level === 'cem') {
+      tombSelect.value = '';
+      graveSelect.value = '';
+      burialSelect.value = '';
+      goodsSelect.value = '';
+      onCemeteryChange();
+
+    } else if (level === 'tomb') {
+      graveSelect.value = '';
+      burialSelect.value = '';
+      goodsSelect.value = '';
+      onTombChange();
+
+    } else if (level === 'grave') {
+      burialSelect.value = '';
+      goodsSelect.value = '';
+      onGraveChange();
+
+    } else if (level === 'burial') {
+      goodsSelect.value = '';
+      onBurialChange();
+
+    } else if (level === 'goods') {
+      onGoodsChange();
+    }
+
+    updateUrl({push: true});
   };
+
 
   // Renderers
   function appendPropRow(container, pred, valueNode){
@@ -937,7 +1093,7 @@ function humanizeClass(iriStr){
   }
 
   // Navigation
-  function navigateToNode(node){
+  /*function navigateToNode(node){
     const kind = classify(node);
     hierarchySelector.style.display = (kind === 'cem' || kind === 'tomb' || kind === 'burial') ? '' : 'none';
     if (kind === 'cem') {
@@ -961,7 +1117,63 @@ function humanizeClass(iriStr){
     } else {
       goToEntity(node.id);
     }
+  }*/ 
+ function navigateToNode(node){
+  const kind = classify(node);
+  // Show the selector for all hierarchy levels
+  hierarchySelector.style.display = (kind === 'cem' || kind === 'tomb' || kind === 'grave' || kind === 'burial') ? '' : 'none';
+
+  if (kind === 'cem') {
+    cemSelect.value = node.id;
+    onCemeteryChange();
+
+  } else if (kind === 'tomb') {
+    ensureCemeteryForTomb(node);
+    tombSelect.value = node.id;
+    onTombChange();
+
+  } else if (kind === 'grave') {
+    // find its parent tomb, then cemetery
+    const tomb = one(q(null, P.isComposedOf, node))?.subject;
+    if (tomb) {
+      ensureCemeteryForTomb(tomb);
+      tombSelect.value = tomb.id;
+      onTombChange();
+      graveSelect.value = node.id;
+      onGraveChange();
+    } else {
+      goToEntity(node.id);
+    }
+
+  } else if (kind === 'burial') {
+    const tomb = one(q(null, P.isComposedOf, node))?.subject;
+    if (tomb) {
+      ensureCemeteryForTomb(tomb);
+      tombSelect.value = tomb.id;
+      onTombChange();
+      // also try to set grave (parent of burial)
+      const grave = one(q(null, P.isComposedOf, node))?.subject; // if your data: Burial <-is_composed_of- Grave, then this is wrong; instead:
+      // Better: find the grave that composes the burial:
+      // const grave = one(q(null, P.isComposedOf, node))?.subject;  // If your data links Grave -> P46 -> Burial, use:
+      // (we already have `tomb`, now pick the grave that has this burial)
+      const candidateGraves = q(tomb, P.isComposedOf, null).map(t=>t.object)
+                            .filter(g => q(g, P.type, nn(T.Grave)).length);
+      const parentGrave = candidateGraves.find(g => q(g, P.isComposedOf, node).length);
+      if (parentGrave) {
+        graveSelect.value = parentGrave.id;
+        onGraveChange();
+      }
+      burialSelect.value = node.id;
+      onBurialChange();
+    } else {
+      goToEntity(node.id);
+    }
+
+  } else {
+    goToEntity(node.id);
   }
+}
+
 
   function ensureCemeteryForTomb(tombNode){
     const found = cemIndex.find(c => isComposedOf(c.iri, tombNode));
@@ -1041,7 +1253,7 @@ function humanizeClass(iriStr){
   }
 
   // URL sync
-  function updateUrl(opts = {}){
+  /*function updateUrl(opts = {}){
     const { push = false } = opts;
     const params = new URLSearchParams();
     if (currentEntity) {
@@ -1058,9 +1270,30 @@ function humanizeClass(iriStr){
     } else {
       history.replaceState(null, '', url);
     }
+  }*/ 
+ function updateUrl(opts = {}){
+  const { push = false } = opts;
+  const params = new URLSearchParams();
+  if (currentEntity) {
+    params.set('entity', currentEntity.id);
+  } else {
+    if (cemSelect.value)   params.set('cem', cemSelect.value);
+    if (tombSelect.value)  params.set('tomb', tombSelect.value);
+    if (graveSelect.value) params.set('grave', graveSelect.value);   // NEW
+    if (burialSelect.value)params.set('burial', burialSelect.value);
+    if (goodsSelect.value) params.set('goods', goodsSelect.value);   // NEW
   }
+  const qs = params.toString();
+  const url = `${location.pathname}${qs ? ('?'+qs) : ''}`;
+  if (push && !suppressPush) {
+    history.pushState(null, '', url);
+  } else {
+    history.replaceState(null, '', url);
+  }
+}
 
-  function restoreFromUrlParams(){
+
+  /*function restoreFromUrlParams(){
     const params = new URLSearchParams(location.search);
     const entity = params.get('entity');
     const cem = params.get('cem');
@@ -1098,7 +1331,59 @@ function humanizeClass(iriStr){
     }
 
     suppressPush = false;
+  }*/ 
+  function restoreFromUrlParams(){
+  const params = new URLSearchParams(location.search);
+  const entity = params.get('entity');
+  const cem    = params.get('cem');
+  const tomb   = params.get('tomb');
+  const grave  = params.get('grave');   // NEW
+  const burial = params.get('burial');
+  const goods  = params.get('goods');   // NEW
+
+  suppressPush = true;
+
+  if (entity){
+    goToEntity(entity);
+    suppressPush = false;
+    return;
   }
+
+  cemSelect.value = '';
+  tombSelect.innerHTML   = '<option value="">—</option>'; tombSelect.disabled = true; tombCount.textContent = '';
+  graveSelect.innerHTML  = '<option value="">—</option>'; graveSelect.disabled = true; graveCount.textContent = '';
+  burialSelect.innerHTML = '<option value="">—</option>'; burialSelect.disabled = true; burialCount.textContent = '';
+  goodsSelect.innerHTML  = '<option value="">—</option>'; goodsSelect.disabled = true; goodsCount.textContent = '';
+
+  if (cem){
+    hierarchySelector.style.display = "";
+    cemSelect.value = cem;
+    onCemeteryChange();
+    if (tomb){
+      tombSelect.value = tomb;
+      onTombChange();
+      if (grave){
+        graveSelect.value = grave;       // NEW
+        onGraveChange();                 // NEW
+        if (burial){
+          burialSelect.value = burial;
+          onBurialChange();
+          if (goods){
+            goodsSelect.value = goods;   // NEW
+            onGoodsChange();             // NEW
+          }
+        }
+      }
+    }
+  } else {
+    showEntityDetails(null);
+    setTitle('');
+    setCrumbs();
+  }
+
+  suppressPush = false;
+}
+
 
   window.addEventListener('popstate', () => {
     restoreFromUrlParams();
@@ -1107,7 +1392,9 @@ function humanizeClass(iriStr){
   // Events
   cemSelect.onchange = onCemeteryChange;
   tombSelect.onchange = onTombChange;
+  graveSelect.onchange = onGraveChange;
   burialSelect.onchange = onBurialChange;
+  goodsSelect.onchange = onGoodsChange;
 
   btnCopyUrl.onclick = async () => {
     try {

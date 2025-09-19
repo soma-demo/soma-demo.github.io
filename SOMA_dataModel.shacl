@@ -1,0 +1,766 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix crmarchaeo: <http://www.cidoc-crm.org/extensions/crmarchaeo/> .
+@prefix crmsci: <http://www.cidoc-crm.org/extensions/crmsci/> .
+@prefix soma: <http://example.org/soma/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix icon: <https://w3id.org/icon/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+#################################################################
+# Excavation Shape (crmarchaeo:A9_Archeological_Excavation)
+#################################################################
+
+soma:ExcavationShape a sh:NodeShape ;
+    sh:targetClass crmarchaeo:A9_Archeological_Excavation ;
+    sh:property [
+        sh:path crm:P7_took_place_at ;
+        sh:node soma:PlaceShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P8_took_place_on_or_within ;
+        sh:or (
+            [ sh:node soma:CemeteryShape ]
+            [ sh:node soma:TombShape ]
+            [ sh:node soma:GraveShape ]
+            [ sh:node soma:BurialShape ]
+            [ sh:node soma:ObjectShape ]
+        )
+    ] ;
+    sh:property [
+        sh:path crm:P4_has_time-span ;
+        sh:node soma:TimeShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P14_carried_out_by ;
+        sh:class crm:E21_Person ;
+    ] ;
+    sh:property [
+        sh:path crmarchaeo:AP4_produce_surface ;
+        sh:node soma:StratigraphicUnitShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P134i_was_continued_by ;
+        sh:node soma:ExcavationShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P70i_is_documented_in ;
+        sh:node soma:DocumentShape ;
+    ] .
+
+
+#################################################################
+# Cemetery Shape (crm:E27_Site)
+#################################################################
+
+soma:CemeteryShape a sh:NodeShape ;
+    sh:targetClass crm:E27_Site ;
+    sh:property [
+        sh:path crm:P48_has_preferred_identifier ;
+        sh:node soma:IdentifierShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P1_is_identified_by ;
+        sh:node soma:AppellationShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P156_occupies ;
+        sh:node soma:PlaceShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] ;
+    sh:property [
+        sh:path crm:P92i_was_brought_into_existence_by ;
+        sh:node soma:BeginningExistenceShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P43_has_dimension ;
+        sh:node soma:DimensionShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P70i_is_documented_in ;
+        sh:node soma:DocumentShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P138i_is_represented_by ;
+        sh:node soma:ImageShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P46_is_composed_of ;
+        sh:node soma:TombShape ;
+    ] .
+
+
+#################################################################
+# Tomb Shape (crm:E18_Phisical_Thing)
+#################################################################
+
+soma:TombShape a sh:NodeShape ;
+    sh:targetClass crm:E18_Phisical_Thing ;
+    sh:property [
+        sh:path crm:P48_has_preferred_identifier ;
+        sh:node soma:IdentifierShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P1_is_identified_by ;
+        sh:node soma:AppellationShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P156_occupies ;
+        sh:node soma:PlaceShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P46_is_composed_of ;
+        sh:node soma:GraveShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P92i_was_brought_into_existence_by ;
+        sh:node soma:BeginningExistenceShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] ;
+    sh:property [
+        sh:path crm:P2_has_type ;
+        sh:class crm:E55_Type ;
+    ] ;
+
+    sh:property [
+        sh:path crm:P31i_was_modified_by ;
+        sh:node soma:DisturbanceShape  ;
+    ] ;
+    sh:property [
+        sh:path crm:P43_has_dimension ;
+        sh:node soma:DimensionShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P70i_is_documented_in ;
+        sh:node soma:DocumentShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P138i_is_represented_by ;
+        sh:node soma:ImageShape ;
+    ] .
+
+
+
+
+#################################################################
+# Grave Shape (crm:E25_Man-Made_Feature)
+#################################################################
+
+soma:GraveShape a sh:NodeShape ;
+    sh:targetClass crm:E25_Man-Made_Feature ;
+    sh:property [
+        sh:path crm:P48_has_preferred_identifier ;
+        sh:node soma:IdentifierShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P1_is_identified_by ;
+        sh:node soma:AppellationShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P1_is_identified_by ;
+        sh:node soma:IdentifierShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P156_occupies ;
+        sh:node soma:PlaceShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P46_is_composed_of ;
+        sh:node soma:BurialShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P92i_was_brought_into_existence_by ;
+        sh:node soma:BeginningExistenceShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] ;
+    sh:property [
+        sh:path crm:P2_has_type ;
+        sh:class crm:E55_Type ;
+    ] ;
+   sh:property [
+        sh:path crm:P56_bears_feature ;
+        sh:node soma:FeatureShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P31i_was_modified_by ;
+        sh:node soma:DisturbanceShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P43_has_dimension ;
+        sh:node soma:DimensionShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P70i_is_documented_in ;
+        sh:node soma:DocumentShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P138i_is_represented_by ;
+        sh:node soma:ImageShape ;
+    ] .
+
+
+
+#################################################################
+# Burial Shape (crm:E24_Physical_Human-Made_Thing)
+#################################################################
+
+soma:BurialShape a sh:NodeShape ;
+    sh:targetClass crm:E24_Physical_Human-Made_Thing ;
+    sh:property [
+        sh:path crm:P48_has_preferred_identifier ;
+        sh:node soma:IdentifierShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P1_is_identified_by ;
+        sh:node soma:AppellationShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P1_is_identified_by ;
+        sh:node soma:IdentifierShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P156_occupies ;
+        sh:node soma:PlaceShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P92i_was_brought_into_existence_by ;
+        sh:node soma:BeginningExistenceShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P46_is_composed_of ;
+        sh:or (
+            [ sh:node soma:ObjectShape ]
+            [ sh:node soma:HumanRemainsShape ]
+        )
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] ;
+    sh:property [
+        sh:path crm:P2_has_type ;
+        sh:class crm:E55_Type ;
+    ] ;
+    sh:property [
+        sh:path crm:P31i_was_modified_by ;
+        sh:node soma:DisturbanceShape ;
+    ] ;
+   sh:property [
+        sh:path crm:P43_has_dimension ;
+        sh:node soma:DimensionShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P45_consists_of ;
+        sh:class crm:E57_Material ;
+    ] ;
+    sh:property [
+        sh:path crm:P19i_was_made_for ;
+        sh:node soma:RitualShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P70i_is_documented_in ;
+        sh:node soma:DocumentShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P138i_is_represented_by ;
+        sh:node soma:ImageShape ;
+    ] .
+
+
+
+#################################################################
+# Human Remains Shape (E20_Biological_Object)
+#################################################################
+
+soma:HumanRemainsShape a sh:NodeShape ;
+    sh:targetClass crm:E20_Biological_Object ;
+    sh:property [
+        sh:path crm:P48_has_preferred_identifier ;
+        sh:node soma:IdentifierShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P1_is_identified_by ;
+        sh:node soma:IdentifierShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P55_has_current_location ;
+        sh:node soma:PlaceShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] ;
+    sh:property [
+        sh:path crm:P43_has_dimension ;
+        sh:node soma:DimensionShape ;
+    ] ;
+
+    sh:property [
+        sh:path crmsci:O8i_was_observed_by ;
+        sh:node soma:AnalysisShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P70i_is_documented_in ;
+        sh:node soma:DocumentShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P138i_is_represented_by ;
+        sh:node soma:ImageShape ;
+    ] .
+
+
+#################################################################
+# Object Shape (crm:crm:E22_Human-Made_Object)
+#################################################################
+
+soma:ObjectShape a sh:NodeShape ;
+    sh:targetClass crm:E22_Human-Made_Object  ;
+    sh:property [
+        sh:path crm:P48_has_preferred_identifier ;
+        sh:node soma:IdentifierShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P1_is_identified_by ;
+        sh:node soma:AppellationShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P1_is_identified_by ;
+        sh:node soma:IdentifierShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P55_has_current_location ;
+        sh:node soma:PlaceShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] ;
+    sh:property [
+        sh:path crm:P2_has_type ;
+        sh:class crm:E55_Type ;
+    ] ;
+    sh:property [
+        sh:path crm:P44_has_condition ;
+        sh:node [ a sh:NodeShape ;
+            sh:targetClass crm:E3_Condition_State ;
+            sh:property [
+                sh:path crm:P3_has_note ;
+                sh:or (
+                    [ sh:datatype xsd:string ]
+                    [ sh:datatype rdf:langString ]
+                ) ;
+            ] ;
+        ] ;
+    ] ;
+    sh:property [
+        sh:path crm:P43_has_dimension ;
+        sh:node soma:DimensionShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P31i_was_modified_by ;
+        sh:node soma:RestorationShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P31i_was_modified_by ;
+        sh:node soma:ProductionShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P25i_moved_by ;
+        sh:node soma:ImportShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P56_bears_feature ;
+        sh:node soma:FeatureShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P56_bears_feature ;
+        sh:node soma:OrnamentShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P56_bears_feature ;
+        sh:node soma:InscriptionShape ;
+    ] ;
+    sh:property [
+        sh:path icon:preiconographicallyDepicts ;
+        sh:class icon:PreiconographicalSubject ;
+    ] ;
+    sh:property [
+        sh:path icon:iconographicallyDepicts ;
+        sh:class icon:IconographicalSubject ;
+    ] ;
+    sh:property [
+        sh:path icon:iconologiphicallyRepresents ;
+        sh:class icon:IconologicalSubject ;
+    ] ;
+    sh:property [
+        sh:path crm:P70i_is_documented_in ;
+        sh:node soma:DocumentShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P138i_is_represented_by ;
+        sh:node soma:ImageShape ;
+    ] .
+
+##############################################################
+### Generic Shapes ###
+##############################################################
+
+soma:TimeShape a sh:NodeShape ;
+    sh:targetClass crm:E52_Time-Span ;
+    sh:property [
+        sh:path crm:P82a_begin_of_the_begin ;
+        sh:or (
+            [ sh:datatype xsd:date ]
+            [ sh:datatype xsd:gYear ]
+            [ sh:datatype xsd:string ]
+        ) ;
+    ] ;
+    sh:property [
+        sh:path crm:P82b_end_of_the_end ;
+        sh:or (
+            [ sh:datatype xsd:date ]
+            [ sh:datatype xsd:gYear ]
+            [ sh:datatype xsd:string ]
+        ) ;
+    ] .
+
+soma:PeriodShape a sh:NodeShape ;
+    sh:targetClass crm:E4_Period ;
+    sh:property [
+        sh:path crm:P1_is_identified_by ;
+        sh:node soma:AppellationShape ;
+    ] .
+
+soma:PlaceShape a sh:NodeShape ;
+    sh:targetClass crm:E53_Place ;
+    sh:property [
+      sh:path crm:P89_falls_within ;
+      sh:node [
+        a sh:NodeShape ;
+        sh:targetClass crm:E53_Place ;
+        sh:property [
+          sh:path crm:P168_place_is_defined_by ;
+          sh:datatype xsd:string ;
+        ]
+      ]
+    ] .
+
+soma:IdentifierShape a sh:NodeShape ;
+    sh:targetClass crm:E42_Identifier ;
+    sh:property [
+        sh:path crm:P190_has_symbolic_content ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] .
+
+soma:AppellationShape a sh:NodeShape ;
+    sh:targetClass crm:E41_Appellation ;
+    sh:property [
+        sh:path crm:P190_has_symbolic_content ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] .
+
+soma:BeginningExistenceShape a sh:NodeShape ;
+    sh:targetClass crm:E63_Beginning_of_Existence ;
+    sh:property [
+        sh:path crm:P4_has_time-span ;
+        sh:node soma:TimeShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P10_falls_within ;
+        sh:node soma:PeriodShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] .
+
+soma:DisturbanceShape a sh:NodeShape ;
+    sh:targetClass crm:E11_Modification  ;
+    sh:property [
+        sh:path crm:P2_has_type ;
+        sh:class crm:E55_Type ;
+    ] ;
+    sh:property [
+        sh:path crm:P4_has_time-span ;
+        sh:node soma:TimeShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P10_falls_within ;
+        sh:node soma:PeriodShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P14_carried_out_by ;
+        sh:class crm:E39_Actor ;
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] .
+
+
+soma:RestorationShape a sh:NodeShape ;
+    sh:targetClass crm:E11_Modification  ;
+    sh:property [
+        sh:path crm:P14_carried_out_by ;
+        sh:class crm:E39_Actor ;
+    ] ;
+    sh:property [
+        sh:path crm:P4_has_time-span ;
+        sh:node soma:TimeShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P7_took_place_at-span ;
+        sh:node soma:PlaceShape ;
+    ] ;   
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] .
+
+soma:ProductionShape a sh:NodeShape ;
+    sh:targetClass crm:E12_Production  ;
+    sh:property [
+        sh:path crm:P14_carried_out_by ;
+        sh:class crm:E39_Actor ;
+    ] ;
+    sh:property [
+        sh:path crm:P4_has_time-span ;
+        sh:node soma:TimeShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P10_falls_within ;
+        sh:node soma:PeriodShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P7_took_place_at-span ;
+        sh:node soma:PlaceShape ;
+    ] ;   
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] ;
+    sh:property [
+        sh:path crm:P32_used_general_technique ;
+        sh:class crm:E55_Type ;
+    ] ;
+    sh:property [
+        sh:path crm:P126_employed ;
+        sh:node [ a sh:NodeShape ;
+            sh:targetClass crm:E57_Material ;
+            sh:property [
+                sh:path crm:P2_has_type ;
+                sh:class crm:E55_Type ;
+            ] ;
+        ];
+    ] .
+
+
+soma:ImportShape a sh:NodeShape ;
+    sh:targetClass crm:E9_Move  ;
+    sh:property [
+        sh:path crm:P27_moved_from ;
+        sh:node soma:Place ;
+    ] .   
+
+soma:DimensionShape a sh:NodeShape ;
+    sh:targetClass crm:E54_Dimension ;
+    sh:property [
+        sh:path crm:P2_has_type ;
+        sh:class crm:E55_Type ;
+    ] ;
+    sh:property [
+        sh:path crm:P9_has_value ;
+        sh:datatype xsd:decimal ;
+    ] ;
+    sh:property [
+        sh:path crm:P91_has_unit ;
+        sh:class crm:E55_Type ;
+    ] ;
+    sh:property [
+        sh:path crm:P67_refers_to  ;
+        sh:or (
+            [ sh:node soma:GraveShape ]
+            [ sh:node soma:TombShape ]
+        ) ;
+    ] .
+
+
+soma:FeatureShape a sh:NodeShape ;
+    sh:targetClass crm:E26_Physical_Feature   ;
+    sh:property [
+        sh:path crm:P2_has_type ;
+        sh:class crm:E55_Type ;
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] .
+
+soma:OrnamentShape a sh:NodeShape ;
+    sh:targetClass crm:E36_Visual_Item ;
+    sh:property [
+        sh:path crm:P2_has_type ;
+        sh:class crm:E55_Type ;
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] .
+
+soma:InscriptionShape a sh:NodeShape ;
+    sh:targetClass crm:E34_Inscription ;
+    sh:property [
+        sh:path crm:P2_has_type ;
+        sh:class crm:E55_Type ;
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] .
+
+soma:ImageShape a sh:NodeShape ;
+    sh:targetClass crm:E36_Visual_Item ;
+    sh:property [
+        sh:path schema:url ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+    sh:property [
+        sh:path schema:creator ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] ;
+    sh:property [
+        sh:path schema:dataCreated ;
+        sh:or (
+            [ sh:datatype xsd:date ]
+            [ sh:datatype xsd:gYear ]
+            [ sh:datatype xsd:string ]
+        ) ;
+    ] .
+
+
+soma:RitualShape a sh:NodeShape ;
+    sh:targetClass crm:E7_Activity ;
+    sh:property [
+        sh:path crm:P2_has_type ;
+        sh:class crm:E55_Type ;
+    ] ;
+    sh:property [
+        sh:path crm:P32_used_general_technique ;
+        sh:class crm:E29_Design_or_Procedure ;
+    ] ;
+    sh:property [
+        sh:path crm:P43_has_dimension ;
+        sh:node soma:DimensionShape ;
+    ] .
+
+
+soma:AnalysisShape a sh:NodeShape ;
+    sh:targetClass crmsci:S4_Observation ;
+    sh:property [
+        sh:path crmsci:O9_observed_property_type ;
+        sh:class crm:E55_Type ;
+    ] ;
+    sh:property [
+        sh:path crmsci:O16_observed_value ;
+        sh:or (
+            [ sh:class crm:E55_Type ] 
+            [ sh:node soma:DimensionShape ]
+        ) ;
+        
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] ;
+    sh:property [
+        sh:path crm:P14_carried_out_by ;
+        sh:class crm:E39_Actor ;
+    ] .
+
+
+soma:StratigraphicUnitShape a sh:NodeShape ;
+    sh:targetClass crmarchaeo:A8_Stratigraphic_Unit ;
+    sh:property [
+        sh:path crm:P48_has_preferred_identifier ;
+        sh:node soma:IdentifierShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P43_has_dimension ;
+        sh:node soma:DimensionShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:node [ a sh:NodeShape ;
+            sh:targetClass crm:E62_String ;
+            sh:property [
+                sh:path crm:P2_has_type ;
+                sh:class crm:E55_Type ;
+            ] ;
+        ] ;
+    ] ;
+    sh:property [
+        sh:path crmarchaeo:AP21_contains ;
+        sh:node soma:ObjectShape ;
+    ] .
