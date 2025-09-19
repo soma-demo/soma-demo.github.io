@@ -165,6 +165,7 @@
       <div class="col-lg-5">
         <h1 id="pageTitle" class="h3 mb-0">SOMA Knowledge Graph</h1>
       </div>
+      
       <div class="col-lg-7">
         <div class="position-relative" >
           <input id="searchInput" class="form-control" placeholder="Search entities by name…" autocomplete="off" />
@@ -175,7 +176,9 @@
 
     <!-- Controls -->
     <div class="card mb-3" id="hierarchySelector">
+      
       <div class="card-body">
+        <h6>Explore by Hierarchy</h6>
         <div class="row g-3">
           <div class="col-md-3">
             <label class="form-label">Cemetery</label>
@@ -222,7 +225,8 @@
     <div class="card">
       <div class="card-header fw-semibold">Entity Details</div>
       <div class="card-body" id="entityDetails">
-        <div class="text-secondary">Select an entity to see details.</div>
+        <div class="text-secondary"><p>Select an entity to see details.</p><p>You can explore the <strong>SOMA Knowledge Graph</strong> in two ways: use the <b>search box</b> to quickly find an entity by name, or <b>explore by hierarchy</b>, starting from a cemetery and moving down to tombs, graves, burials, and the objects or human remains they contain.</p>
+      </div>
       </div>
     </div>
   </div>
@@ -485,15 +489,6 @@ function humanizeClass(iriStr){
            q(node, P.type, nn(NS.owl+'Class')).length  > 0;
   }
 
-  /*function classify(node){
-    if (!node) return 'other';
-    if (q(node, P.type, nn(T.Cemetery)).length) return 'cem';
-    if (q(node, P.type, nn(T.Tomb)).length)     return 'tomb';
-    if (q(node, P.type, nn(T.Burial)).length)   return 'burial';
-    if (q(node, P.type, nn(T.HumanRemains)).length) return 'hr';
-    if (q(node, P.type, nn(T.Object)).length)       return 'obj';
-    return 'other';
-  }*/
  function classify(node){
   if (!node) return 'other';
   if (q(node, P.type, nn(T.Cemetery)).length) return 'cem';
@@ -805,18 +800,6 @@ function humanizeClass(iriStr){
     crumbs.innerHTML = items.join('');
   }
 
-  /*window.selectLevel = function(level) {
-    clearEntityPageParam();
-    if (level === 'cem') {
-      tombSelect.value = '';
-      burialSelect.value = '';
-      onCemeteryChange();
-    } else if (level === 'tomb') {
-      burialSelect.value = '';
-      onTombChange();
-    }
-    updateUrl({push: true});
-  };*/
   window.selectLevel = function(level) {
     clearEntityPageParam();
 
@@ -999,7 +982,7 @@ function humanizeClass(iriStr){
   function showEntityDetails(node) {
     entityDetails.innerHTML = '';
     if (!node) {
-      entityDetails.innerHTML = '<div class="text-secondary">Select an entity to see details.</div>';
+      entityDetails.innerHTML = '<div class="text-secondary"><p>Select an entity to see details.</p><p>You can explore the <strong>SOMA Knowledge Graph</strong> in two ways: use the <b>search box</b> to quickly find an entity by name, or <b>explore by hierarchy</b>, starting from a cemetery and moving down to tombs, graves, burials, and the objects or human remains they contain.</p></div>';
       return;
     }
 
@@ -1093,31 +1076,6 @@ function humanizeClass(iriStr){
   }
 
   // Navigation
-  /*function navigateToNode(node){
-    const kind = classify(node);
-    hierarchySelector.style.display = (kind === 'cem' || kind === 'tomb' || kind === 'burial') ? '' : 'none';
-    if (kind === 'cem') {
-      cemSelect.value = node.id;
-      onCemeteryChange();
-    } else if (kind === 'tomb') {
-      ensureCemeteryForTomb(node);
-      tombSelect.value = node.id;
-      onTombChange();
-    } else if (kind === 'burial') {
-      const tomb = one(q(null, P.isComposedOf, node))?.subject;
-      if (tomb) {
-        ensureCemeteryForTomb(tomb);
-        tombSelect.value = tomb.id;
-        onTombChange();
-        burialSelect.value = node.id;
-        onBurialChange();
-      } else {
-        goToEntity(node.id);
-      }
-    } else {
-      goToEntity(node.id);
-    }
-  }*/ 
  function navigateToNode(node){
   const kind = classify(node);
   // Show the selector for all hierarchy levels
@@ -1151,11 +1109,7 @@ function humanizeClass(iriStr){
       ensureCemeteryForTomb(tomb);
       tombSelect.value = tomb.id;
       onTombChange();
-      // also try to set grave (parent of burial)
-      const grave = one(q(null, P.isComposedOf, node))?.subject; // if your data: Burial <-is_composed_of- Grave, then this is wrong; instead:
-      // Better: find the grave that composes the burial:
-      // const grave = one(q(null, P.isComposedOf, node))?.subject;  // If your data links Grave -> P46 -> Burial, use:
-      // (we already have `tomb`, now pick the grave that has this burial)
+      const grave = one(q(null, P.isComposedOf, node))?.subject; 
       const candidateGraves = q(tomb, P.isComposedOf, null).map(t=>t.object)
                             .filter(g => q(g, P.type, nn(T.Grave)).length);
       const parentGrave = candidateGraves.find(g => q(g, P.isComposedOf, node).length);
@@ -1253,15 +1207,17 @@ function humanizeClass(iriStr){
   }
 
   // URL sync
-  /*function updateUrl(opts = {}){
+  function updateUrl(opts = {}){
     const { push = false } = opts;
     const params = new URLSearchParams();
     if (currentEntity) {
       params.set('entity', currentEntity.id);
     } else {
-      if (cemSelect.value) params.set('cem', cemSelect.value);
-      if (tombSelect.value) params.set('tomb', tombSelect.value);
-      if (burialSelect.value) params.set('burial', burialSelect.value);
+      if (cemSelect.value)   params.set('cem', cemSelect.value);
+      if (tombSelect.value)  params.set('tomb', tombSelect.value);
+      if (graveSelect.value) params.set('grave', graveSelect.value);   // NEW
+      if (burialSelect.value)params.set('burial', burialSelect.value);
+      if (goodsSelect.value) params.set('goods', goodsSelect.value);   // NEW
     }
     const qs = params.toString();
     const url = `${location.pathname}${qs ? ('?'+qs) : ''}`;
@@ -1270,35 +1226,16 @@ function humanizeClass(iriStr){
     } else {
       history.replaceState(null, '', url);
     }
-  }*/ 
- function updateUrl(opts = {}){
-  const { push = false } = opts;
-  const params = new URLSearchParams();
-  if (currentEntity) {
-    params.set('entity', currentEntity.id);
-  } else {
-    if (cemSelect.value)   params.set('cem', cemSelect.value);
-    if (tombSelect.value)  params.set('tomb', tombSelect.value);
-    if (graveSelect.value) params.set('grave', graveSelect.value);   // NEW
-    if (burialSelect.value)params.set('burial', burialSelect.value);
-    if (goodsSelect.value) params.set('goods', goodsSelect.value);   // NEW
   }
-  const qs = params.toString();
-  const url = `${location.pathname}${qs ? ('?'+qs) : ''}`;
-  if (push && !suppressPush) {
-    history.pushState(null, '', url);
-  } else {
-    history.replaceState(null, '', url);
-  }
-}
 
-
-  /*function restoreFromUrlParams(){
+  function restoreFromUrlParams(){
     const params = new URLSearchParams(location.search);
     const entity = params.get('entity');
-    const cem = params.get('cem');
-    const tomb = params.get('tomb');
+    const cem    = params.get('cem');
+    const tomb   = params.get('tomb');
+    const grave  = params.get('grave');   // NEW
     const burial = params.get('burial');
+    const goods  = params.get('goods');   // NEW
 
     suppressPush = true;
 
@@ -1309,8 +1246,10 @@ function humanizeClass(iriStr){
     }
 
     cemSelect.value = '';
-    tombSelect.innerHTML = '<option value="">—</option>'; tombSelect.disabled = true; tombCount.textContent = '';
+    tombSelect.innerHTML   = '<option value="">—</option>'; tombSelect.disabled = true; tombCount.textContent = '';
+    graveSelect.innerHTML  = '<option value="">—</option>'; graveSelect.disabled = true; graveCount.textContent = '';
     burialSelect.innerHTML = '<option value="">—</option>'; burialSelect.disabled = true; burialCount.textContent = '';
+    goodsSelect.innerHTML  = '<option value="">—</option>'; goodsSelect.disabled = true; goodsCount.textContent = '';
 
     if (cem){
       hierarchySelector.style.display = "";
@@ -1319,9 +1258,17 @@ function humanizeClass(iriStr){
       if (tomb){
         tombSelect.value = tomb;
         onTombChange();
-        if (burial){
-          burialSelect.value = burial;
-          onBurialChange();
+        if (grave){
+          graveSelect.value = grave;       
+          onGraveChange();                 
+          if (burial){
+            burialSelect.value = burial;
+            onBurialChange();
+            if (goods){
+              goodsSelect.value = goods;   
+              onGoodsChange();             
+            }
+          }
         }
       }
     } else {
@@ -1331,58 +1278,7 @@ function humanizeClass(iriStr){
     }
 
     suppressPush = false;
-  }*/ 
-  function restoreFromUrlParams(){
-  const params = new URLSearchParams(location.search);
-  const entity = params.get('entity');
-  const cem    = params.get('cem');
-  const tomb   = params.get('tomb');
-  const grave  = params.get('grave');   // NEW
-  const burial = params.get('burial');
-  const goods  = params.get('goods');   // NEW
-
-  suppressPush = true;
-
-  if (entity){
-    goToEntity(entity);
-    suppressPush = false;
-    return;
   }
-
-  cemSelect.value = '';
-  tombSelect.innerHTML   = '<option value="">—</option>'; tombSelect.disabled = true; tombCount.textContent = '';
-  graveSelect.innerHTML  = '<option value="">—</option>'; graveSelect.disabled = true; graveCount.textContent = '';
-  burialSelect.innerHTML = '<option value="">—</option>'; burialSelect.disabled = true; burialCount.textContent = '';
-  goodsSelect.innerHTML  = '<option value="">—</option>'; goodsSelect.disabled = true; goodsCount.textContent = '';
-
-  if (cem){
-    hierarchySelector.style.display = "";
-    cemSelect.value = cem;
-    onCemeteryChange();
-    if (tomb){
-      tombSelect.value = tomb;
-      onTombChange();
-      if (grave){
-        graveSelect.value = grave;       // NEW
-        onGraveChange();                 // NEW
-        if (burial){
-          burialSelect.value = burial;
-          onBurialChange();
-          if (goods){
-            goodsSelect.value = goods;   // NEW
-            onGoodsChange();             // NEW
-          }
-        }
-      }
-    }
-  } else {
-    showEntityDetails(null);
-    setTitle('');
-    setCrumbs();
-  }
-
-  suppressPush = false;
-}
 
 
   window.addEventListener('popstate', () => {
