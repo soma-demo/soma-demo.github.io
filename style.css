@@ -118,7 +118,7 @@ footer {
 .corner-ribbon{
     position: fixed;
     top: 1rem;
-    right: -3.5rem;              /* shift so the rotated label sits on the corner */
+    right: -3.5rem;       
     z-index: 9999;
     display: inline-block;
     padding: .5rem 4rem;
@@ -140,5 +140,23 @@ footer {
       bottom: 1rem;
       left: -3.5rem;
       transform: rotate(45deg);  /* flip direction for bottom-left */
+    }
+    #btnBack{
+      display: none;
+    }
+    .navbar.navbar-transparent {
+      background-color: white !important;      
+    }
+    .navbar-brand{
+      color: black !important;
+    }
+    .navbar-toggler{
+      border-color: rgba(0,0,0,.25);
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+    .navbar-nav .nav-link{
+      color: black !important;
     }
   }
