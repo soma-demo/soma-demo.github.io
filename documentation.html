@@ -23,11 +23,6 @@
     .pageTitle{
       color:#e9b02b;
     }
-
-    #wrap{
-      height:90vh;
-      border:1px solid #ddd
-    }
 </style>
 <body class="inner-page">
   <!-- Corner "DEMO" ribbon -->
@@ -59,6 +54,9 @@
 
   <div class="container py-3">
     <h1 class="pageTitle text-center mb-4">Documentation</h1>
+    <p class="mb-5">This page provides a structured overview of the <strong>SOMA data model</strong>, based on CIDOC CRM and its extensions (CRMarchaeo, CRMsci, ICON, Schema). It defines the ontology classes used for representing archaeological entities and their semantic relationships, distinguishing between core domain elements and supporting generic constructs.
+      <br />
+    <strong>Interactive diagrams</strong> illustrate class-property relationships. All nodes are clickable: internal links point to other sections of this documentation, while external references connect to authoritative ontology definitions.</p>
 
     <h4 id="soma-data-model">SOMA Data Model</h4>
 
@@ -184,8 +182,8 @@
 
         %% -----------------
         %% P134i_was_continued_by
-        EX6(next_excavation)
-        class EX6 generic_element;
+        EX6(Archaeological Excavation)
+        class EX6 core_element;
         EX6-- type -->EX6_0[A9_Archaeological_Excavation]
         class EX6_0 classstyle;
         EX1-- P134i_was_continued_by -->EX6
@@ -201,35 +199,35 @@
         %% -----------------
         %% P8_took_place_on_or_within (grouped branch - LAST)
         EX8( )
-        class EX8 generic_element;
+        class EX8 core_element;
         EX1-- P8_took_place_on_or_within -->EX8
 
-        EX8a(cemetery)
-        class EX8a generic_element;
+        EX8a(Cemetery)
+        class EX8a core_element;
         EX8a-- type -->EX8a_0[E27_Site]
         class EX8a_0 classstyle;
         EX8-->EX8a
 
-        EX8b(tomb)
-        class EX8b generic_element;
+        EX8b(Tomb)
+        class EX8b core_element;
         EX8b-- type -->EX8b_0[E18_Physical_Thing]
         class EX8b_0 classstyle;
         EX8-->EX8b
 
-        EX8c(grave)
-        class EX8c generic_element;
+        EX8c(Grave)
+        class EX8c core_element;
         EX8c-- type -->EX8c_0[E25_Man-Made_Feature]
         class EX8c_0 classstyle;
         EX8-->EX8c
 
-        EX8d(burial)
-        class EX8d generic_element;
+        EX8d(Burial)
+        class EX8d core_element;
         EX8d-- type -->EX8d_0[E24_Physical_Human-Made_Thing]
         class EX8d_0 classstyle;
         EX8-->EX8d
 
-        EX8e(object)
-        class EX8e generic_element;
+        EX8e(Object)
+        class EX8e core_element;
         EX8e-- type -->EX8e_0[E22_Human-Made_Object]
         class EX8e_0 classstyle;
         EX8-->EX8e
@@ -391,8 +389,8 @@
 
         %% -----------------
         %% P46_is_composed_of
-        C10(tomb)
-        class C10 generic_element;
+        C10(Tomb)
+        class C10 core_element;
         C10-- type -->C10_0[E18_Physical_Thing]
         class C10_0 classstyle;
         C1-- P46_is_composed_of -->C10
@@ -541,8 +539,8 @@
 
         %% -----------------
         %% P46_is_composed_of
-        T5(grave)
-        class T5 generic_element;
+        T5(Grave)
+        class T5 core_element;
         T5-- type -->T5_0[E25_Man-Made_Feature]
         class T5_0 classstyle;
         T1-- P46_is_composed_of -->T5
@@ -772,8 +770,8 @@
 
         %% -----------------
         %% P46_is_composed_of
-        G5(burial)
-        class G5 generic_element;
+        G5(Burial)
+        class G5 core_element;
         G5-- type -->G5_0[E24_Physical_Human-Made_Thing]
         class G5_0 classstyle;
         G1-- P46_is_composed_of -->G5
@@ -1085,14 +1083,14 @@
         class B14 generic_element;
         B1-- P46_is_composed_of -->B14
 
-        B14a(object)
-        class B14a generic_element;
+        B14a(Object)
+        class B14a core_element;
         B14a-- type -->B14a_0[E22_Human-Made_Object]
         class B14a_0 classstyle;
         B14-->B14a
 
-        B14b(human_remains)
-        class B14b generic_element;
+        B14b(Human Remains)
+        class B14b core_element;
         B14b-- type -->B14b_0[E20_Biological_Object]
         class B14b_0 classstyle;
         B14-->B14b
