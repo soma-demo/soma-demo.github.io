@@ -367,7 +367,10 @@ function humanizeProperty(iriStr){
 
   if (isCidoc){
     // Strip P-code with optional trailing letter (e.g., P70i_, P82a_, P46_)
-    local = local.replace(/^P\d+[a-z]?_/, '');
+    //local = local.replace(/^P\d+[a-z]?_/, '');
+    // Strip P-code or AP-code with optional trailing letter
+    local = local.replace(/^(?:P|AP)\d+[a-z]?_/, '');
+
     // Convert remaining underscores to spaces
     local = local.replace(/_/g, ' ');
     return local.toLowerCase();
@@ -1081,7 +1084,7 @@ function humanizeClass(iriStr){
  function navigateToNode(node){
   const kind = classify(node);
   // Show the selector for all hierarchy levels
-  hierarchySelector.style.display = (kind === 'cem' || kind === 'tomb' || kind === 'grave' || kind === 'burial') ? '' : 'none';
+  hierarchySelector.style.display = (kind === 'cem' || kind === 'tomb' || kind === 'grave' || kind === 'burial' || kind === 'obj' || kind === 'hr') ? '' : 'none';
 
   if (kind === 'cem') {
     cemSelect.value = node.id;
@@ -1106,26 +1109,56 @@ function humanizeClass(iriStr){
     }
 
   } else if (kind === 'burial') {
-    const tomb = one(q(null, P.isComposedOf, node))?.subject;
-    if (tomb) {
-      ensureCemeteryForTomb(tomb);
-      tombSelect.value = tomb.id;
-      onTombChange();
-      const grave = one(q(null, P.isComposedOf, node))?.subject; 
-      const candidateGraves = q(tomb, P.isComposedOf, null).map(t=>t.object)
-                            .filter(g => q(g, P.type, nn(T.Grave)).length);
-      const parentGrave = candidateGraves.find(g => q(g, P.isComposedOf, node).length);
-      if (parentGrave) {
+    // Find parent grave
+    const parentGrave = one(q(null, P.isComposedOf, node))?.subject;
+
+    if (parentGrave) {
+      // Find parent tomb of that grave
+      const parentTomb = one(q(null, P.isComposedOf, parentGrave))?.subject;
+
+      if (parentTomb) {
+        ensureCemeteryForTomb(parentTomb);
+        tombSelect.value = parentTomb.id;
+        onTombChange();
+
         graveSelect.value = parentGrave.id;
         onGraveChange();
       }
+
       burialSelect.value = node.id;
       onBurialChange();
     } else {
       goToEntity(node.id);
     }
+  }  else if (kind === 'obj' || kind === 'hr') {
+  // Parent burial
+  const parentBurial = one(q(null, P.isComposedOf, node))?.subject;
+  if (parentBurial) {
+    // Parent grave
+    const parentGrave = one(q(null, P.isComposedOf, parentBurial))?.subject;
+    // Parent tomb
+    const parentTomb = parentGrave ? one(q(null, P.isComposedOf, parentGrave))?.subject : null;
 
+    if (parentTomb) {
+      ensureCemeteryForTomb(parentTomb);
+      tombSelect.value = parentTomb.id;
+      onTombChange();
+
+      graveSelect.value = parentGrave.id;
+      onGraveChange();
+
+      burialSelect.value = parentBurial.id;
+      onBurialChange();
+    }
+
+    goodsSelect.value = node.id;
+    onGoodsChange();
   } else {
+    goToEntity(node.id);
+  }
+}
+
+ else {
     goToEntity(node.id);
   }
 }

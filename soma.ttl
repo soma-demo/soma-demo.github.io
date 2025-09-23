@@ -14,7 +14,7 @@
 
 # Cemetery C3 Excavation event
 soma:excavation-cemeteryC3 a crmarchaeo:A9_Archaological_Excavation ;
-  rdfs:label "Exacavation of Cemetery at the South Bank of the Eridanos - C3"@en ;
+  rdfs:label "Excavation of Cemetery at the South Bank of the Eridanos - C3"@en ;
   crm:P7_took_place_at [ a crm:E53_Place;
     rdfs:label "Excavation area" ;
     crm:P89_falls_within [ a crm:E53_Place;
