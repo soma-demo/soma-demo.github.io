@@ -13,7 +13,7 @@
 #################################################################
 
 # Cemetery C3 Excavation event
-soma:excavation-cemeteryC3 a crmarchaeo:A9_Archeological_Excavation ;
+soma:excavation-cemeteryC3 a crmarchaeo:A9_Archaological_Excavation ;
   rdfs:label "Exacavation of Cemetery at the South Bank of the Eridanos - C3"@en ;
   crm:P7_took_place_at [ a crm:E53_Place;
     rdfs:label "Excavation area" ;
@@ -55,7 +55,7 @@ soma:cemeteryC3 a crm:E27_Site ;
 #################################################################
 
 # Tomb 70 Excavation event
-soma:excavation-tomb70 a crmarchaeo:A9_Archeological_Excavation ;
+soma:excavation-tomb70 a crmarchaeo:A9_Archaeological_Excavation ;
   rdfs:label "Excavation of Tomb 70"@en ;
   crm:P7_took_place_at [ a crm:E53_Place;
     rdfs:label "Excavation area" ;
@@ -160,7 +160,7 @@ soma:tomb70 a crm:E18_Physical_Thing ;
 #################################################################
 
 # Grave 1 Excavation event
-soma:excavation-burialAA152 a crmarchaeo:A9_Archeological_Excavation ;
+soma:excavation-burialAA152 a crmarchaeo:A9_Archaeological_Excavation ;
   rdfs:label "Excavation of Grave 1"@en ;
   crm:P7_took_place_at [ a crm:E53_Place;
     rdfs:label "Excavation area" ;
@@ -231,7 +231,7 @@ soma:grave1 a crm:E25_Man-Made_Feature ;
 #################################################################
 
 # Burial AA 152 Excavation event
-soma:excavation-burialAA152 a crmarchaeo:A9_Archeological_Excavation ;
+soma:excavation-burialAA152 a crmarchaeo:A9_Archaeological_Excavation ;
   rdfs:label "Excavation of Burial AA 152"@en ;
   crm:P4_has_time-span [ a crm:E52_Time-Span ;
     crm:P82a_begin_of_the_begin "1954-08-18"^^xsd:date ;
@@ -361,7 +361,7 @@ soma:hr-AA152a a crm:E20_Biological_Object ;
 #################################################################
 
 # Object T70-1 Excavation event
-soma:excavation-objT70-1 a crmarchaeo:A9_Archeological_Excavation ;
+soma:excavation-objT70-1 a crmarchaeo:A9_Archaeological_Excavation ;
   rdfs:label "Excavation of Object T70-1"@en ;
   crm:P4_has_time-span [ a crm:E52_Time-Span ;
     crm:P82a_begin_of_the_begin "1954-08-18"^^xsd:date ;
@@ -477,7 +477,7 @@ soma:objT70-1 a crm:E22_Human-Made_Object ;
 
 
 # Object T70-2 Excavation event
-soma:excavation-objT70-2 a crmarchaeo:A9_Archeological_Excavation ;
+soma:excavation-objT70-2 a crmarchaeo:A9_Archaeological_Excavation ;
   rdfs:label "Excavation of Object T70-2"@en ;
   crm:P4_has_time-span [ a crm:E52_Time-Span ;
     crm:P82a_begin_of_the_begin "1954-08-18"^^xsd:date ;

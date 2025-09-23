@@ -17,8 +17,10 @@
 </head>
 
 <style>
-
-    #pageTitle{
+    :root {
+      scroll-padding-top: 80px; /* adjust to your navbar height */
+    }
+    .pageTitle{
       color:#e9b02b;
     }
 
@@ -56,17 +58,2409 @@
   </div>
 
   <div class="container py-3">
-    <h1 id="pageTitle" class="text-center mb-4">Documentation</h1>
+    <h1 class="pageTitle text-center mb-4">Documentation</h1>
     
     <!--<div id="wrap"></div>-->
+
+    <h4 id="soma-data-model">SOMA Data Model</h4>
+
+    <div class="container">
+      <div class="row">
+        <!-- Column 1 -->
+        <div class="col-12 col-md-6">
+          <h5 id="namespace-declarations">Namespace Declarations</h5>
+          <ul>
+            <li><code>xml:</code> <a href="http://www.w3.org/XML/1998/namespace" target="_blank">http://www.w3.org/XML/1998/namespace</a></li>
+            <li><code>rdf:</code> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#" target="_blank">http://www.w3.org/1999/02/22-rdf-syntax-ns#</a></li>
+            <li><code>rdfs:</code> <a href="http://www.w3.org/2000/01/rdf-schema#" target="_blank">http://www.w3.org/2000/01/rdf-schema#</a></li>
+            <li><code>xsd:</code> <a href="http://www.w3.org/2001/XMLSchema#" target="_blank">http://www.w3.org/2001/XMLSchema#</a></li>
+            <li><code>crm:</code> <a href="http://www.cidoc-crm.org/cidoc-crm/" target="_blank">http://www.cidoc-crm.org/cidoc-crm/</a></li>
+            <li><code>crmarchaeo:</code> <a href="http://www.cidoc-crm.org/extensions/crmarchaeo/" target="_blank">http://www.cidoc-crm.org/extensions/crmarchaeo/</a></li>
+            <li><code>crmsci:</code> <a href="http://www.cidoc-crm.org/extensions/crmsci/" target="_blank">http://www.cidoc-crm.org/extensions/crmsci/</a></li>
+            <li><code>soma:</code> <a href="http://example.org/soma/" target="_blank">http://example.org/soma/</a></li>
+            <li><code>schema:</code> <a href="http://schema.org/" target="_blank">http://schema.org/</a></li>
+            <li><code>icon:</code> <a href="https://w3id.org/icon/ontology/" target="_blank">https://w3id.org/icon/ontology/</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="col-12 col-md-3">
+          <h5 id="core-elements">Core Elements</h5>
+          <ul>
+            <li><a href="#a9_archaeological_excavation">Archaeological Excavation</a></li>
+            <li><a href="#e27_site">Cemetery</a></li>
+            <li><a href="#e18_physical_thing">Tomb</a></li>
+            <li><a href="#e25_man-made_feature">Grave</a></li>
+            <li><a href="#e24_physical_human-made_thing">Burial</a></li>
+            <li><a href="#e20_biological_object">Human Remains</a></li>
+            <li><a href="#e22_human-made_object">Object</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="col-12 col-md-3">
+          <h5 id="generic-elements">Generic Elements</h5>
+          <ul>
+            <li><a href="#e52_time-span">Time-Span</a></li>
+            <li><a href="#e4_period">Period</a></li>
+            <li><a href="#e53_place">Place</a></li>
+            <li><a href="#e42_identifier">Identifier</a></li>
+            <li><a href="#e41_appellation">Appellation</a></li>
+            <li><a href="#e63_beginning_of_existence">Dating</a></li>
+            <li><a href="#e11_modification_disturbance">Disturbance</a></li>
+            <li><a href="#e11_modification_restoration">Restoration</a></li>
+            <li><a href="#e12_production">Production</a></li>
+            <li><a href="#e9_move_import">Import</a></li>
+            <li><a href="#e54_dimension">Dimension</a></li>
+            <li><a href="#e26_physical_feature">Feature</a></li>
+            <li><a href="#e36_visual_item_ornament">Ornament</a></li>
+            <li><a href="#e34_inscription">Inscription</a></li>
+            <li><a href="#e7_activity_ritual">Ritual</a></li>
+            <li><a href="#s4_observation_analysis">Analysis</a></li>
+            <li><a href="#a8_stratigraphic_unit">Stratigraphic Unit</a></li>
+            <li><a href="#e31_document">Document</a></li>
+            <li><a href="#e36_visual_item_image">Image</a></li>
+            <li><a href="#e65_creation">Creation</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <h3 class="pageTitle text-center mb-4">Core Elements</h3>
+
+    <!--EXCAVATION-->
+    <div id="a9_archaeological_excavation">
+      <h4>Archaeological Excavation</h4>
+
+      <div class="mermaid m-4">
+        graph TD
+        classDef core_element stroke:black,fill:#aff090,rx:20px,ry:20px;
+        classDef generic_element stroke:black,fill:#96e0f6,rx:20px,ry:20px;
+        classDef type stroke:red,fill:#FAB565,rx:20px,ry:20px;
+        classDef timespan stroke:blue,fill:#ddfffe,rx:20px,ry:20px;
+        classDef place stroke:#3a7a3a,fill:#aff090,rx:20px,ry:20px;
+        classDef literal stroke:black,fill:#f0f0e0;
+        classDef classstyle stroke:black,fill:white;
+
+        %% -----------------
+        %% CENTRAL NODE
+        %% -----------------
+        EX1(Archaeological Excavation)
+        class EX1 core_element;
+        EX1-- type -->EX1_0[A9_Archaeological_Excavation]
+        class EX1_0 classstyle;
+
+        %% -----------------
+        %% P7_took_place_at
+        EX2(place)
+        class EX2 generic_element;
+        EX2-- type -->EX2_0[E53_Place]
+        class EX2_0 classstyle;
+        EX1-- P7_took_place_at -->EX2
+
+        %% -----------------
+        %% P4_has_time-span
+        EX3(time-span)
+        class EX3 generic_element;
+        EX3-- type -->EX3_0[E52_Time-Span]
+        class EX3_0 classstyle;
+        EX1-- P4_has_time-span -->EX3
+
+        %% -----------------
+        %% P14_carried_out_by
+        EX4(person)
+        class EX4 generic_element;
+        EX4-- type -->EX4_0[E21_Person]
+        class EX4_0 classstyle;
+        EX1-- P14_carried_out_by -->EX4
+
+        %% -----------------
+        %% AP4_produce_surface
+        EX5(stratigraphic_unit)
+        class EX5 generic_element;
+        EX5-- type -->EX5_0[A8_Stratigraphic_Unit]
+        class EX5_0 classstyle;
+        EX1-- AP4_produce_surface -->EX5
+
+        %% -----------------
+        %% P134i_was_continued_by
+        EX6(next_excavation)
+        class EX6 generic_element;
+        EX6-- type -->EX6_0[A9_Archaeological_Excavation]
+        class EX6_0 classstyle;
+        EX1-- P134i_was_continued_by -->EX6
+
+        %% -----------------
+        %% P70i_is_documented_in
+        EX7(document)
+        class EX7 generic_element;
+        EX7-- type -->EX7_0[E31_Document]
+        class EX7_0 classstyle;
+        EX1-- P70i_is_documented_in -->EX7
+
+        %% -----------------
+        %% P8_took_place_on_or_within (grouped branch - LAST)
+        EX8( )
+        class EX8 generic_element;
+        EX1-- P8_took_place_on_or_within -->EX8
+
+        EX8a(cemetery)
+        class EX8a generic_element;
+        EX8a-- type -->EX8a_0[E27_Site]
+        class EX8a_0 classstyle;
+        EX8-->EX8a
+
+        EX8b(tomb)
+        class EX8b generic_element;
+        EX8b-- type -->EX8b_0[E18_Physical_Thing]
+        class EX8b_0 classstyle;
+        EX8-->EX8b
+
+        EX8c(grave)
+        class EX8c generic_element;
+        EX8c-- type -->EX8c_0[E25_Man-Made_Feature]
+        class EX8c_0 classstyle;
+        EX8-->EX8c
+
+        EX8d(burial)
+        class EX8d generic_element;
+        EX8d-- type -->EX8d_0[E24_Physical_Human-Made_Thing]
+        class EX8d_0 classstyle;
+        EX8-->EX8d
+
+        EX8e(object)
+        class EX8e generic_element;
+        EX8e-- type -->EX8e_0[E22_Human-Made_Object]
+        class EX8e_0 classstyle;
+        EX8-->EX8e
+
+        %% -----------------
+        %% CLICKABLE CONCEPT NODES
+        %% -----------------
+        click EX1 "#a9_archaeological_excavation" "A9 Archaeological Excavation"
+        click EX2 "#e53_place" "E53 Place"
+        click EX3 "#e52_time-span" "E52 Time-Span"
+        click EX4 "http://www.cidoc-crm.org/cidoc-crm/E21_Person" "E21 Person"
+        click EX5 "#a8_stratigraphic_unit" "A8 Stratigraphic Unit"
+        click EX6 "#a9_archeological_excavation" "A9 Archaeological Excavation"
+        click EX7 "#e31_document" "E31 Document"
+        click EX8a "#e27_site" "E27 Site"
+        click EX8b "#e18_physical_thing" "E18 Physical Thing"
+        click EX8c "#e25_man-made_feature" "E25 Man-Made Feature"
+        click EX8d "#e24_physical_human-made_thing" "E24 Physical Human-Made Thing"
+        click EX8e "#e22_human-made_object" "E22 Human-Made Object"
+    </div>
+
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/extensions/crmarchaeo/A9_Archeological_Excavation" target="_blank">crmarchaeo:A9_Archaeological_Excavation</a></li>
+        <li><strong>Label:</strong> Archaeological Excavation</li>
+      </ul>
+      <h5 id="properties">Properties</h5>
+      <ul>
+        <li><a href="http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at" target="_blank">crm:P7_took_place_at</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the place where an event, activity, or process occurred. In the SOMA context, this property links activities in the excavation area.</li>
+            <li><strong>Value:</strong> <a href="#e53_place">Place</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within" target="_blank">crm:P8_took_place_on_or_within</a>
+          <ul>
+            <li><strong>Description:</strong> Indicates the physical object on or within which an event or activity occurred. In the SOMA context, this property can link a cemetery, tomb, grave, burial or object.</li>
+            <li><strong>Value:</strong> <a href="#e27_site">Cemetery</a> | <a href="#e18_physical_thing">Tomb</a> | <a href="#e25_man-made_feature">Grave</a> | <a href="#e24_physical_human-made_thing">Burial</a> | <a href="#e22_human-made_object">Object</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span" target="_blank">crm:P4_has_time-span</a>
+          <ul>
+            <li><strong>Description:</strong> Connects an event or activity to the temporal interval during which it occurred.</li>
+            <li><strong>Value:</strong> <a href="#e52_time-span">Time-Span</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by" target="_blank">crm:P14_carried_out_by</a>
+          <ul>
+            <li><strong>Description:</strong> Identifies the actor (person or group) who performed or executed an event or activity. In the SOMA context, this property can link excavations or archaeological activities to the responsible individuals or institutions, such as archaeologists, excavation teams, or cultural organizations.</li>
+            <li><strong>Value:</strong> 
+              <ul><li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E21_Person" target="_blank">crm:E21_Person</a></li></ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="http://www.cidoc-crm.org/extensions/crmarchaeo/AP4_produce_surface" target="_blank">crmarchaeo:AP4_produce_surface</a>
+          <ul>
+            <li><strong>Description:</strong> Indicates that an archaeological modification or activity resulted in the creation of a surface.</li>
+            <li><strong>Value:</strong> <a href="#a8_stratigraphic_unit">Stratigraphic Unit</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.cidoc-crm.org/cidoc-crm/P134i_was_continued_by" target="_blank">crm:P134i_was_continued_by</a>
+          <ul>
+            <li><strong>Description:</strong> Denotes that an event or activity was followed and extended by another event. In the SOMA context, this property can be used to express how a sequence of archaeological activities relates to each other - for example, the cemetery excavation was continued by the tomb excavation.</li>
+            <li><strong>Value:</strong> <a href="#a9_archeological_excavation">Archaeological Excavation</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in" target="_blank">crm:P70i_is_documented_in</a>
+          <ul>
+            <li><strong>Description:</strong> Links an entity to a document that records or provides evidence about it. In the SOMA context, this property connects cemeteries, tombs, graves, human remains, or artefacts to excavation permits, archival records or publications where they are described.</li>
+            <li><strong>Value:</strong> <a href="#e31_document">Document</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--CEMETERY-->
+    <div id="e27_site">
+      <h4>Cemetery</h4>
+      
+      <div class="mermaid m-4">
+        graph TD
+        classDef core_element stroke:black,fill:#aff090,rx:20px,ry:20px;
+        classDef generic_element stroke:black,fill:#96e0f6,rx:20px,ry:20px;
+        classDef type stroke:red,fill:#FAB565,rx:20px,ry:20px;
+        classDef timespan stroke:blue,fill:#ddfffe,rx:20px,ry:20px;
+        classDef place stroke:#3a7a3a,fill:#aff090,rx:20px,ry:20px;
+        classDef literal stroke:black,fill:#f0f0e0;
+        classDef classstyle stroke:black,fill:white;
+
+        %% -----------------
+        %% CENTRAL NODE
+        %% -----------------
+        C1(Cemetery)
+        class C1 core_element;
+        C1-- type -->C1_0[E27_Site]
+        class C1_0 classstyle;
+
+        %% -----------------
+        %% P48_has_preferred_identifier
+        C2(identifier)
+        class C2 generic_element;
+        C2-- type -->C2_0[E42_Identifier]
+        class C2_0 classstyle;
+        C1-- P48_has_preferred_identifier -->C2
+
+        %% -----------------
+        %% P1_is_identified_by
+        C3(appellation)
+        class C3 generic_element;
+        C3-- type -->C3_0[E41_Appellation]
+        class C3_0 classstyle;
+        C1-- P1_is_identified_by -->C3
+
+        %% -----------------
+        %% P156_occupies
+        C4(place)
+        class C4 generic_element;
+        C4-- type -->C4_0[E53_Place]
+        class C4_0 classstyle;
+        C1-- P156_occupies -->C4
+
+        %% -----------------
+        %% P3_has_note
+        C5(string)
+        class C5 literal;
+        C1-- P3_has_note -->C5
+
+        %% -----------------
+        %% P92i_was_brought_into_existence_by
+        C6(dating)
+        class C6 generic_element;
+        C6-- type -->C6_0[E63_Beginning_of_Existence]
+        class C6_0 classstyle;
+        C1-- P92i_was_brought_into_existence_by -->C6
+
+        %% -----------------
+        %% P43_has_dimension
+        C7(dimension)
+        class C7 generic_element;
+        C7-- type -->C7_0[E54_Dimension]
+        class C7_0 classstyle;
+        C1-- P43_has_dimension -->C7
+
+        %% -----------------
+        %% P70i_is_documented_in
+        C8(document)
+        class C8 generic_element;
+        C8-- type -->C8_0[E31_Document]
+        class C8_0 classstyle;
+        C1-- P70i_is_documented_in -->C8
+
+        %% -----------------
+        %% P138i_is_represented_by
+        C9(image)
+        class C9 generic_element;
+        C9-- type -->C9_0[E36_Visual_Item]
+        class C9_0 classstyle;
+        C1-- P138i_is_represented_by -->C9
+
+        %% -----------------
+        %% P46_is_composed_of
+        C10(tomb)
+        class C10 generic_element;
+        C10-- type -->C10_0[E18_Physical_Thing]
+        class C10_0 classstyle;
+        C1-- P46_is_composed_of -->C10
+
+        %% -----------------
+        %% CLICKABLE CONCEPT NODES
+        %% -----------------
+        click C1 "#e27_site" "E27 Site"
+        click C2 "#e42_identifier" "E42 Identifier"
+        click C3 "#e41_appellation" "E41 Appellation"
+        click C4 "#e53_place" "E53 Place"
+        click C6 "#e63_beginning_of_existence" "E63 Beginning of Existence"
+        click C7 "#e54_dimension" "E54 Dimension"
+        click C8 "#e31_document" "E31 Document"
+        click C9 "#e36_visual_item_image" "E36 Visual Item"
+        click C10 "#e18_physical_thing" "E18 Physical Thing"
+    </div>
+
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E27_Site" target="_blank">crm:E27_Site</a></li>
+        <li><strong>Label:</strong> Cemetery</li>
+      </ul>
+      
+      <h5 id="properties-cemetery">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P48_has_preferred_identifier" target="_blank">crm:P48_has_preferred_identifier</a>
+          <ul>
+            <li><strong>Description:</strong> Assigns the main identifier of the cemetery.</li>
+            <li><strong>Value:</strong> <a href="#e42_identifier">Identifier</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by" target="_blank">crm:P1_is_identified_by</a>
+          <ul>
+            <li><strong>Description:</strong> Associates the cemetery with an appellation, such as a name or label.</li>
+            <li><strong>Value:</strong> <a href="#e41_appellation">Appellation</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P156_occupies" target="_blank">crm:P156_occupies</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the place that the cemetery occupies.</li>
+            <li><strong>Value:</strong> <a href="#e53_place">Place</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual note providing additional information about the cemetery.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P92i_was_brought_into_existence_by" target="_blank">crm:P92i_was_brought_into_existence_by</a>
+          <ul>
+            <li><strong>Description:</strong> Links the cemetery to the event that brought it into existence. In the SOMA context it refers to the dating.</li>
+            <li><strong>Value:</strong> <a href="#e63_beginning_of_existence">Dating</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P43_has_dimension" target="_blank">crm:P43_has_dimension</a>
+          <ul>
+            <li><strong>Description:</strong> Records the measurable dimensions of the cemetery (size of area) and also quantitative counts, such as numbers of tombs, graves, burials and individuals.</li>
+            <li><strong>Value:</strong> <a href="#e54_dimension">Dimension</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in" target="_blank">crm:P70i_is_documented_in</a>
+          <ul>
+            <li><strong>Description:</strong> Links the cemetery to documents that record or describe it.</li>
+            <li><strong>Value:</strong> <a href="#e31_document">Document</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P138i_is_represented_by" target="_blank">crm:P138i_is_represented_by</a>
+          <ul>
+            <li><strong>Description:</strong> Links the cemetery to a visual representation (e.g. site plan, photograph, drawing).</li>
+            <li><strong>Value:</strong> <a href="#e36_visual_item_image">Image</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of" target="_blank">crm:P46_is_composed_of</a>
+          <ul>
+            <li><strong>Description:</strong> Links the cemetery to the tombs it is composed of.</li>
+            <li><strong>Value:</strong> <a href="#e18_physical_thing">Tomb</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--TOMB-->
+    <div id="e18_physical_thing">
+      <h4>Tomb</h4>
+
+      <div class="mermaid m-4">
+        graph TD
+        classDef core_element stroke:black,fill:#aff090,rx:20px,ry:20px;
+        classDef generic_element stroke:black,fill:#96e0f6,rx:20px,ry:20px;
+        classDef type stroke:red,fill:#FAB565,rx:20px,ry:20px;
+        classDef timespan stroke:blue,fill:#ddfffe,rx:20px,ry:20px;
+        classDef place stroke:#3a7a3a,fill:#aff090,rx:20px,ry:20px;
+        classDef literal stroke:black,fill:#f0f0e0;
+        classDef classstyle stroke:black,fill:white;
+
+        %% -----------------
+        %% CENTRAL NODE
+        %% -----------------
+        T1(Tomb)
+        class T1 core_element;
+        T1-- type -->T1_0[E18_Physical_Thing]
+        class T1_0 classstyle;
+
+        %% -----------------
+        %% P48_has_preferred_identifier
+        T2(identifier)
+        class T2 generic_element;
+        T2-- type -->T2_0[E42_Identifier]
+        class T2_0 classstyle;
+        T1-- P48_has_preferred_identifier -->T2
+
+        %% -----------------
+        %% P1_is_identified_by
+        T3(appellation)
+        class T3 generic_element;
+        T3-- type -->T3_0[E41_Appellation]
+        class T3_0 classstyle;
+        T1-- P1_is_identified_by -->T3
+
+        %% -----------------
+        %% P156_occupies
+        T4(place)
+        class T4 generic_element;
+        T4-- type -->T4_0[E53_Place]
+        class T4_0 classstyle;
+        T1-- P156_occupies -->T4
+
+        %% -----------------
+        %% P46_is_composed_of
+        T5(grave)
+        class T5 generic_element;
+        T5-- type -->T5_0[E25_Man-Made_Feature]
+        class T5_0 classstyle;
+        T1-- P46_is_composed_of -->T5
+
+        %% -----------------
+        %% P31i_was_modified_by
+        T6(disturbance)
+        class T6 generic_element;
+        T6-- type -->T6_0[E11_Modification]
+        class T6_0 classstyle;
+        T1-- P31i_was_modified_by -->T6
+
+        %% -----------------
+        %% P92i_was_brought_into_existence_by
+        T7(dating)
+        class T7 generic_element;
+        T7-- type -->T7_0[E63_Beginning_of_Existence]
+        class T7_0 classstyle;
+        T1-- P92i_was_brought_into_existence_by -->T7
+
+        %% -----------------
+        %% P3_has_note
+        T8(string)
+        class T8 literal;
+        T1-- P3_has_note -->T8
+
+        %% -----------------
+        %% P2_has_type
+        T9(type)
+        class T9 generic_element;
+        T9-- type -->T9_0[E55_Type]
+        class T9_0 classstyle;
+        T1-- P2_has_type -->T9
+
+        %% -----------------
+        %% P43_has_dimension
+        T10(dimension)
+        class T10 generic_element;
+        T10-- type -->T10_0[E54_Dimension]
+        class T10_0 classstyle;
+        T1-- P43_has_dimension -->T10
+
+        %% -----------------
+        %% P70i_is_documented_in
+        T11(document)
+        class T11 generic_element;
+        T11-- type -->T11_0[E31_Document]
+        class T11_0 classstyle;
+        T1-- P70i_is_documented_in -->T11
+
+        %% -----------------
+        %% P138i_is_represented_by
+        T12(image)
+        class T12 generic_element;
+        T12-- type -->T12_0[E36_Visual_Item]
+        class T12_0 classstyle;
+        T1-- P138i_is_represented_by -->T12
+
+        %% -----------------
+        %% CLICKABLE CONCEPT NODES
+        %% -----------------
+        click T1 "#e18_physical_thing" "E18 Physical Thing"
+        click T2 "#e42_identifier" "E42 Identifier"
+        click T3 "#e41_appellation" "E41 Appellation"
+        click T4 "#e53_place" "E53 Place"
+        click T5 "#e25_man-made_feature" "E25 Man-Made Feature"
+        click T6 "#e11_modification_disturbance" "E11 Modification (Disturbance)"
+        click T7 "#e63_beginning_of_existence" "E63 Beginning of Existence"
+        click T9 "http://www.cidoc-crm.org/cidoc-crm/E55_Type" "E55 Type"
+        click T10 "#e54_dimension" "E54 Dimension"
+        click T11 "#e31_document" "E31 Document"
+        click T12 "#e36_visual_item_image" "E36 Visual Item (Image)"
+    </div>
+
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing" target="_blank">crm:E18_Physical_Thing</a></li>
+        <li><strong>Label:</strong> Tomb</li>
+      </ul>
+      <h5 id="properties-tomb">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P48_has_preferred_identifier" target="_blank">crm:P48_has_preferred_identifier</a>
+          <ul>
+            <li><strong>Description:</strong> Assigns the main identifier of the tomb.</li>
+            <li><strong>Value:</strong> <a href="#e42_identifier">Identifier</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by" target="_blank">crm:P1_is_identified_by</a>
+          <ul>
+            <li><strong>Description:</strong> Associates the tomb with an appellation, such as a descriptive label or name.</li>
+            <li><strong>Value:</strong> <a href="#e41_appellation">Appellation</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P156_occupies" target="_blank">crm:P156_occupies</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the place that the tomb occupies.</li>
+            <li><strong>Value:</strong> <a href="#e53_place">Place</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of" target="_blank">crm:P46_is_composed_of</a>
+          <ul>
+            <li><strong>Description:</strong> Links the tomb to the graves it is composed of.</li>
+            <li><strong>Value:</strong> <a href="#e25_man-made_feature">Grave</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P31i_was_modified_by" target="_blank">crm:P31i_was_modified_by</a>
+          <ul>
+            <li><strong>Description:</strong> Identifies modifications or disturbances that affected the tomb after its creation.</li>
+            <li><strong>Value:</strong> <a href="#e11_modification_disturbance">Disturbance</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P92i_was_brought_into_existence_by" target="_blank">crm:P92i_was_brought_into_existence_by</a>
+          <ul>
+            <li><strong>Description:</strong> Links the tomb to the event that brought it into existence. In the SOMA context it refers to the dating.</li>
+            <li><strong>Value:</strong> <a href="#e63_beginning_of_existence">Dating</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual note providing additional information about the tomb.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank">crm:P2_has_type</a>
+          <ul>
+            <li><strong>Description:</strong> Classifies the tomb according to its type (e.g. chamber, tumulus, built structures, enclosure walls).</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P43_has_dimension" target="_blank">crm:P43_has_dimension</a>
+          <ul>
+            <li><strong>Description:</strong> Records the measurable dimensions of the tomb (e.g. length, width, height) and also quantitative counts, such as numbers of individuals or grave features.</li>
+            <li><strong>Value:</strong> <a href="#e54_dimension">Dimension</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in" target="_blank">crm:P70i_is_documented_in</a>
+          <ul>
+            <li><strong>Description:</strong> Links the tomb to documents that record or describe it.</li>
+            <li><strong>Value:</strong> <a href="#e31_document">Document</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P138i_is_represented_by" target="_blank">crm:P138i_is_represented_by</a>
+          <ul>
+            <li><strong>Description:</strong> Links the tomb to a visual representation (e.g. plan, photograph, drawing, 3D-object).</li>
+            <li><strong>Value:</strong> <a href="#e36_visual_item_image">Image</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--GRAVE-->
+    <div id="e25_man-made_feature">
+      <h4>Grave</h4>
+
+      <div class="mermaid m-4">
+        graph TD
+        classDef core_element stroke:black,fill:#aff090,rx:20px,ry:20px;
+        classDef generic_element stroke:black,fill:#96e0f6,rx:20px,ry:20px;
+        classDef type stroke:red,fill:#FAB565,rx:20px,ry:20px;
+        classDef timespan stroke:blue,fill:#ddfffe,rx:20px,ry:20px;
+        classDef place stroke:#3a7a3a,fill:#aff090,rx:20px,ry:20px;
+        classDef literal stroke:black,fill:#f0f0e0;
+        classDef classstyle stroke:black,fill:white;
+
+        %% -----------------
+        %% CENTRAL NODE
+        %% -----------------
+        G1(Grave)
+        class G1 core_element;
+        G1-- type -->G1_0[E25_Man-Made_Feature]
+        class G1_0 classstyle;
+
+        %% -----------------
+        %% P48_has_preferred_identifier
+        G2(identifier)
+        class G2 generic_element;
+        G2-- type -->G2_0[E42_Identifier]
+        class G2_0 classstyle;
+        G1-- P48_has_preferred_identifier -->G2
+
+        %% -----------------
+        %% P1_is_identified_by (grouped branch)
+        G3( )
+        class G3 generic_element;
+        G1-- P1_is_identified_by -->G3
+
+        G3a(appellation)
+        class G3a generic_element;
+        G3a-- type -->G3a_0[E41_Appellation]
+        class G3a_0 classstyle;
+        G3-->G3a
+
+        G3b(identifier)
+        class G3b generic_element;
+        G3b-- type -->G3b_0[E42_Identifier]
+        class G3b_0 classstyle;
+        G3-->G3b
+
+        %% -----------------
+        %% P156_occupies
+        G4(place)
+        class G4 generic_element;
+        G4-- type -->G4_0[E53_Place]
+        class G4_0 classstyle;
+        G1-- P156_occupies -->G4
+
+        %% -----------------
+        %% P46_is_composed_of
+        G5(burial)
+        class G5 generic_element;
+        G5-- type -->G5_0[E24_Physical_Human-Made_Thing]
+        class G5_0 classstyle;
+        G1-- P46_is_composed_of -->G5
+
+        %% -----------------
+        %% P92i_was_brought_into_existence_by
+        G6(dating)
+        class G6 generic_element;
+        G6-- type -->G6_0[E63_Beginning_of_Existence]
+        class G6_0 classstyle;
+        G1-- P92i_was_brought_into_existence_by -->G6
+
+        %% -----------------
+        %% P3_has_note
+        G7(string)
+        class G7 literal;
+        G1-- P3_has_note -->G7
+
+        %% -----------------
+        %% P2_has_type
+        G8(type)
+        class G8 generic_element;
+        G8-- type -->G8_0[E55_Type]
+        class G8_0 classstyle;
+        G1-- P2_has_type -->G8
+
+        %% -----------------
+        %% P56_bears_feature
+        G9(feature)
+        class G9 generic_element;
+        G9-- type -->G9_0[E26_Physical_Feature]
+        class G9_0 classstyle;
+        G1-- P56_bears_feature -->G9
+
+        %% -----------------
+        %% P31i_was_modified_by
+        G10(disturbance)
+        class G10 generic_element;
+        G10-- type -->G10_0[E11_Modification]
+        class G10_0 classstyle;
+        G1-- P31i_was_modified_by -->G10
+
+        %% -----------------
+        %% P43_has_dimension
+        G11(dimension)
+        class G11 generic_element;
+        G11-- type -->G11_0[E54_Dimension]
+        class G11_0 classstyle;
+        G1-- P43_has_dimension -->G11
+
+        %% -----------------
+        %% P70i_is_documented_in
+        G12(document)
+        class G12 generic_element;
+        G12-- type -->G12_0[E31_Document]
+        class G12_0 classstyle;
+        G1-- P70i_is_documented_in -->G12
+
+        %% -----------------
+        %% P138i_is_represented_by
+        G13(image)
+        class G13 generic_element;
+        G13-- type -->G13_0[E36_Visual_Item]
+        class G13_0 classstyle;
+        G1-- P138i_is_represented_by -->G13
+
+        %% -----------------
+        %% CLICKABLE CONCEPT NODES
+        %% -----------------
+        click G1 "#e25_man-made_feature" "E25 Man-Made Feature"
+        click G2 "#e42_identifier" "E42 Identifier"
+        click G3a "#e41_appellation" "E41 Appellation"
+        click G3b "#e42_identifier" "E42 Identifier"
+        click G4 "#e53_place" "E53 Place"
+        click G5 "#e24_physical_human-made_thing" "E24 Physical Human-Made Thing"
+        click G6 "#e63_beginning_of_existence" "E63 Beginning of Existence"
+        click G8 "http://www.cidoc-crm.org/cidoc-crm/E55_Type" "E55 Type"
+        click G9 "#e26_physical_feature" "E26 Physical Feature"
+        click G10 "#e11_modification_disturbance" "E11 Modification (Disturbance)"
+        click G11 "#e54_dimension" "E54 Dimension"
+        click G12 "#e31_document" "E31 Document"
+        click G13 "#e36_visual_item_image" "E36 Visual Item (Image)"
+      </div>
+
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E25_Man-Made_Feature" target="_blank">crm:E25_Man-Made_Feature</a></li>
+        <li><strong>Label:</strong> Grave</li>
+      </ul>
+      <h5 id="properties-grave">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P48_has_preferred_identifier" target="_blank">crm:P48_has_preferred_identifier</a>
+          <ul>
+            <li><strong>Description:</strong> Assigns the main identifier of the grave.</li>
+            <li><strong>Value:</strong> <a href="#e42_identifier">Identifier</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by" target="_blank">crm:P1_is_identified_by</a>
+          <ul>
+            <li><strong>Description:</strong> Associates the grave with an appellation or an additional identifier (e.g. grave number).</li>
+            <li><strong>Value:</strong> <a href="#e41_appellation">Appellation</a> | <a href="#e42_identifier">Identifier</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P156_occupies" target="_blank">crm:P156_occupies</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the place that the grave occupies.</li>
+            <li><strong>Value:</strong> <a href="#e53_place">Place</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of" target="_blank">crm:P46_is_composed_of</a>
+          <ul>
+            <li><strong>Description:</strong> Links the grave to the burials it is composed of.</li>
+            <li><strong>Value:</strong> <a href="#e24_physical_human-made_thing">Burial</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P92i_was_brought_into_existence_by" target="_blank">crm:P92i_was_brought_into_existence_by</a>
+          <ul>
+            <li><strong>Description:</strong> Links the grave to the event that brought it into existence. In the SOMA context it refers to the dating.</li>
+            <li><strong>Value:</strong> <a href="#e63_beginning_of_existence">Dating</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual note providing additional information about the grave.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank">crm:P2_has_type</a>
+          <ul>
+            <li><strong>Description:</strong> Classifies the grave by type (e.g. pit grave, cist grave, pot burial).</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P56_bears_feature" target="_blank">crm:P56_bears_feature</a>
+          <ul>
+            <li><strong>Description:</strong> Indicates that the grave bears a physical feature (e.g. above-ground structures, grave marker, underground structures).</li>
+            <li><strong>Value:</strong> <a href="#e26_physical_feature">Feature</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P31i_was_modified_by" target="_blank">crm:P31i_was_modified_by</a>
+          <ul>
+            <li><strong>Description:</strong> Identifies modifications or disturbances affecting the grave.</li>
+            <li><strong>Value:</strong> <a href="#e11_modification_disturbance">Disturbance</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P43_has_dimension" target="_blank">crm:P43_has_dimension</a>
+          <ul>
+            <li><strong>Description:</strong> Records the measurable dimensions of the grave (dimension, elevation, orientation of grave pit and distance to neighbouring graves) and also quantitative counts, such as numbers of external burial goods.</li>
+            <li><strong>Value:</strong> <a href="#e54_dimension">Dimension</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in" target="_blank">crm:P70i_is_documented_in</a>
+          <ul>
+            <li><strong>Description:</strong> Links the grave to documents that record or describe it.</li>
+            <li><strong>Value:</strong> <a href="#e31_document">Document</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P138i_is_represented_by" target="_blank">crm:P138i_is_represented_by</a>
+          <ul>
+            <li><strong>Description:</strong> Links the grave to a visual representation (e.g. plan, photograph, drawing, 3D-object).</li>
+            <li><strong>Value:</strong> <a href="#e36_visual_item_image">Image</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--BURIAL-->
+    <div id="e24_physical_human-made_thing">
+      <h4>Burial</h4>
+
+      <div class="mermaid m-4">
+        graph TD
+        classDef core_element stroke:black,fill:#aff090,rx:20px,ry:20px;
+        classDef generic_element stroke:black,fill:#96e0f6,rx:20px,ry:20px;
+        classDef type stroke:red,fill:#FAB565,rx:20px,ry:20px;
+        classDef timespan stroke:blue,fill:#ddfffe,rx:20px,ry:20px;
+        classDef place stroke:#3a7a3a,fill:#aff090,rx:20px,ry:20px;
+        classDef literal stroke:black,fill:#f0f0e0;
+        classDef classstyle stroke:black,fill:white;
+
+        %% -----------------
+        %% CENTRAL NODE
+        %% -----------------
+        B1(Burial)
+        class B1 core_element;
+        B1-- type -->B1_0[E24_Physical_Human-Made_Thing]
+        class B1_0 classstyle;
+
+        %% -----------------
+        %% P48_has_preferred_identifier
+        B2(identifier)
+        class B2 generic_element;
+        B2-- type -->B2_0[E42_Identifier]
+        class B2_0 classstyle;
+        B1-- P48_has_preferred_identifier -->B2
+
+            %% -----------------
+        %% P1_is_identified_by (grouped branch)
+        B3( )
+        class B3 generic_element;
+        B1-- P1_is_identified_by -->B3
+
+        B3a(appellation)
+        class B3a generic_element;
+        B3a-- type -->B3a_0[E41_Appellation]
+        class B3a_0 classstyle;
+        B3-->B3a
+
+        B3b(identifier)
+        class B3b generic_element;
+        B3b-- type -->B3b_0[E42_Identifier]
+        class B3b_0 classstyle;
+        B3-->B3b
+
+
+        %% -----------------
+        %% P156_occupies
+        B4(place)
+        class B4 generic_element;
+        B4-- type -->B4_0[E53_Place]
+        class B4_0 classstyle;
+        B1-- P156_occupies -->B4
+
+        %% -----------------
+        %% P92i_was_brought_into_existence_by
+        B5(dating)
+        class B5 generic_element;
+        B5-- type -->B5_0[E63_Beginning_of_Existence]
+        class B5_0 classstyle;
+        B1-- P92i_was_brought_into_existence_by -->B5
+
+        %% -----------------
+        %% P3_has_note
+        B6(string)
+        class B6 literal;
+        B1-- P3_has_note -->B6
+
+        %% -----------------
+        %% P2_has_type
+        B7(type)
+        class B7 generic_element;
+        B7-- type -->B7_0[E55_Type]
+        class B7_0 classstyle;
+        B1-- P2_has_type -->B7
+
+        %% -----------------
+        %% P31i_was_modified_by
+        B8(disturbance)
+        class B8 generic_element;
+        B8-- type -->B8_0[E11_Modification]
+        class B8_0 classstyle;
+        B1-- P31i_was_modified_by -->B8
+
+        %% -----------------
+        %% P43_has_dimension
+        B9(dimension)
+        class B9 generic_element;
+        B9-- type -->B9_0[E54_Dimension]
+        class B9_0 classstyle;
+        B1-- P43_has_dimension -->B9
+
+        %% -----------------
+        %% P45_consists_of
+        B10(material)
+        class B10 generic_element;
+        B10-- type -->B10_0[E57_Material]
+        class B10_0 classstyle;
+        B1-- P45_consists_of -->B10
+
+        %% -----------------
+        %% P19i_was_made_for
+        B11(ritual)
+        class B11 generic_element;
+        B11-- type -->B11_0[E7_Activity]
+        class B11_0 classstyle;
+        B1-- P19i_was_made_for -->B11
+
+        %% -----------------
+        %% P70i_is_documented_in
+        B12(document)
+        class B12 generic_element;
+        B12-- type -->B12_0[E31_Document]
+        class B12_0 classstyle;
+        B1-- P70i_is_documented_in -->B12
+
+        %% -----------------
+        %% P138i_is_represented_by
+        B13(image)
+        class B13 generic_element;
+        B13-- type -->B13_0[E36_Visual_Item]
+        class B13_0 classstyle;
+        B1-- P138i_is_represented_by -->B13
+
+        %% -----------------
+        %% P46_is_composed_of (grouped branch - LAST)
+        B14( )
+        class B14 generic_element;
+        B1-- P46_is_composed_of -->B14
+
+        B14a(object)
+        class B14a generic_element;
+        B14a-- type -->B14a_0[E22_Human-Made_Object]
+        class B14a_0 classstyle;
+        B14-->B14a
+
+        B14b(human_remains)
+        class B14b generic_element;
+        B14b-- type -->B14b_0[E20_Biological_Object]
+        class B14b_0 classstyle;
+        B14-->B14b
+
+        
+        %% -----------------
+        %% CLICKABLE CONCEPT NODES
+        %% -----------------
+        click B1 "#e24_physical_human-made_thing" "E24 Physical Human-Made Thing"
+        click B2 "#e42_identifier" "E42 Identifier"
+        click B3a "#e41_appellation" "E41 Appellation"
+        click B3b "#e42_identifier" "E42 Identifier"
+        click B4 "#e53_place" "E53 Place"
+        click B5 "#e63_beginning_of_existence" "E63 Beginning of Existence"
+        click B7 "http://www.cidoc-crm.org/cidoc-crm/E55_Type" "E55 Type"
+        click B8 "#e11_modification_disturbance" "E11 Modification (Disturbance)"
+        click B9 "#e54_dimension" "E54 Dimension"
+        click B10 "http://www.cidoc-crm.org/cidoc-crm/E57_Material" "E57 Material"
+        click B11 "#e7_activity_ritual" "E7 Activity (Ritual)"
+        click B12 "#e31_document" "E31 Document"
+        click B13 "#e36_visual_item_image" "E36 Visual Item (Image)"
+        click B14a "#e22_human-made_object" "E22 Human-Made Object"
+        click B14b "#e20_biological_object" "E20 Biological Object"
+    </div>
+
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E24_Physical_Human-Made_Thing" target="_blank">crm:E24_Physical_Human-Made_Thing</a></li>
+        <li><strong>Label:</strong> Burial</li>
+      </ul>
+      <h5 id="properties-burial">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P48_has_preferred_identifier" target="_blank">crm:P48_has_preferred_identifier</a>
+          <ul>
+            <li><strong>Description:</strong> Assigns the main identifier of the burial.</li>
+            <li><strong>Value:</strong> <a href="#e42_identifier">Identifier</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by" target="_blank">crm:P1_is_identified_by</a>
+          <ul>
+            <li><strong>Description:</strong> Associates the burial with an appellation or an additional identifier.</li>
+            <li><strong>Value:</strong> <a href="#e41_appellation">Appellation</a> | <a href="#e42_identifier">Identifier</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P156_occupies" target="_blank">crm:P156_occupies</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the place that the burial occupies.</li>
+            <li><strong>Value:</strong> <a href="#e53_place">Place</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P92i_was_brought_into_existence_by" target="_blank">crm:P92i_was_brought_into_existence_by</a>
+          <ul>
+            <li><strong>Description:</strong> Links the burial to the event that brought it into existence. In the SOMA context it refers to the dating.</li>
+            <li><strong>Value:</strong> <a href="#e63_beginning_of_existence">Dating</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of" target="_blank">crm:P46_is_composed_of</a>
+          <ul>
+            <li><strong>Description:</strong> Links the burial to the objects and/or human remains it contains.</li>
+            <li><strong>Value:</strong> <a href="#e22_human-made_object">Object</a> | <a href="#e20_biological_object">Human Remains</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual note providing additional information about the burial.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank">crm:P2_has_type</a>
+          <ul>
+            <li><strong>Description:</strong> Classifies the burial by type (e.g. coffin, cinerary urn, pithos).</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P31i_was_modified_by" target="_blank">crm:P31i_was_modified_by</a>
+          <ul>
+            <li><strong>Description:</strong> Identifies modifications or disturbances affecting the burial.</li>
+            <li><strong>Value:</strong> <a href="#e11_modification_disturbance">Disturbance</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P43_has_dimension" target="_blank">crm:P43_has_dimension</a>
+          <ul>
+            <li><strong>Description:</strong> Records the measurable dimensions of the burial and also related quantitative and spatial attributes (e.g., orientation, body position, placement and number of goods)</li>
+            <li><strong>Value:</strong> <a href="#e54_dimension">Dimension</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P45_consists_of" target="_blank">crm:P45_consists_of</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the material(s) that constitute the burial.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E57_Material" target="_blank">crm:E57_Material</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P19i_was_made_for" target="_blank">crm:P19i_was_made_for</a>
+          <ul>
+            <li><strong>Description:</strong> Links the burial to the ritual it was made for.</li>
+            <li><strong>Value:</strong> <a href="#e7_activity_ritual">Ritual</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in" target="_blank">crm:P70i_is_documented_in</a>
+          <ul>
+            <li><strong>Description:</strong> Links the burial to documents that record or describe it.</li>
+            <li><strong>Value:</strong> <a href="#e31_document">Document</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P138i_is_represented_by" target="_blank">crm:P138i_is_represented_by</a>
+          <ul>
+            <li><strong>Description:</strong> Links the burial to a visual representation (e.g. plan, photograph, drawing, 3D-object).</li>
+            <li><strong>Value:</strong> <a href="#e36_visual_item_image">Image</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--HUMAN REMAINS-->
+    <div id="e20_biological_object">
+      <h4>Human Remains</h4>
+      <div class="mermaid m-4">
+        graph TD
+        classDef core_element stroke:black,fill:#aff090,rx:20px,ry:20px;
+        classDef generic_element stroke:black,fill:#96e0f6,rx:20px,ry:20px;
+        classDef type stroke:red,fill:#FAB565,rx:20px,ry:20px;
+        classDef timespan stroke:blue,fill:#ddfffe,rx:20px,ry:20px;
+        classDef place stroke:#3a7a3a,fill:#aff090,rx:20px,ry:20px;
+        classDef literal stroke:black,fill:#f0f0e0;
+        classDef classstyle stroke:black,fill:white;
+
+        %% -----------------
+        %% CENTRAL NODE
+        %% -----------------
+        HR1(Human Remains)
+        class HR1 core_element;
+        HR1-- type -->HR1_0[E20_Biological_Object]
+        class HR1_0 classstyle;
+
+        %% -----------------
+        %% P48_has_preferred_identifier
+        HR2(identifier)
+        class HR2 generic_element;
+        HR2-- type -->HR2_0[E42_Identifier]
+        class HR2_0 classstyle;
+        HR1-- P48_has_preferred_identifier -->HR2
+
+        %% -----------------
+        %% P1_is_identified_by
+        HR3(identifier)
+        class HR3 generic_element;
+        HR3-- type -->HR3_0[E42_Identifier]
+        class HR3_0 classstyle;
+        HR1-- P1_is_identified_by -->HR3
+
+        %% -----------------
+        %% P55_has_current_location
+        HR4(place)
+        class HR4 generic_element;
+        HR4-- type -->HR4_0[E53_Place]
+        class HR4_0 classstyle;
+        HR1-- P55_has_current_location -->HR4
+
+        %% -----------------
+        %% P3_has_note
+        HR5(string)
+        class HR5 literal;
+        HR1-- P3_has_note -->HR5
+
+        %% -----------------
+        %% P43_has_dimension
+        HR6(dimension)
+        class HR6 generic_element;
+        HR6-- type -->HR6_0[E54_Dimension]
+        class HR6_0 classstyle;
+        HR1-- P43_has_dimension -->HR6
+
+        %% -----------------
+        %% O8i_was_observed_by
+        HR7(analysis)
+        class HR7 generic_element;
+        HR7-- type -->HR7_0[S4_Observation]
+        class HR7_0 classstyle;
+        HR1-- O8i_was_observed_by -->HR7
+
+        %% -----------------
+        %% P70i_is_documented_in
+        HR8(document)
+        class HR8 generic_element;
+        HR8-- type -->HR8_0[E31_Document]
+        class HR8_0 classstyle;
+        HR1-- P70i_is_documented_in -->HR8
+
+        %% -----------------
+        %% P138i_is_represented_by
+        HR9(image)
+        class HR9 generic_element;
+        HR9-- type -->HR9_0[E36_Visual_Item]
+        class HR9_0 classstyle;
+        HR1-- P138i_is_represented_by -->HR9
+
+        %% -----------------
+        %% CLICKABLE CONCEPT NODES
+        %% -----------------
+        click HR1 "#e20_biological_object" "E20 Biological Object"
+        click HR2 "#e42_identifier" "E42 Identifier"
+        click HR3 "#e42_identifier" "E42 Identifier"
+        click HR4 "#e53_place" "E53 Place"
+        click HR6 "#e54_dimension" "E54 Dimension"
+        click HR7 "#s4_observation_analysis" "S4 Observation (Analysis)"
+        click HR8 "#e31_document" "E31 Document"
+        click HR9 "#e36_visual_item_image" "E36 Visual Item (Image)"
+    </div>
+
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E20_Biological_Object" target="_blank">crm:E20_Biological_Object</a></li>
+        <li><strong>Label:</strong> Human Remains</li>
+      </ul>
+      <h5 id="properties-human-remains">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P48_has_preferred_identifier" target="_blank">crm:P48_has_preferred_identifier</a>
+          <ul>
+            <li><strong>Description:</strong> Assigns the main identifier of the human remains.</li>
+            <li><strong>Value:</strong> <a href="#e42_identifier">Identifier</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by" target="_blank">crm:P1_is_identified_by</a>
+          <ul>
+            <li><strong>Description:</strong> Associates the human remains with an alternative identifier (e.g. inventory number).</li>
+            <li><strong>Value:</strong> <a href="#e42_identifier">Identifier</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location" target="_blank">crm:P55_has_current_location</a>
+          <ul>
+            <li><strong>Description:</strong> Indicates the current location of the human remains (e.g. storage facility, lab, or museum).</li>
+            <li><strong>Value:</strong> <a href="#e53_place">Place</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual note providing additional information about the human remains.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P43_has_dimension" target="_blank">crm:P43_has_dimension</a>
+          <ul>
+            <li><strong>Description:</strong> Records measurable dimensions of the human remains (e.g. number of bones and teeth).</li>
+            <li><strong>Value:</strong> <a href="#e54_dimension">Dimension</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/crmsci/O8i_was_observed_by" target="_blank">crmsci:O8i_was_observed_by</a>
+          <ul>
+            <li><strong>Description:</strong> Connects the human remains to analyses carried out on them (e.g. qualitative and quantitative analysis, pathology analysis).</li>
+            <li><strong>Value:</strong> <a href="#s4_observation_analysis">Analysis</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in" target="_blank">crm:P70i_is_documented_in</a>
+          <ul>
+            <li><strong>Description:</strong> Links the human remains to documents that record or describe them.</li>
+            <li><strong>Value:</strong> <a href="#e31_document">Document</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P138i_is_represented_by" target="_blank">crm:P138i_is_represented_by</a>
+          <ul>
+            <li><strong>Description:</strong> Links the human remains to a visual representation (e.g. photograph, drawing, 3D-object).</li>
+            <li><strong>Value:</strong> <a href="#e36_visual_item_image">Image</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--OBJECT-->
+    <div id="e22_human-made_object">
+      <h4>Object</h4>
+      <div class="mermaid m-4">
+        graph TD
+        classDef core_element stroke:black,fill:#aff090,rx:20px,ry:20px;
+        classDef generic_element stroke:black,fill:#96e0f6,rx:20px,ry:20px;
+        classDef type stroke:red,fill:#FAB565,rx:20px,ry:20px;
+        classDef timespan stroke:blue,fill:#ddfffe,rx:20px,ry:20px;
+        classDef place stroke:#3a7a3a,fill:#aff090,rx:20px,ry:20px;
+        classDef literal stroke:black,fill:#f0f0e0;
+        classDef classstyle stroke:black,fill:white;
+
+        %% -----------------
+        %% CENTRAL NODE
+        O1(Object)
+        class O1 core_element;
+        O1-- type -->O1_0[E22_Human-Made_Object]
+        class O1_0 classstyle;
+
+        %% -----------------
+        %% P48_has_preferred_identifier
+        O2(identifier)
+        class O2 generic_element;
+        O2-- type -->O2_0[E42_Identifier]
+        class O2_0 classstyle;
+        O1-- P48_has_preferred_identifier -->O2
+
+        %% -----------------
+        %% P1_is_identified_by (grouped)
+        O3( )
+        class O3 generic_element;
+        O1-- P1_is_identified_by -->O3
+
+        O3a(appellation)
+        class O3a generic_element;
+        O3a-- type -->O3a_0[E41_Appellation]
+        class O3a_0 classstyle;
+        O3-->O3a
+
+        O3b(identifier)
+        class O3b generic_element;
+        O3b-- type -->O3b_0[E42_Identifier]
+        class O3b_0 classstyle;
+        O3-->O3b
+
+        %% -----------------
+        %% P55_has_current_location
+        O4(place)
+        class O4 generic_element;
+        O4-- type -->O4_0[E53_Place]
+        class O4_0 classstyle;
+        O1-- P55_has_current_location -->O4
+
+        %% -----------------
+        %% P3_has_note
+        O5(string)
+        class O5 literal;
+        O1-- P3_has_note -->O5
+
+        %% -----------------
+        %% P2_has_type
+        O6(type)
+        class O6 generic_element;
+        O6-- type -->O6_0[E55_Type]
+        class O6_0 classstyle;
+        O1-- P2_has_type -->O6
+
+        %% -----------------
+        %% P44_has_condition
+        O7(condition_state)
+        class O7 generic_element;
+        O7-- type -->O7_0[E3_Condition_State]
+        class O7_0 classstyle;
+        O1-- P44_has_condition -->O7
+
+        O7a(condition_note)
+        class O7a literal;
+        O7-- P3_has_note -->O7a
+
+        %% -----------------
+        %% P43_has_dimension
+        O8(dimension)
+        class O8 generic_element;
+        O8-- type -->O8_0[E54_Dimension]
+        class O8_0 classstyle;
+        O1-- P43_has_dimension -->O8
+
+
+        %% -----------------
+        %% CLICKABLE CONCEPT NODES
+        click O1 "#e22_human-made_object" "E22 Human-Made Object"
+        click O2 "#e42_identifier" "E42 Identifier"
+        click O3a "#e41_appellation" "E41 Appellation"
+        click O3b "#e42_identifier" "E42 Identifier"
+        click O4 "#e53_place" "E53 Place"
+        click O6 "http://www.cidoc-crm.org/cidoc-crm/E55_Type" "E55 Type"
+        click O7 "http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State" "E3 Condition State"
+        click O8 "#e54_dimension" "E54 Dimension"
+    </div>
+
+
+    <div class="mermaid m-4">
+        graph TD
+        classDef core_element stroke:black,fill:#aff090,rx:20px,ry:20px;
+        classDef generic_element stroke:black,fill:#96e0f6,rx:20px,ry:20px;
+        classDef type stroke:red,fill:#FAB565,rx:20px,ry:20px;
+        classDef timespan stroke:blue,fill:#ddfffe,rx:20px,ry:20px;
+        classDef place stroke:#3a7a3a,fill:#aff090,rx:20px,ry:20px;
+        classDef literal stroke:black,fill:#f0f0e0;
+        classDef classstyle stroke:black,fill:white;
+
+        %% -----------------
+        %% CENTRAL NODE
+        O1(Object)
+        class O1 core_element;
+        class O1_0 classstyle;
+
+        %% -----------------
+        %% P31i_was_modified_by (grouped)
+        O9( )
+        class O9 generic_element;
+        O1-- P31i_was_modified_by -->O9
+
+        O9a(restoration)
+        class O9a generic_element;
+        O9a-- type -->O9a_0[E11_Modification_Restoration]
+        class O9a_0 classstyle;
+        O9-->O9a
+
+        O9b(production)
+        class O9b generic_element;
+        O9b-- type -->O9b_0[E12_Production]
+        class O9b_0 classstyle;
+        O9-->O9b
+
+        %% -----------------
+        %% P25i_moved_by
+        O10(import)
+        class O10 generic_element;
+        O10-- type -->O10_0[E9_Move_Import]
+        class O10_0 classstyle;
+        O1-- P25i_moved_by -->O10
+
+        %% -----------------
+        %% P56_bears_feature (grouped)
+        O11( )
+        class O11 generic_element;
+        O1-- P56_bears_feature -->O11
+
+        O11a(feature)
+        class O11a generic_element;
+        O11a-- type -->O11a_0[E26_Physical_Feature]
+        class O11a_0 classstyle;
+        O11-->O11a
+
+        O11b(ornament)
+        class O11b generic_element;
+        O11b-- type -->O11b_0[E36_Visual_Item_Ornament]
+        class O11b_0 classstyle;
+        O11-->O11b
+
+        O11c(inscription)
+        class O11c generic_element;
+        O11c-- type -->O11c_0[E34_Inscription]
+        class O11c_0 classstyle;
+        O11-->O11c
+
+        %% -----------------
+        %% ICON ontology links
+        O12(preiconographical_subject)
+        class O12 generic_element;
+        O1-- preiconographicallyDepicts -->O12
+
+        O13(iconographical_subject)
+        class O13 generic_element;
+        O1-- iconographicallyDepicts -->O13
+
+        O14(iconological_subject)
+        class O14 generic_element;
+        O1-- iconologiphicallyRepresents -->O14
+
+        %% -----------------
+        %% P70i_is_documented_in
+        O15(document)
+        class O15 generic_element;
+        O15-- type -->O15_0[E31_Document]
+        class O15_0 classstyle;
+        O1-- P70i_is_documented_in -->O15
+
+        %% -----------------
+        %% P138i_is_represented_by
+        O16(image)
+        class O16 generic_element;
+        O16-- type -->O16_0[E36_Visual_Item]
+        class O16_0 classstyle;
+        O1-- P138i_is_represented_by -->O16
+
+        %% -----------------
+        %% CLICKABLE CONCEPT NODES
+        click O9a "#e11_modification_restoration" "E11 Modification (Restoration)"
+        click O9b "#e12_production" "E12 Production"
+        click O10 "#e9_move_import" "E9 Move / Import"
+        click O11a "#e26_physical_feature" "E26 Physical Feature"
+        click O11b "#e36_visual_item_ornament" "E36 Visual Item (Ornament)"
+        click O11c "#e34_inscription" "E34 Inscription"
+        click O15 "#e31_document" "E31 Document"
+        click O16 "#e36_visual_item_image" "E36 Visual Item (Image)"
+    </div>
+
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object" target="_blank">crm:E22_Human-Made_Object</a></li>
+        <li><strong>Label:</strong> Object</li>
+      </ul>
+      <h5 id="properties-object">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P48_has_preferred_identifier" target="_blank">crm:P48_has_preferred_identifier</a>
+          <ul>
+            <li><strong>Description:</strong> Assigns the main identifier of the object.</li>
+            <li><strong>Value:</strong> <a href="#e42_identifier">Identifier</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by" target="_blank">crm:P1_is_identified_by</a>
+          <ul>
+            <li><strong>Description:</strong> Associates the object with an appellation or an additional identifier (e.g. inventory number).</li>
+            <li><strong>Value:</strong> <a href="#e41_appellation">Appellation</a> | <a href="#e42_identifier">Identifier</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location" target="_blank">crm:P55_has_current_location</a>
+          <ul>
+            <li><strong>Description:</strong> Indicates the current location of the object.</li>
+            <li><strong>Value:</strong> <a href="#e53_place">Place</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual description of the object.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank">crm:P2_has_type</a>
+          <ul>
+            <li><strong>Description:</strong> Classifies the object by type.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P44_has_condition" target="_blank">crm:P44_has_condition</a>
+          <ul>
+            <li><strong>Description:</strong> Describes the physical condition (state of preservation) of the object (e.g. intact, fragmentary).</li>
+            <li><strong>Value:</strong>
+                <ul>
+                  <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State" target="_blank">crm:E3_Condition_State</a></li>
+                  <li><strong>Label:</strong> Condition State</li>
+                  <li><strong>Properties:</strong>
+                    <ul>
+                      <li>
+                        <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+                        <ul>
+                          <li><strong>Description:</strong> A note describing details of the condition.</li>
+                          <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+            
+            </li>
+            
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P43_has_dimension" target="_blank">crm:P43_has_dimension</a>
+          <ul>
+            <li><strong>Description:</strong> Records the measurable dimensions of the object.</li>
+            <li><strong>Value:</strong> <a href="#e54_dimension">Dimension</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P31i_was_modified_by" target="_blank">crm:P31i_was_modified_by</a>
+          <ul>
+            <li><strong>Description:</strong> Indicates modifications the object underwent, such as restorations or production processes.</li>
+            <li><strong>Value:</strong> <a href="#e11_modification_restoration">Restoration</a> | <a href="#e12_production">Production</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P25i_moved_by" target="_blank">crm:P25i_moved_by</a>
+          <ul>
+            <li><strong>Description:</strong> Identifies the event in which the object was moved or imported.</li>
+            <li><strong>Value:</strong> <a href="#e9_move_import">Import</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P56_bears_feature" target="_blank">crm:P56_bears_feature</a>
+          <ul>
+            <li><strong>Description:</strong> Indicates that the object bears a physical feature, such as a functional element, ornament, or inscription.</li>
+            <li><strong>Value:</strong> <a href="#e26_physical_feature">Feature</a> | <a href="#e36_visual_item_ornament">Ornament</a> | <a href="#e34_inscription">Inscription</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="https://br0ast.github.io/ICON/ICONOntologyDocumentationcurrent/index-en.html" target="_blank">icon:preiconographicallyDepicts</a>
+          <ul>
+            <li><strong>Description:</strong> Records the subject depicted at a basic, pre-iconographic level (purely descriptive of form and content).</li>
+            <li><strong>Value:</strong> <code>icon:PreiconographicalSubject</code></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="https://br0ast.github.io/ICON/ICONOntologyDocumentationcurrent/index-en.html" target="_blank">icon:iconographicallyDepicts</a>
+          <ul>
+            <li><strong>Description:</strong> Records the subject depicted at the iconographic level (established motifs, figures, or scenes).</li>
+            <li><strong>Value:</strong> <code>icon:IconographicalSubject</code></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="https://br0ast.github.io/ICON/ICONOntologyDocumentationcurrent/index-en.html" target="_blank">icon:iconologiphicallyRepresents</a>
+          <ul>
+            <li><strong>Description:</strong> Records the subject represented at the iconological level (interpretive meaning, symbolism, cultural significance).</li>
+            <li><strong>Value:</strong> <code>icon:IconologicalSubject</code></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in" target="_blank">crm:P70i_is_documented_in</a>
+          <ul>
+            <li><strong>Description:</strong> Links the object to a document that records or describes it.</li>
+            <li><strong>Value:</strong> <a href="#e31_document">Document</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P138i_is_represented_by" target="_blank">crm:P138i_is_represented_by</a>
+          <ul>
+            <li><strong>Description:</strong> Connects the object to a visual representation (e.g. photograph, drawing, 3D-object).</li>
+            <li><strong>Value:</strong> <a href="#e36_visual_item_image">Image</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+
+    <!-------------------------------------------------------GENERIC ELEMENTS---------------------------------------------------------->
+    <h3 class="pageTitle text-center mb-4">Generic Elements</h3>
+
+    <!--TIME SPAN-->
+    <div id="e52_time-span">
+      <h4>Time-Span</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span" target="_blank">crm:E52_Time-Span</a></li>
+        <li><strong>Label:</strong> Time-Span</li>
+      </ul>
+      <h5 id="properties-8">Properties</h5>
+      <ul>
+        <li><a href="http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin" target="_blank">crm:P82a_begin_of_the_begin</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the earliest possible starting point of a time-span.</li>
+            <li><strong>Value:</strong> <code>xsd:date</code> | <code>xsd:gYear</code> | <code>xsd:string</code></li>
+          </ul>
+        </li>
+        <li><a href="http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end" target="_blank">crm:P82b_end_of_the_end</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the latest possible ending point of a time-span.</li>
+            <li><strong>Value:</strong> <code>xsd:date</code> | <code>xsd:gYear</code> | <code>xsd:string</code></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--PERIOD-->
+    <div id="e4_period">
+      <h4>Period</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E4_Period" target="_blank">crm:E4_Period</a></li>
+        <li><strong>Label:</strong> Period</li>
+      </ul>
+      <h5 id="properties-period">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by" target="_blank">crm:P1_is_identified_by</a>
+          <ul>
+            <li><strong>Description:</strong> Associates the period with an appellation, such as a historical or archaeological period name (e.g. “Late Geometric”, “Classical”).</li>
+            <li><strong>Value:</strong> <a href="#e41_appellation">Appellation</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--PLACE-->
+    <div id="e53_place">
+      <h4>Place</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E53_Place" target="_blank">crm:E53_Place</a></li>
+        <li><strong>Label:</strong> Place</li>
+      </ul>
+      <h5 id="properties-place">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P89_falls_within" target="_blank">crm:P89_falls_within</a>
+          <ul>
+            <li><strong>Description:</strong> Indicates that a place is spatially contained within a larger place.</li>
+            <li><strong>Value:</strong>
+              <ul>
+                <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E53_Place" target="_blank">crm:E53_Place</a></li>
+                <li><strong>Label:</strong> Place</li>
+                <li><strong>Properties:</strong>
+                  <ul>
+                    <li>
+                      <a href="http://www.cidoc-crm.org/cidoc-crm/P168_place_is_defined_by" target="_blank">crm:P168_place_is_defined_by</a>
+                      <ul>
+                        <li><strong>Description:</strong> Defines a place by some spatial expression (e.g. coordinates).</li>
+                        <li><strong>Value:</strong> <code>xsd:string</code></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul> 
+              
+            </li>
+            
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--IDENTIFIER-->
+    <div id="e42_identifier">
+      <h4>Identifier</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E42_Identifier" target="_blank">crm:E42_Identifier</a></li>
+        <li><strong>Label:</strong> Identifier</li>
+      </ul>
+      <h5 id="properties-identifier">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P190_has_symbolic_content" target="_blank">crm:P190_has_symbolic_content</a>
+          <ul>
+            <li><strong>Description:</strong> The literal value of the identifier. In the SOMA context, this can be an excavation code, catalogue number, or any string assigned to uniquely reference an entity.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--APPELLATION-->
+    <div id="e41_appellation">
+      <h4>Appellation</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E41_Appellation" target="_blank">crm:E41_Appellation</a></li>
+        <li><strong>Label:</strong> Appellation</li>
+      </ul>
+      <h5 id="properties-appellation">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P190_has_symbolic_content" target="_blank">crm:P190_has_symbolic_content</a>
+          <ul>
+            <li><strong>Description:</strong> The literal value of the appellation. In the SOMA context, this may be the name of a cemetery, the label of a tomb, or another textual designation used to identify an entity.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--DATING-->
+    <div id="e63_beginning_of_existence">
+      <h4>Dating</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E63_Beginning_of_Existence" target="_blank">crm:E63_Beginning_of_Existence</a></li>
+        <li><strong>Label:</strong> Dating</li>
+      </ul>
+      <h5 id="properties-existence">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span" target="_blank">crm:P4_has_time-span</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the time-span during which the entity came into existence.</li>
+            <li><strong>Value:</strong> <a href="#e52_time-span">Time-Span</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P10_falls_within" target="_blank">crm:P10_falls_within</a>
+          <ul>
+            <li><strong>Description:</strong> Associates the beginning of existence with a broader historical or archaeological period.</li>
+            <li><strong>Value:</strong> <a href="#e4_period">Period</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual note with additional information about the dating. In the SOMA context, it describes the evidence.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--DISTURBANCE-->
+    <div id="e11_modification_disturbance">
+      <h4>Disturbance</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E11_Modification" target="_blank">crm:E11_Modification</a></li>
+        <li><strong>Label:</strong> Disturbance</li>
+      </ul>
+      <h5 id="properties-disturbance">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank">crm:P2_has_type</a>
+          <ul>
+            <li><strong>Description:</strong> Classifies the type of disturbance.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span" target="_blank">crm:P4_has_time-span</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the time-span during which the disturbance occurred.</li>
+            <li><strong>Value:</strong> <a href="#e52_time-span">Time-Span</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P10_falls_within" target="_blank">crm:P10_falls_within</a>
+          <ul>
+            <li><strong>Description:</strong> Associates the disturbance with a broader historical or archaeological period.</li>
+            <li><strong>Value:</strong> <a href="#e4_period">Period</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by" target="_blank">crm:P14_carried_out_by</a>
+          <ul>
+            <li><strong>Description:</strong> Identifies the actor responsible for the disturbance.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E39_Actor" target="_blank">crm:E39_Actor</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual note with additional details about the disturbance.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--RESTORATION-->
+    <div id="e11_modification_restoration">
+      <h4>Restoration</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E11_Modification" target="_blank">crm:E11_Modification</a></li>
+        <li><strong>Label:</strong> Restoration</li>
+      </ul>
+      <h5 id="properties-restoration">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by" target="_blank">crm:P14_carried_out_by</a>
+          <ul>
+            <li><strong>Description:</strong> Identifies the actor (person or organization) who carried out the restoration of the object.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E39_Actor" target="_blank">crm:E39_Actor</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span" target="_blank">crm:P4_has_time-span</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the time-span during which the restoration took place.</li>
+            <li><strong>Value:</strong> <a href="#e52_time-span">Time-Span</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at" target="_blank">crm:P7_took_place_at</a>
+          <ul>
+            <li><strong>Description:</strong> Indicates the place where the restoration occurred (e.g. excavation site, conservation lab).</li>
+            <li><strong>Value:</strong> <a href="#e53_place">Place</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual note providing details about the restoration process.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--PRODUCTION-->
+    <div id="e12_production">
+      <h4>Production</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E12_Production" target="_blank">crm:E12_Production</a></li>
+        <li><strong>Label:</strong> Production</li>
+      </ul>
+      <h5 id="properties-production">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by" target="_blank">crm:P14_carried_out_by</a>
+          <ul>
+            <li><strong>Description:</strong> Identifies the actor (workshop) who carried out the production of the object.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E39_Actor" target="_blank">crm:E39_Actor</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span" target="_blank">crm:P4_has_time-span</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the time-span during which the production took place.</li>
+            <li><strong>Value:</strong> <a href="#e52_time-span">Time-Span</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P10_falls_within" target="_blank">crm:P10_falls_within</a>
+          <ul>
+            <li><strong>Description:</strong> Associates the production event with a broader period (e.g. Late Geometric).</li>
+            <li><strong>Value:</strong> <a href="#e4_period">Period</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at" target="_blank">crm:P7_took_place_at</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the place where the production occurred (e.g. workshop, region, or archaeological site).</li>
+            <li><strong>Value:</strong> <a href="#e53_place">Place</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual note providing details about the production process.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P32_used_general_technique" target="_blank">crm:P32_used_general_technique</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the general technique used during production.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P126_employed" target="_blank">crm:P126_employed</a>
+          <ul>
+            <li><strong>Description:</strong> Indicates the material(s) employed in the production of the object.</li>
+            <li><strong>Value:</strong> 
+              <ul>
+                <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E57_Material" target="_blank">crm:E57_Material</a></li>
+                <li><strong>Properties:</strong>
+                  <ul>
+                    <li>
+                      <a href="http://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank">crm:P2_has_type</a>
+                      <ul>
+                        <li><strong>Description:</strong> Classifies the type of material.</li>
+                        <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--IMPORT-->
+    <div id="e9_move_import">
+      <h4>Import</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E9_Move" target="_blank">crm:E9_Move</a></li>
+        <li><strong>Label:</strong> Import</li>
+      </ul>
+      <h5 id="properties-import">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P27_moved_from" target="_blank">crm:P27_moved_from</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the place from which the object was moved. In the SOMA context, this can indicate the origin of an imported artefact.</li>
+            <li><strong>Value:</strong> <a href="#e53_place">Place</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--DIMENSION-->
+    <div id="e54_dimension">
+      <h4>Dimension</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E54_Dimension" target="_blank">crm:E54_Dimension</a></li>
+        <li><strong>Label:</strong> Dimension</li>
+      </ul>
+      <h5 id="properties-dimension">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank">crm:P2_has_type</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the kind of dimension being measured, such as length, width, thickness, or depth.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P9_has_value" target="_blank">crm:P9_has_value</a>
+          <ul>
+            <li><strong>Description:</strong> The numerical value of the dimension.</li>
+            <li><strong>Value:</strong> <code>xsd:decimal</code></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P91_has_unit" target="_blank">crm:P91_has_unit</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the unit of measurement used for the dimension (e.g. centimeters, meters).</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P67_refers_to" target="_blank">crm:P67_refers_to</a>
+          <ul>
+            <li><strong>Description:</strong> Indicates the entity that the dimension refers to. In the SOMA context, this can be a tomb or a grave to which the measurement applies.</li>
+            <li><strong>Value:</strong> <a href="#e18_physical_thing">Tomb</a> | <a href="#e25_man-made_feature">Grave</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--FEATURE-->
+    <div id="e26_physical_feature">
+      <h4>Feature</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E26_Physical_Feature" target="_blank">crm:E26_Physical_Feature</a></li>
+        <li><strong>Label:</strong> Feature</li>
+      </ul>
+      <h5 id="properties-feature">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank">crm:P2_has_type</a>
+          <ul>
+            <li><strong>Description:</strong> Classifies the feature. In the SOMA context it refers to the shape of an object and grave features.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual description about the feature.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--ORNAMENT-->
+    <div id="e36_visual_item_ornament">
+      <h4>Ornament</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E36_Visual_Item" target="_blank">crm:E36_Visual_Item</a></li>
+        <li><strong>Label:</strong> Ornament</li>
+      </ul>
+      <h5 id="properties-ornament">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank">crm:P2_has_type</a>
+          <ul>
+            <li><strong>Description:</strong> Classifies the ornament.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual description about the ornament.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--INSCRIPTION-->
+    <div id="e34_inscription">
+      <h4>Inscription</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E34_Inscription" target="_blank">crm:E34_Inscription</a></li>
+        <li><strong>Label:</strong> Inscription</li>
+      </ul>
+      <h5 id="properties-inscription">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank">crm:P2_has_type</a>
+          <ul>
+            <li><strong>Description:</strong> Classifies the inscription.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual description providing details about the inscription's content or condition.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!--RITUAL-->
+    <div id="e7_activity_ritual">
+      <h4>Ritual</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E7_Activity" target="_blank">crm:E7_Activity</a></li>
+        <li><strong>Label:</strong> Ritual</li>
+      </ul>
+      <h5 id="properties-ritual">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank">crm:P2_has_type</a>
+          <ul>
+            <li><strong>Description:</strong> Classifies the type of burial ritual (e.g. inhumation, cremation, primary or secondary burial).</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P32_used_general_technique" target="_blank">crm:P32_used_general_technique</a>
+          <ul>
+            <li><strong>Description:</strong> Describes the general procedure or technique used in the ritual.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure" target="_blank">crm:E29_Design_or_Procedure</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--ANALYSIS-->
+    <div id="s4_observation_analysis">
+      <h4>Analysis</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/crmsci/S4_Observation" target="_blank">crmsci:S4_Observation</a></li>
+        <li><strong>Label:</strong> Analysis</li>
+      </ul>
+      <h5 id="properties-analysis">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/crmsci/O9_observed_property_type" target="_blank">crmsci:O9_observed_property_type</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the type of property observed during the analysis. In the SOMA context it refers to the analysis of human remains (e.g. treatment, preservation, sex, age, stature, position, pathology).</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/crmsci/O16_observed_value" target="_blank">crmsci:O16_observed_value</a>
+          <ul>
+            <li><strong>Description:</strong> The observed result of the analysis. This can be qualitative (e.g. male, female, supine) or quantitative (a numerical measurement with value and unit).</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a> | <a href="#e54_dimension">Dimension</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A free-text note describing the analysis, interpretation, or methodology.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by" target="_blank">crm:P14_carried_out_by</a>
+          <ul>
+            <li><strong>Description:</strong> Identifies the person responsible for carrying out the analysis.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E39_Actor" target="_blank">crm:E39_Actor</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--STRATIGRAPHIC UNIT-->
+    <div id="a8_stratigraphic_unit">
+      <h4>Stratigraphic Unit</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/crmarchaeo/A8_Stratigraphic_Unit" target="_blank">crmarchaeo:A8_Stratigraphic_Unit</a></li>
+        <li><strong>Label:</strong> Stratigraphic Unit</li>
+      </ul>
+      <h5 id="properties-stratigraphic-unit">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P48_has_preferred_identifier" target="_blank">crm:P48_has_preferred_identifier</a>
+          <ul>
+            <li><strong>Description:</strong> Assigns the main identifier of the stratigraphic unit.</li>
+            <li><strong>Value:</strong> <a href="#e42_identifier">Identifier</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P43_has_dimension" target="_blank">crm:P43_has_dimension</a>
+          <ul>
+            <li><strong>Description:</strong> Records a measurable characteristic.</li>
+            <li><strong>Value:</strong> <a href="#e54_dimension">Dimension</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> Provides free-text notes or comments.</li>
+            <li><strong>Value:</strong> 
+              <ul>
+                <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E62_String" target="_blank">crm:E62_String</a></li>
+                <li><strong>Label:</strong> String</li>
+                <li><strong>Properties:</strong>
+                  <ul>
+                    <li>
+                      <a href="http://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank">crm:P2_has_type</a>
+                      <ul>
+                        <li><strong>Description:</strong> Classifies the note according to its type (e.g. description, interpretation, context).</li>
+                        <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/crmarchaeo/AP21_contains" target="_blank">crmarchaeo:AP21_contains</a>
+          <ul>
+            <li><strong>Description:</strong> Indicates that the stratigraphic unit contains archaeological objects, such as artefacts, discovered during excavation.</li>
+            <li><strong>Value:</strong> <a href="#e22_human-made_object">Object</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--DOCUMENT-->
+    <div id="e31_document">
+      <h4>Document</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E31_Document" target="_blank">crm:E31_Document</a></li>
+        <li><strong>Label:</strong> Document</li>
+      </ul>
+      <h5 id="properties-document">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P48_has_preferred_identifier" target="_blank">crm:P48_has_preferred_identifier</a>
+          <ul>
+            <li><strong>Description:</strong> Assigns the main identifier for the document, such as an archive number or publication ID.</li>
+            <li><strong>Value:</strong> <a href="#e42_identifier">Identifier</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by" target="_blank">crm:P1_is_identified_by</a>
+          <ul>
+            <li><strong>Description:</strong> Associates the document with an appellation (e.g. title, label, or name).</li>
+            <li><strong>Value:</strong> <a href="#e41_appellation">Appellation</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P2_has_type" target="_blank">crm:P2_has_type</a>
+          <ul>
+            <li><strong>Description:</strong> Classifies the document by type, such as excavation permit, publication or archival record.</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E55_Type" target="_blank">crm:E55_Type</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P94_was_created_by" target="_blank">crm:P94_was_created_by</a>
+          <ul>
+            <li><strong>Description:</strong> Connects the document to the creation event in which it was produced.</li>
+            <li><strong>Value:</strong> <a href="#e65_creation">Creation</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P3_has_note" target="_blank">crm:P3_has_note</a>
+          <ul>
+            <li><strong>Description:</strong> A textual note providing additional information about the document.</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--IMAGE-->
+    <div id="e36_visual_item_image">
+      <h4>Image</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E36_Visual_Item" target="_blank">crm:E36_Visual_Item</a></li>
+        <li><strong>Label:</strong> Image</li>
+      </ul>
+      <h5 id="properties-image">Properties</h5>
+      <ul>
+        <li>
+          <a href="https://schema.org/url" target="_blank">schema:url</a>
+          <ul>
+            <li><strong>Description:</strong> The web address (IRI) where the image can be accessed.</li>
+            <li><strong>Value:</strong> <em>IRI</em></li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://schema.org/creator" target="_blank">schema:creator</a>
+          <ul>
+            <li><strong>Description:</strong> The creator or author of the image (e.g. photographer, illustrator).</li>
+            <li><strong>Value:</strong> <code>xsd:string</code> | <code>rdf:langString</code></li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://schema.org/dateCreated" target="_blank">schema:dateCreated</a>
+          <ul>
+            <li><strong>Description:</strong> The date when the image was created.</li>
+            <li><strong>Value:</strong> <code>xsd:date</code> | <code>xsd:gYear</code> | <code>xsd:string</code></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <!--CREATION-->
+    <div id="e65_creation">
+      <h4>Creation</h4>
+      <ul>
+        <li><strong>Type:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E65_Creation" target="_blank">crm:E65_Creation</a></li>
+        <li><strong>Label:</strong> Creation</li>
+      </ul>
+      <h5 id="properties-creation">Properties</h5>
+      <ul>
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by" target="_blank">crm:P14_carried_out_by</a>
+          <ul>
+            <li><strong>Description:</strong> Identifies the person responsible for creating the document (e.g. an archaeologist or author).</li>
+            <li><strong>Value:</strong> <a href="http://www.cidoc-crm.org/cidoc-crm/E21_Person" target="_blank">crm:E21_Person</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span" target="_blank">crm:P4_has_time-span</a>
+          <ul>
+            <li><strong>Description:</strong> Specifies the time-span during which the document was created.</li>
+            <li><strong>Value:</strong> <a href="#e52_time-span">Time-Span</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
-
-
-
-
-
-
-
 
 <script>
   // Back button
@@ -97,4 +2491,8 @@
     },50);
   </script>
 </body>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true });
+</script>
 </html>

@@ -10,11 +10,11 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 #################################################################
-# Excavation Shape (crmarchaeo:A9_Archeological_Excavation)
+# Excavation Shape (crmarchaeo:A9_Archaeological_Excavation)
 #################################################################
 
 soma:ExcavationShape a sh:NodeShape ;
-    sh:targetClass crmarchaeo:A9_Archeological_Excavation ;
+    sh:targetClass crmarchaeo:A9_Archaeological_Excavation ;
     sh:property [
         sh:path crm:P7_took_place_at ;
         sh:node soma:PlaceShape ;
@@ -99,11 +99,11 @@ soma:CemeteryShape a sh:NodeShape ;
 
 
 #################################################################
-# Tomb Shape (crm:E18_Phisical_Thing)
+# Tomb Shape (crm:E18_Physical_Thing)
 #################################################################
 
 soma:TombShape a sh:NodeShape ;
-    sh:targetClass crm:E18_Phisical_Thing ;
+    sh:targetClass crm:E18_Physical_Thing ;
     sh:property [
         sh:path crm:P48_has_preferred_identifier ;
         sh:node soma:IdentifierShape ;
@@ -135,7 +135,6 @@ soma:TombShape a sh:NodeShape ;
         sh:path crm:P2_has_type ;
         sh:class crm:E55_Type ;
     ] ;
-
     sh:property [
         sh:path crm:P31i_was_modified_by ;
         sh:node soma:DisturbanceShape  ;
@@ -550,7 +549,7 @@ soma:RestorationShape a sh:NodeShape ;
         sh:node soma:TimeShape ;
     ] ;
     sh:property [
-        sh:path crm:P7_took_place_at-span ;
+        sh:path crm:P7_took_place_at ;
         sh:node soma:PlaceShape ;
     ] ;   
     sh:property [
@@ -576,7 +575,7 @@ soma:ProductionShape a sh:NodeShape ;
         sh:node soma:PeriodShape ;
     ] ;
     sh:property [
-        sh:path crm:P7_took_place_at-span ;
+        sh:path crm:P7_took_place_at ;
         sh:node soma:PlaceShape ;
     ] ;   
     sh:property [
@@ -706,10 +705,6 @@ soma:RitualShape a sh:NodeShape ;
     sh:property [
         sh:path crm:P32_used_general_technique ;
         sh:class crm:E29_Design_or_Procedure ;
-    ] ;
-    sh:property [
-        sh:path crm:P43_has_dimension ;
-        sh:node soma:DimensionShape ;
     ] .
 
 
@@ -763,4 +758,42 @@ soma:StratigraphicUnitShape a sh:NodeShape ;
     sh:property [
         sh:path crmarchaeo:AP21_contains ;
         sh:node soma:ObjectShape ;
+    ] .
+
+
+soma:DocumentShape a sh:NodeShape ;
+    sh:targetClass crmarchaeo:E31_Document ;
+    sh:property [
+        sh:path crm:P48_has_preferred_identifier ;
+        sh:node soma:IdentifierShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P1_is_identified_by ;
+        sh:node soma:AppellationShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P2_has_type ;
+        sh:class crm:E55_Type ;
+    ] ;
+    sh:property [
+        sh:path crm:P94_was_created_by ;
+        sh:class soma:CreationShape ;
+    ] ;
+    sh:property [
+        sh:path crm:P3_has_note ;
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        ) ;
+    ] .
+
+soma:CreationShape a sh:NodeShape ;
+    sh:targetClass crmarchaeo:E65_Creation ;
+    sh:property [
+        sh:path crm:P14_carried_out_by ;
+        sh:node crm:E21_Person ;
+    ] ;
+    sh:property [
+        sh:path crm:P4_has_time ;
+        sh:node soma:TimeShape ;
     ] .
