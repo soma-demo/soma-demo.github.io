@@ -59,8 +59,6 @@
 
   <div class="container py-3">
     <h1 class="pageTitle text-center mb-4">Documentation</h1>
-    
-    <!--<div id="wrap"></div>-->
 
     <h4 id="soma-data-model">SOMA Data Model</h4>
 
@@ -2467,29 +2465,6 @@
   btnBack.onclick = () => history.back();
 </script>
 
-
-
-
-  <script>
-    fetch('data-model.svg')
-      .then(r => r.text())
-      .then(svg => {
-        document.getElementById('wrap').innerHTML = svg;
-        const s = document.querySelector('#wrap svg');
-        s.setAttribute('width','100%');
-        s.setAttribute('height','100%');
-      });
-  </script>
-  
-  <script>
-    // enable pan/zoom once the SVG is in the DOM
-    const z = setInterval(()=>{
-      const s = document.querySelector('#wrap svg');
-      if(!s) return;
-      clearInterval(z);
-      svgPanZoom(s, {controlIconsEnabled:true, fit:true, center:true});      
-    },50);
-  </script>
 </body>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
