@@ -1479,6 +1479,22 @@
         class O8_0 classstyle;
         O1-- P43_has_dimension -->O8
 
+         %% -----------------
+        %% P70i_is_documented_in
+        O15(document)
+        class O15 generic_element;
+        O15-- type -->O15_0[E31_Document]
+        class O15_0 classstyle;
+        O1-- P70i_is_documented_in -->O15
+
+        %% -----------------
+        %% P138i_is_represented_by
+        O16(image)
+        class O16 generic_element;
+        O16-- type -->O16_0[E36_Visual_Item]
+        class O16_0 classstyle;
+        O1-- P138i_is_represented_by -->O16
+
 
         %% -----------------
         %% CLICKABLE CONCEPT NODES
@@ -1490,6 +1506,8 @@
         click O6 "http://www.cidoc-crm.org/cidoc-crm/E55_Type" "E55 Type"
         click O7 "http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State" "E3 Condition State"
         click O8 "#e54_dimension" "E54 Dimension"
+        click O15 "#e31_document" "E31 Document"
+        click O16 "#e36_visual_item_image" "E36 Visual Item (Image)"
     </div>
 
 
@@ -1563,31 +1581,23 @@
         %% ICON ontology links
         O12(preiconographical_subject)
         class O12 generic_element;
-        O1-- preiconographicallyDepicts -->O12
+        O12 -- type -->O12_0[icon:PreiconographicalSubject]
+        class O12_0 classstyle;
+        O1-- icon:preiconographicallyDepicts -->O12     
 
         O13(iconographical_subject)
         class O13 generic_element;
-        O1-- iconographicallyDepicts -->O13
+        O13 -- type -->O13_0[icon:IconographicalSubject]
+        class O13_0 classstyle;
+        O1-- icon:iconographicallyDepicts -->O13
 
         O14(iconological_subject)
         class O14 generic_element;
-        O1-- iconologiphicallyRepresents -->O14
+        O14 -- type -->O14_0[icon:IconologicalSubject]
+        class O14_0 classstyle;
+        O1-- icon:iconologicallyRepresents -->O14
 
-        %% -----------------
-        %% P70i_is_documented_in
-        O15(document)
-        class O15 generic_element;
-        O15-- type -->O15_0[E31_Document]
-        class O15_0 classstyle;
-        O1-- P70i_is_documented_in -->O15
-
-        %% -----------------
-        %% P138i_is_represented_by
-        O16(image)
-        class O16 generic_element;
-        O16-- type -->O16_0[E36_Visual_Item]
-        class O16_0 classstyle;
-        O1-- P138i_is_represented_by -->O16
+       
 
         %% -----------------
         %% CLICKABLE CONCEPT NODES
@@ -1597,8 +1607,10 @@
         click O11a "#e26_physical_feature" "E26 Physical Feature"
         click O11b "#e36_visual_item_ornament" "E36 Visual Item (Ornament)"
         click O11c "#e34_inscription" "E34 Inscription"
-        click O15 "#e31_document" "E31 Document"
-        click O16 "#e36_visual_item_image" "E36 Visual Item (Image)"
+        click O12_0 "https://w3id.org/icon/ontology/PreiconographicalSubject" "Preiconographical Subject"
+        click O13_0 "https://w3id.org/icon/ontology/IconographicalSubject" "Iconographical Subject"
+        click O14_0 "https://w3id.org/icon/ontology/IconologicalSubject" "Iconological Subject"
+        
     </div>
 
       <ul>
@@ -1706,26 +1718,40 @@
         </li>
 
         <li>
-          <a href="https://br0ast.github.io/ICON/ICONOntologyDocumentationcurrent/index-en.html" target="_blank">icon:preiconographicallyDepicts</a>
+          <a href="https://w3id.org/icon/ontology/preiconographicallyDepicts" target="_blank">icon:preiconographicallyDepicts</a>
           <ul>
-            <li><strong>Description:</strong> Records the subject depicted at a basic, pre-iconographic level (purely descriptive of form and content).</li>
-            <li><strong>Value:</strong> <code>icon:PreiconographicalSubject</code></li>
+            <li><strong>Description:</strong> Links an artwork to the element of the first level of interpretation (pre-iconographical) which it depicts.</li>
+            <li><strong>Value:</strong> 
+              <ul>
+                <li><strong>Type:</strong> <a href="https://raw.githubusercontent.com/br0ast/ICON/main/Ontology/current/icon.rdf" target="_blank">icon:PreiconographicalSubject</a></li>
+                <li><strong>Label:</strong> Preiconographical Subject</li>
+              </ul><code></code></li>
           </ul>
         </li>
 
         <li>
-          <a href="https://br0ast.github.io/ICON/ICONOntologyDocumentationcurrent/index-en.html" target="_blank">icon:iconographicallyDepicts</a>
+          <a href="https://w3id.org/icon/ontology/preiconographicallyDepicts" target="_blank">icon:iconographicallyDepicts</a>
           <ul>
-            <li><strong>Description:</strong> Records the subject depicted at the iconographic level (established motifs, figures, or scenes).</li>
-            <li><strong>Value:</strong> <code>icon:IconographicalSubject</code></li>
+            <li><strong>Description:</strong> Links an artwork to the element of the second level of interpretation (iconographical) which it depicts.</li>
+            <li><strong>Value:</strong> 
+              <ul>
+                <li><strong>Type:</strong> <a href="https://raw.githubusercontent.com/br0ast/ICON/main/Ontology/current/icon.rdf" target="_blank">icon:IconographicalSubject</a></li>
+                <li><strong>Label:</strong> Iconographical Subject</li>
+              </ul>
+              <code></code></li>
           </ul>
         </li>
 
         <li>
-          <a href="https://br0ast.github.io/ICON/ICONOntologyDocumentationcurrent/index-en.html" target="_blank">icon:iconologiphicallyRepresents</a>
+          <a href="https://w3id.org/icon/ontology/iconologicallyRepresents" target="_blank">icon:iconologicallyRepresents</a>
           <ul>
-            <li><strong>Description:</strong> Records the subject represented at the iconological level (interpretive meaning, symbolism, cultural significance).</li>
-            <li><strong>Value:</strong> <code>icon:IconologicalSubject</code></li>
+            <li><strong>Description:</strong> Links an artwork to the element of the third level of interpretation (iconological) which it represents.</li>
+            <li><strong>Value:</strong> 
+              <ul>
+                <li><strong>Type:</strong> <a href="https://raw.githubusercontent.com/br0ast/ICON/main/Ontology/current/icon.rdf" target="_blank">icon:IconologicalSubject</a></li>
+                <li><strong>Label:</strong> Iconological Subject</li>
+              </ul>
+            </li>
           </ul>
         </li>
 

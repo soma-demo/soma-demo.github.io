@@ -417,7 +417,7 @@ soma:ObjectShape a sh:NodeShape ;
         sh:class icon:IconographicalSubject ;
     ] ;
     sh:property [
-        sh:path icon:iconologiphicallyRepresents ;
+        sh:path icon:iconologicallyRepresents ;
         sh:class icon:IconologicalSubject ;
     ] ;
     sh:property [
