@@ -23,6 +23,7 @@
     .pageTitle{
       color:#e9b02b;
     }
+    
 </style>
 <body class="inner-page">
   <!-- Corner "DEMO" ribbon -->
@@ -125,6 +126,82 @@
     <hr />
 
     <h3 class="pageTitle text-center mb-4">Core Elements</h3>
+
+    <div class="container text-center my-4" style="max-width: 800px;">
+      <div class="mermaid m-4">
+        graph TD
+        classDef core_element stroke:black,fill:#aff090,rx:20px,ry:20px;
+        classDef generic_element stroke:black,fill:#96e0f6,rx:20px,ry:20px;
+        classDef classstyle stroke:black,fill:white;
+
+        
+
+        %% -----------------
+        %% CORE ELEMENTS
+        EX(Archaeological Excavation)
+        class EX core_element;
+        EX-- type -->EX_0[A9_Archaeological_Excavation]
+        class EX_0 classstyle;
+
+        C(Cemetery)
+        class C core_element;
+        C-- type -->C_0[E27_Site]
+        class C_0 classstyle;
+
+        T(Tomb)
+        class T core_element;
+        T-- type -->T_0[E18_Physical_Thing]
+        class T_0 classstyle;
+
+        G(Grave)
+        class G core_element;
+        G-- type -->G_0[E25_Man-Made_Feature]
+        class G_0 classstyle;
+
+        B(Burial)
+        class B core_element;
+        B-- type -->B_0[E24_Physical_Human-Made_Thing]
+        class B_0 classstyle;
+
+        O(Object)
+        class O core_element;
+        O-- type -->O_0[E22_Human-Made_Object]
+        class O_0 classstyle;
+
+        HR(Human Remains)
+        class HR core_element;
+        HR-- type -->HR_0[E20_Biological_Object]
+        class HR_0 classstyle;
+
+        %% -----------------
+        %% RELATIONSHIPS
+        C-- P46_is_composed_of -->T
+        T-- P46_is_composed_of -->G
+        G-- P46_is_composed_of -->B
+        B-- P46_is_composed_of -->O
+        B-- P46_is_composed_of -->HR
+
+        EX-- P7_took_place_at -->C
+        EX-- P8_took_place_on_or_within -->C
+        EX-- P8_took_place_on_or_within -->T
+        EX-- P8_took_place_on_or_within -->G
+        EX-- P8_took_place_on_or_within -->B
+        EX-- P8_took_place_on_or_within -->O
+
+        %% -----------------
+        %% CLICKABLE NODES
+        click EX "#a9_archaeological_excavation" "A9 Archaeological Excavation"
+        click C "#e27_site" "E27 Site"
+        click T "#e18_physical_thing" "E18 Physical Thing"
+        click G "#e25_man-made_feature" "E25 Man-Made Feature"
+        click B "#e24_physical_human-made_thing" "E24 Physical Human-Made Thing"
+        click O "#e22_human-made_object" "E22 Human-Made Object"
+        click HR "#e20_biological_object" "E20 Biological Object"
+      </div>
+    </div>
+
+
+    
 
     <!--EXCAVATION-->
     <div id="a9_archaeological_excavation">
