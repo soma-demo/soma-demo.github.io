@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SOMA Tutorial</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚱️</text></svg>">
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -12,6 +13,8 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato:wght@400;500&display=swap" rel="stylesheet">
    <link href="style.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <style>
@@ -20,8 +23,12 @@
     }
 </style>
 <body class="inner-page">
+  <!--Demo Message-->
+  <div id="demo-container"></div>
+
   <!-- Corner "DEMO" ribbon -->
-<a class="corner-ribbon" href="#" aria-label="This website is a demo" title="This website is a demo">DEMO</a>
+  <a class="corner-ribbon" href="#" aria-label="This website is a demo" title="This website is a demo">DEMO</a>
+  
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg bg-light fixed-top" data-bs-theme="light">
     <div class="container">
@@ -47,142 +54,157 @@
     <button id="btnBack" class="btn btn-sm btn-outline-warning back-btn" title="Go back">Back</button>
   </div>
 
-  <div class="container py-3">
+  <div class="container py-3 mb-5">
     <h1 id="pageTitle" class="text-center mb-4">Tutorial</h1>    
 
     <section id="tutorial" class="container my-5">
     
-    <!-- Intro -->
-    <div class="mb-5">
-      <p>
-        This website is a <strong>demo</strong>. It does not show the final system, 
-        but a preview of what will be possible. The aim is to give you an idea of 
-        what can be done: how archaeological information can be described, connected and explored using a <em>Knowledge Graph</em>, a <em>Vocabulary</em> and a demo <em>Chatbot</em> to query the data.
-      </p>
-    </div>
-
-  
-    <!-- Knowledge Graph -->
-    <div class="mb-5">
-      <h3>Knowledge Graph</h3>
-      <p>
-        The <a href="knowledge-graph.html">Knowledge Graph</a> organizes information about 
-        <strong>cemeteries, tombs, graves, burials, objects, and human remains</strong>. 
-        You can explore this information in two ways:
-      </p>
-
-      <!-- Search box -->
-      <div class="mb-4">
-         <h4>1. Search Box</h4>
-         <p>Type the name or identifier of an entity 
-          (for example, a cemetery code like <em>C3</em> or a tomb number like <em>T70</em>). 
-          Results will appear in a list. Clicking one opens its details.</p>
-        <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
-          <video controls class="w-100 h-100" style="object-fit: contain;">
-            <source src="mp4/search-box-soma.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
+      <!-- Intro -->
+      <div class="mb-5">
+        <p>
+          This website is a <strong>demo</strong>. It does not show the final system, 
+          but a preview of what will be possible. The aim is to give you an idea of 
+          what can be done: how archaeological information can be described, connected and explored using a <em>Knowledge Graph</em>, a <em>Vocabulary</em> and a demo <em>Chatbot</em> to query the data.
+        </p>
       </div>
 
-      <!-- Explore by hierarchy -->
-      <div class="mb-4">
-        <h4>2. Explore by Hierarchy</h4>
-        <p>Start from a cemetery, then move step by step 
-          to see its tombs, the graves inside, the burials in each grave, 
-          and finally the objects or human remains they contain. 
-          Dropdown menus and a breadcrumb line help you follow the path.</p>
-        <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
-          <video controls class="w-100 h-100" style="object-fit: contain;">
-            <source src="mp4/hierarchy.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+      <!-- Knowledge Graph -->
+      <div class="mb-5">
+        <h3>Knowledge Graph</h3>
+        <p>
+          The <a href="knowledge-graph.html">Knowledge Graph</a> organizes information about 
+          <strong>cemeteries, tombs, graves, burials, objects, and human remains</strong>. 
+          You can explore this information in two ways:
+        </p>
+
+        <!-- Search box -->
+        <div class="mb-4">
+          <h4>1. Search Box</h4>
+          <p>Type the name or identifier of an entity 
+            (for example, a cemetery code like <em>C3</em> or a tomb number like <em>T70</em>). 
+            Results will appear in a list. Clicking one opens its details.</p>
+          <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
+            <video controls class="w-100 h-100" style="object-fit: contain;">
+              <source src="mp4/search-box-soma.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
+        <!-- Explore by hierarchy -->
+        <div class="mb-4">
+          <h4>2. Explore by Hierarchy</h4>
+          <p>Start from a cemetery, then move step by step 
+            to see its tombs, the graves inside, the burials in each grave, 
+            and finally the objects or human remains they contain. 
+            Dropdown menus and a breadcrumb line help you follow the path.</p>
+          <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
+            <video controls class="w-100 h-100" style="object-fit: contain;">
+              <source src="mp4/hierarchy.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
       </div>
-    </div>
-
       
-    <!-- Entity Details -->
-    <div class="mb-5">
-      <h4>Entity Details</h4>
-      <p>
-      When you select an entity, a detail page appears with:
-      </p>
-      <ul>
-        <li>The <strong>name and identifier</strong></li>
-        <li>Its <strong>properties</strong> (such as type, description, coordinates, 
-            related entities)</li>
-        <li>A <strong>map</strong> when location is available (click to enlarge)</li>
-        <li>Links to <strong>images or 3D models</strong> (when present)</li>
-      </ul>
+      <!-- Entity Details -->
+      <div class="my-5">
+        <h4>Entity Details</h4>
+        <p>
+        When you select an entity, a detail page appears with:
+        </p>
+        <ul>
+          <li>The <strong>name and identifier</strong></li>
+          <li>Its <strong>properties</strong> (such as type, description, coordinates, 
+              related entities)</li>
+          <li>A <strong>map</strong> when location is available (click to enlarge)</li>
+          <li>Links to <strong>images or 3D models</strong> (when present)</li>
+        </ul>
 
-      <p>
-        Some terms are shown as colored badges. They are clickable links and redirect the user to the related ontology (classes and properties) or to the terms of the Vocabulary.
-      </p>
-      <ul>
+        <p>
+          Some terms are shown as colored badges. They are clickable links and redirect the user to the related ontology (classes and properties) or to the terms of the Vocabulary.
+        </p>
+        <ul>
+          
+          <li class="mb-2"><span style="background:#fff7ed; border:1px solid #fed7aa; padding:0.15rem 0.4rem; border-radius:0.375rem; color:#9a3412;">Orange</span> = Ontology classes</li>
+          <li class="mb-2"><span style="background:#eef2ff; border:1px solid #e0e7ff; padding:0.15rem 0.4rem; border-radius:0.375rem; color:#3730a3;">Blue</span> = Ontology properties (relationships between entities)</li>
+          <li class="mb-2"><span style="background:#e8f5e9; border:1px solid #c8e6c9; padding:0.15rem 0.4rem; border-radius:0.375rem; color:#1b5e20;">Green</span> = Term from the SOMA Vocabulary</li>
+          <li class="mb-2"><span style="background:#f3e5f5; border:1px solid #e1bee7; padding:0.15rem 0.4rem; border-radius:0.375rem; color:#4a148c;">Violet</span> = Link to external resources</li>
+        </ul>
+        <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
+            <video controls class="w-100 h-100" style="object-fit: contain;">
+              <source src="mp4/class-property-badges.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+      </div>
+      <hr/>
+
+      <!-- Vocabulary -->
+      <div class="my-5">
+        <h3>Vocabulary</h3>
+        <p>
+          The <a href="somavoc.html">Vocabulary</a> lists and explains all the categories used in the graph. 
+          It helps you understand the meaning of terms such as 
+          <em>Grave</em>, <em>Burial</em>, <em>Object</em>, or <em>Human Remains</em>. 
+          Whenever you see a green badge in the Knowledge Graph, 
+          you can click it to read the full definition here.
+        </p>
+        <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
+            <video controls class="w-100 h-100" style="object-fit: contain;">
+              <source src="mp4/vocabulary.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+      </div>
+      <hr/>
+
+        <!-- Chatbot -->
+      <div class="my-5">
+        <h3>Chatbot</h3>
+        <p>
+          The Chatbot let you ask questions in natural language and get answers directly from the Knowledge Graph.
+          You can try a <a href="chatbot.html">demo version</a> with predefined answers.
+        </p>
         
-        <li class="mb-2"><span style="background:#fff7ed; border:1px solid #fed7aa; padding:0.15rem 0.4rem; border-radius:0.375rem; color:#9a3412;">Orange</span> = Ontology classes</li>
-        <li class="mb-2"><span style="background:#eef2ff; border:1px solid #e0e7ff; padding:0.15rem 0.4rem; border-radius:0.375rem; color:#3730a3;">Blue</span> = Ontology properties (relationships between entities)</li>
-        <li class="mb-2"><span style="background:#e8f5e9; border:1px solid #c8e6c9; padding:0.15rem 0.4rem; border-radius:0.375rem; color:#1b5e20;">Green</span> = Term from the SOMA Vocabulary</li>
-        <li class="mb-2"><span style="background:#f3e5f5; border:1px solid #e1bee7; padding:0.15rem 0.4rem; border-radius:0.375rem; color:#4a148c;">Violet</span> = Link to external resources</li>
-      </ul>
-       <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
-          <video controls class="w-100 h-100" style="object-fit: contain;">
-            <source src="mp4/class-property-badges.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-
-    </div>
-
-    <!-- Vocabulary -->
-    <div class="mb-5">
-      <h3>Vocabulary</h3>
-      <p>
-        The <a href="somavoc.html">Vocabulary</a> lists and explains all the categories used in the graph. 
-        It helps you understand the meaning of terms such as 
-        <em>Grave</em>, <em>Burial</em>, <em>Object</em>, or <em>Human Remains</em>. 
-        Whenever you see a green badge in the Knowledge Graph, 
-        you can click it to read the full definition here.
-      </p>
-       <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
-          <video controls class="w-100 h-100" style="object-fit: contain;">
-            <source src="mp4/vocabulary.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-    </div>
-
-
-    <div class="mb-5">
-      <h3>Chatbot</h3>
-      <p>
-        The Chatbot let you ask questions in natural language and get answers directly from the Knowledge Graph.
-        You can try a <a href="chatbot.html">demo version</a> with predefined answers.
-      </p>
-      
-      <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
-          <video controls class="w-100 h-100" style="object-fit: contain;">
-            <source src="mp4/chatbot.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-    </div>
-</section>
-
-    
+        <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
+            <video controls class="w-100 h-100" style="object-fit: contain;">
+              <source src="mp4/chatbot.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+      </div>
+    </section>    
   </div>
 
+  <!--FOOTER-->
+  <div id="footer"></div>
+  <script>
+    fetch("asset/footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
 
+  <script>
+    // Back button
+    btnBack.onclick = () => history.back();
+  </script>
 
-
-
-
-
-
-<script>
-  // Back button
-  btnBack.onclick = () => history.back();
-</script>
+  <!--Demo Message-->
+  <script>
+    fetch("asset/demo.html")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("demo-container").innerHTML = html;
+        if (!sessionStorage.getItem("hasVisitedSOMA")) {
+          var demoModal = new bootstrap.Modal(document.getElementById('demoModal'));
+          demoModal.show();
+          sessionStorage.setItem("hasVisitedSOMA", "true");
+        }
+      })
+  </script>
 </body>
 </html>

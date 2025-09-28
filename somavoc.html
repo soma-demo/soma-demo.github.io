@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SOMA Vocabulary</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚱️</text></svg>">
 
   <!-- Bootstrap 5.3 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -15,6 +16,8 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato:wght@400;500&display=swap" rel="stylesheet">
   <link href="style.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     #pageTitle{
@@ -57,8 +60,12 @@
   </style>
 </head>
 <body class="inner-page">
+  <!--Demo Message-->
+  <div id="demo-container"></div>
+
   <!-- Corner "DEMO" ribbon -->
-<a class="corner-ribbon" href="#" aria-label="This website is a demo" title="This website is a demo">DEMO</a>
+  <a class="corner-ribbon" href="#" aria-label="This website is a demo" title="This website is a demo">DEMO</a>
+  
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg bg-light fixed-top" data-bs-theme="light">
     <div class="container">
@@ -84,8 +91,7 @@
     <button id="btnBack" class="btn btn-sm btn-outline-warning back-btn" title="Go back">Back</button>
   </div>
 
-
-  <div class="container my-4">
+  <div class="container mt-4 mb-5">
     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
       <h1 id="pageTitle" class="h3 mb-0">Vocabulary</h1>
       <div class="sticky-actions d-flex gap-2">
@@ -109,225 +115,249 @@
     </div>
   </div>
 
-<script>
-   btnBack.onclick = () => history.back();
-(() => {
-  const { Parser, Store, DataFactory } = N3;
-  const { namedNode } = DataFactory;
+  <!--FOOTER-->
+  <div id="footer"></div>
+  <script>
+    fetch("asset/footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
 
-  const NS = {
-    rdf:  "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    rdfs: "http://www.w3.org/2000/01/rdf-schema#",
-    skos: "http://www.w3.org/2004/02/skos/core#",
-    owl:  "http://www.w3.org/2002/07/owl#",
-    xsd:  "http://www.w3.org/2001/XMLSchema#"
-  };
+  <script>
+    btnBack.onclick = () => history.back();
+  (() => {
+    const { Parser, Store, DataFactory } = N3;
+    const { namedNode } = DataFactory;
 
-  const P = {
-    type: nn(NS.rdf + 'type'),
-    label: nn(NS.rdfs + 'label'),
-    definition: nn(NS.skos + 'definition'),
-    sameAs: nn(NS.owl + 'sameAs')
-  };
+    const NS = {
+      rdf:  "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      rdfs: "http://www.w3.org/2000/01/rdf-schema#",
+      skos: "http://www.w3.org/2004/02/skos/core#",
+      owl:  "http://www.w3.org/2002/07/owl#",
+      xsd:  "http://www.w3.org/2001/XMLSchema#"
+    };
 
-  let store = new Store();
-  let rows = [];
+    const P = {
+      type: nn(NS.rdf + 'type'),
+      label: nn(NS.rdfs + 'label'),
+      definition: nn(NS.skos + 'definition'),
+      sameAs: nn(NS.owl + 'sameAs')
+    };
 
-  function nn(v){ return namedNode(v); }
-  function q(s,p,o){ return store.getQuads(s,p,o,null); }
-  function isURI(t){ return t && t.termType === 'NamedNode'; }
-  function isLiteral(t){ return t && t.termType === 'Literal'; }
+    let store = new Store();
+    let rows = [];
 
-  function localFromIri(iriStr){
+    function nn(v){ return namedNode(v); }
+    function q(s,p,o){ return store.getQuads(s,p,o,null); }
+    function isURI(t){ return t && t.termType === 'NamedNode'; }
+    function isLiteral(t){ return t && t.termType === 'Literal'; }
+
+    function localFromIri(iriStr){
+      if (!iriStr) return '';
+      const parts = iriStr.split(/[\/#]/);
+      return parts[parts.length-1] || iriStr;
+    }
+
+    // Title Case but preserve hyphenated parts (e.g., "Human-Made")
+  function titleCase(s){
+    return s.split(' ').map(w =>
+      w.split('-').map(p => p ? p[0].toUpperCase()+p.slice(1).toLowerCase() : p).join('-')
+    ).join(' ');
+  }
+
+  // Humanize class/type IRIs (underscores → spaces, Title Case)
+  function humanizeClass(iriStr){
     if (!iriStr) return '';
-    const parts = iriStr.split(/[\/#]/);
-    return parts[parts.length-1] || iriStr;
-  }
+    let local = localFromIri(iriStr);
 
-  // Title Case but preserve hyphenated parts (e.g., "Human-Made")
-function titleCase(s){
-  return s.split(' ').map(w =>
-    w.split('-').map(p => p ? p[0].toUpperCase()+p.slice(1).toLowerCase() : p).join('-')
-  ).join(' ');
-}
+    // If CIDOC (E27_Site → "Site")
+    if (iriStr.startsWith(NS.crm) || iriStr.startsWith(NS.crmarchaeo)){
+      local = local.replace(/^E\d+_/, ''); // strip E-codes
+      local = local.replace(/_/g, ' ');
+      return titleCase(local);
+    }
 
-// Humanize class/type IRIs (underscores → spaces, Title Case)
-function humanizeClass(iriStr){
-  if (!iriStr) return '';
-  let local = localFromIri(iriStr);
-
-  // If CIDOC (E27_Site → "Site")
-  if (iriStr.startsWith(NS.crm) || iriStr.startsWith(NS.crmarchaeo)){
-    local = local.replace(/^E\d+_/, ''); // strip E-codes
-    local = local.replace(/_/g, ' ');
-    return titleCase(local);
-  }
-
-  // Generic fallback
-  return titleCase(local.replace(/_/g, ' '));
-}
-
-
-  // Prefer @en label if present, else first label, else local name
-  function labelOf(node){
-    const labs = q(node, P.label, null).map(x => x.object).filter(isLiteral);
-    const en = labs.find(l => (l.language || '').toLowerCase() === 'en');
-    if (en) return en.value;
-    return labs.length ? labs[0].value : localFromIri(node.id);
-  }
-
-  // Collect skos:definition literals (any language). Join with newline for display.
-  function definitionsOf(node){
-    const defs = q(node, P.definition, null).map(x => x.object).filter(isLiteral);
-    return defs.map(d => d.value);
-  }
-
-  function makeTypeBadge(iriStr){
-    const a = document.createElement('a');
-    a.href = '#';
-    a.className = 'id-badge--type';
-    //a.textContent = labelOf(nn(iriStr));
-    a.textContent = humanizeClass(iriStr);
-    a.title = iriStr; // keep the IRI visible on hover
-    a.onclick = (e)=>{ e.preventDefault(); jumpTo(iriStr); };
-    return a;
-  }
-
-  function sameAsOf(node){
-    return q(node, P.sameAs, null).map(x => x.object).filter(isURI);
-  }
-
-  function makeExtBadge(iriStr){
-    const a = document.createElement('a');
-    a.href = iriStr;
-    a.target = "_blank";
-    a.className = 'id-badge--ext';
-    a.textContent = localFromIri(iriStr);
-    a.title = iriStr;
-    return a;
+    // Generic fallback
+    return titleCase(local.replace(/_/g, ' '));
   }
 
 
-  function rowIdFromIri(iriStr){
-    return 'row-' + encodeURIComponent(iriStr);
-  }
+    // Prefer @en label if present, else first label, else local name
+    function labelOf(node){
+      const labs = q(node, P.label, null).map(x => x.object).filter(isLiteral);
+      const en = labs.find(l => (l.language || '').toLowerCase() === 'en');
+      if (en) return en.value;
+      return labs.length ? labs[0].value : localFromIri(node.id);
+    }
 
-  function makeRow(nodeIri){
-    const node = nn(nodeIri);
-    const tr = document.createElement('tr');
-    tr.id = rowIdFromIri(nodeIri);
+    // Collect skos:definition literals (any language). Join with newline for display.
+    function definitionsOf(node){
+      const defs = q(node, P.definition, null).map(x => x.object).filter(isLiteral);
+      return defs.map(d => d.value);
+    }
 
-    // Term cell
-    const tdTerm = document.createElement('td');
-    const anchor = document.createElement('span');
-    anchor.id = localFromIri(nodeIri);
-    tdTerm.appendChild(anchor);
-    tdTerm.appendChild(makeTypeBadge(nodeIri));
+    function makeTypeBadge(iriStr){
+      const a = document.createElement('a');
+      a.href = '#';
+      a.className = 'id-badge--type';
+      //a.textContent = labelOf(nn(iriStr));
+      a.textContent = humanizeClass(iriStr);
+      a.title = iriStr; // keep the IRI visible on hover
+      a.onclick = (e)=>{ e.preventDefault(); jumpTo(iriStr); };
+      return a;
+    }
 
-    // Definition cell
-    const tdDef = document.createElement('td');
-    const defs = definitionsOf(node);
-    if (defs.length) {
-      for (const d of defs) {
-        const p = document.createElement('div');
-        p.textContent = d;
-        tdDef.appendChild(p);
+    function sameAsOf(node){
+      return q(node, P.sameAs, null).map(x => x.object).filter(isURI);
+    }
+
+    function makeExtBadge(iriStr){
+      const a = document.createElement('a');
+      a.href = iriStr;
+      a.target = "_blank";
+      a.className = 'id-badge--ext';
+      a.textContent = localFromIri(iriStr);
+      a.title = iriStr;
+      return a;
+    }
+
+
+    function rowIdFromIri(iriStr){
+      return 'row-' + encodeURIComponent(iriStr);
+    }
+
+    function makeRow(nodeIri){
+      const node = nn(nodeIri);
+      const tr = document.createElement('tr');
+      tr.id = rowIdFromIri(nodeIri);
+
+      // Term cell
+      const tdTerm = document.createElement('td');
+      const anchor = document.createElement('span');
+      anchor.id = localFromIri(nodeIri);
+      tdTerm.appendChild(anchor);
+      tdTerm.appendChild(makeTypeBadge(nodeIri));
+
+      // Definition cell
+      const tdDef = document.createElement('td');
+      const defs = definitionsOf(node);
+      if (defs.length) {
+        for (const d of defs) {
+          const p = document.createElement('div');
+          p.textContent = d;
+          tdDef.appendChild(p);
+        }
+      }
+
+      // External vocabularies cell
+      const tdExt = document.createElement('td');
+      const sames = sameAsOf(node);
+      if (sames.length) {
+        for (const s of sames) {
+          tdExt.appendChild(makeExtBadge(s.id));
+        }
+      }
+
+      tr.appendChild(tdTerm);
+      tr.appendChild(tdDef);
+      tr.appendChild(tdExt);
+      return tr;
+    }
+
+
+    function renderTable(items){
+      const tbody = document.getElementById('tbody');
+      tbody.innerHTML = '';
+      for (const iri of items){
+        tbody.appendChild(makeRow(iri));
       }
     }
 
-    // External vocabularies cell
-    const tdExt = document.createElement('td');
-    const sames = sameAsOf(node);
-    if (sames.length) {
-      for (const s of sames) {
-        tdExt.appendChild(makeExtBadge(s.id));
+    function filterTable(qry){
+      const ql = qry.trim().toLowerCase();
+      if (!ql){ renderTable(rows); return; }
+      const filtered = rows.filter(iri => {
+        const node = nn(iri);
+        const text = [
+          labelOf(node),
+          ...definitionsOf(node),
+          iri
+        ].join(' ').toLowerCase();
+        return text.includes(ql);
+      });
+      renderTable(filtered);
+    }
+
+    function jumpTo(iriStr){
+      const row = document.getElementById(rowIdFromIri(iriStr));
+      if (!row) return;
+
+      // Scroll to row
+      row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Temporarily highlight using Bootstrap's active row style
+      row.classList.add('table-active');
+      // Update deep-link
+      const url = new URL(location.href);
+      url.searchParams.set('iri', iriStr);
+      url.hash = localFromIri(iriStr);
+      history.replaceState(null, '', url.toString());
+
+      // Remove highlight after a few seconds
+      setTimeout(() => row.classList.remove('table-active'), 1500);
+    }
+
+
+    async function init(){
+      const ttl = await fetch('somavoc.ttl').then(r=>r.text());
+      const parser = new Parser({ format:'text/turtle' });
+      store = new Store(parser.parse(ttl));
+
+      // all NamedNode subjects defined in somavoc.ttl
+      const seen = new Set();
+      for (const quad of store.getQuads(null, null, null, null)){
+        const s = quad.subject;
+        if (isURI(s)) seen.add(s.id);
+      }
+      rows = Array.from(seen).sort((a,b)=> labelOf(nn(a)).localeCompare(labelOf(nn(b))));
+      renderTable(rows);
+
+      // deep-link focus
+      const params = new URLSearchParams(location.search);
+      const iri = params.get('iri');
+      if (iri && seen.has(iri)) {
+        setTimeout(()=> jumpTo(iri), 150);
+      } else if (location.hash) {
+        const frag = location.hash.slice(1);
+        const match = rows.find(x => x.endsWith('#'+frag) || x.endsWith('/'+frag));
+        if (match) setTimeout(()=> jumpTo(match), 150);
       }
     }
 
-    tr.appendChild(tdTerm);
-    tr.appendChild(tdDef);
-    tr.appendChild(tdExt);
-    return tr;
-  }
-
-
-  function renderTable(items){
-    const tbody = document.getElementById('tbody');
-    tbody.innerHTML = '';
-    for (const iri of items){
-      tbody.appendChild(makeRow(iri));
-    }
-  }
-
-  function filterTable(qry){
-    const ql = qry.trim().toLowerCase();
-    if (!ql){ renderTable(rows); return; }
-    const filtered = rows.filter(iri => {
-      const node = nn(iri);
-      const text = [
-        labelOf(node),
-        ...definitionsOf(node),
-        iri
-      ].join(' ').toLowerCase();
-      return text.includes(ql);
+    // Events
+    document.getElementById('search').addEventListener('input', (e)=> filterTable(e.target.value));
+    document.getElementById('btnClear').addEventListener('click', ()=> {
+      const s = document.getElementById('search'); s.value=''; filterTable('');
     });
-    renderTable(filtered);
-  }
 
-  function jumpTo(iriStr){
-    const row = document.getElementById(rowIdFromIri(iriStr));
-    if (!row) return;
+    init().catch(console.error);
+  })();
+  </script>
 
-    // Scroll to row
-    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-    // Temporarily highlight using Bootstrap's active row style
-    row.classList.add('table-active');
-    // Update deep-link
-    const url = new URL(location.href);
-    url.searchParams.set('iri', iriStr);
-    url.hash = localFromIri(iriStr);
-    history.replaceState(null, '', url.toString());
-
-    // Remove highlight after a few seconds
-    setTimeout(() => row.classList.remove('table-active'), 1500);
-  }
-
-
-  async function init(){
-    const ttl = await fetch('somavoc.ttl').then(r=>r.text());
-    const parser = new Parser({ format:'text/turtle' });
-    store = new Store(parser.parse(ttl));
-
-    // all NamedNode subjects defined in somavoc.ttl
-    const seen = new Set();
-    for (const quad of store.getQuads(null, null, null, null)){
-      const s = quad.subject;
-      if (isURI(s)) seen.add(s.id);
-    }
-    rows = Array.from(seen).sort((a,b)=> labelOf(nn(a)).localeCompare(labelOf(nn(b))));
-    renderTable(rows);
-
-    // deep-link focus
-    const params = new URLSearchParams(location.search);
-    const iri = params.get('iri');
-    if (iri && seen.has(iri)) {
-      setTimeout(()=> jumpTo(iri), 150);
-    } else if (location.hash) {
-      const frag = location.hash.slice(1);
-      const match = rows.find(x => x.endsWith('#'+frag) || x.endsWith('/'+frag));
-      if (match) setTimeout(()=> jumpTo(match), 150);
-    }
-  }
-
-  // Events
-  document.getElementById('search').addEventListener('input', (e)=> filterTable(e.target.value));
-  document.getElementById('btnClear').addEventListener('click', ()=> {
-    const s = document.getElementById('search'); s.value=''; filterTable('');
-  });
-
-  init().catch(console.error);
-})();
-</script>
+<!--Demo Message-->
+  <script>
+    fetch("asset/demo.html")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("demo-container").innerHTML = html;
+        if (!sessionStorage.getItem("hasVisitedSOMA")) {
+          var demoModal = new bootstrap.Modal(document.getElementById('demoModal'));
+          demoModal.show();
+          sessionStorage.setItem("hasVisitedSOMA", "true");
+        }
+      })
+  </script>
 </body>
 </html>
