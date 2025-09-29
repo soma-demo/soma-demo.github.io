@@ -28,12 +28,46 @@ The demo provides an interactive exploration of the SOMA project's data model an
 - **Documentation** - human-readable documentation of the data model.  
 - **Tutorial** - guidance on using the website features.
 
-## Technologies
-- **HTML5**, **CSS3**, **Bootstrap 5.3** for layout and styling.  
-- **Mermaid.js** and **D3.js** for graph visualizations.
-
 ## Development  
-**Design, data modelling and development:** [Michela Parma](https://mittelalter.geschichte.uni-mainz.de/michela-parma/) | [GitHub](https://github.com/michelaparma)
+**Design, Data Modelling and Web Development:** [Michela Parma](https://mittelalter.geschichte.uni-mainz.de/michela-parma/) | [GitHub](https://github.com/michelaparma)
+
+
+## Repository Structure  
+
+- **asset/**  
+  Contains shared resources used across the site:  
+  - `demo.html` - modal with demo message.  
+  - `footer.html` - common footer included in all pages.  
+  - `style.css` - custom styling.  
+
+- **data/**  
+  Contains ontology, vocabularies, and SHACL model:  
+  - `soma.ttl` - main ontology.  
+  - `somavoc.ttl` - vocabulary file.  
+  - `SOMA_dataModel.shacl` - SHACL data model.  
+  - `SHACL_Validator.py` - script for SHACL validation.  
+
+- **html/**  
+  Contains the main content pages of the website:  
+  - `about.html` - project introduction.  
+  - `chatbot.html` - chatbot interface.  
+  - `documentation.html` - documentation of the data model.  
+  - `knowledge-graph.html` - exploration of the Knowledge Graph.  
+  - `map.html` - interactive cemetery map.  
+  - `somavoc.html` - vocabulary page.  
+  - `tutorial.html` - usage guide.  
+
+- **img/**  
+  Images and icons used throughout the site.  
+
+- **mp4/**  
+  Video resources used in the demo.  
+
+- **index.html**  
+  Main homepage of the demo website.  
+
+- **readme.md**  
+  This file.
 
 
 ## License 
