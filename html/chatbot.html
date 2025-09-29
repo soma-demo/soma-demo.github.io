@@ -108,8 +108,8 @@
     const q = document.getElementById('q');
 
     // Core quick links reused in answers
-    const CEMETERY_LINK = `<a class="link-primary" href="https://soma-demo.github.io/knowledge-graph.html?cem=http%3A%2F%2Fexample.org%2Fsoma%2FcemeteryC3" target="_blank">Cemetery at the South Bank of the Eridanos</a>`;
-    const TOMB70_LINK   = `<a class="link-primary" href="https://soma-demo.github.io/knowledge-graph.html?cem=http%3A%2F%2Fexample.org%2Fsoma%2FcemeteryC3&tomb=http%3A%2F%2Fexample.org%2Fsoma%2Ftomb70" target="_blank">Tomb 70</a>`;
+    const CEMETERY_LINK = `<a class="link-primary" href="https://soma-demo.github.io/html/knowledge-graph.html?cem=http%3A%2F%2Fexample.org%2Fsoma%2FcemeteryC3" target="_blank">Cemetery at the South Bank of the Eridanos</a>`;
+    const TOMB70_LINK   = `<a class="link-primary" href="https://soma-demo.github.io/html/knowledge-graph.html?cem=http%3A%2F%2Fexample.org%2Fsoma%2FcemeteryC3&tomb=http%3A%2F%2Fexample.org%2Fsoma%2Ftomb70" target="_blank">Tomb 70</a>`;
 
     // Helper: render a message bubble using Bootstrap utilities
     function add(role, html) {
@@ -145,7 +145,7 @@
         name: 'knowledge-graph',
         // Accepts both correct and common misspelling "knownledge"
         test: /(knowledge|knownledge)\s*graph/i,
-        answer: () => `The Knowledge Graph shows connections between cemeteries, tombs, and finds. Explore it here: <a class="link-primary" href="https://soma-demo.github.io/knowledge-graph.html" target="_blank">Knowledge Graph</a>.<br>For details, see the <a class="link-primary" href="https://soma-demo.github.io/documentation.html" target="_blank">Documentation</a>.`
+        answer: () => `The Knowledge Graph shows connections between cemeteries, tombs, and finds. Explore it here: <a class="link-primary" href="https://soma-demo.github.io/html/knowledge-graph.html" target="_blank">Knowledge Graph</a>.<br>For details, see the <a class="link-primary" href="https://soma-demo.github.io/html/documentation.html" target="_blank">Documentation</a>.`
       },
       {
         name: 'show-cemeteries',
@@ -155,12 +155,12 @@
       {
         name: 'map',
         test: /\bmap\b|open\s+the\s+map/i,
-        answer: () => `Here's the interactive map: <a class="link-primary" href="https://soma-demo.github.io/map.html" target="_blank">Map</a>.<br>Tip: zoom and click a marker to open the site page.`
+        answer: () => `Here's the interactive map: <a class="link-primary" href="https://soma-demo.github.io/html/map.html" target="_blank">Map</a>.<br>Tip: zoom and click a marker to open the site page.`
       },
       {
         name: 'docs',
         test: /(documentation|docs|what\s+can\s+i\s+do|how\s+to\s+use|help|guide)/i,
-        answer: () => `For a walkthrough of features and data model, visit the <a class="link-primary" href="https://soma-demo.github.io/documentation.html" target="_blank">Documentation</a>.<br>If you want to browse right away, try the <a class="link-primary" href="https://soma-demo.github.io/knowledge-graph.html" target="_blank">Knowledge Graph</a>.`
+        answer: () => `For a walkthrough of features and data model, visit the <a class="link-primary" href="https://soma-demo.github.io/html/documentation.html" target="_blank">Documentation</a>.<br>If you want to browse right away, try the <a class="link-primary" href="https://soma-demo.github.io/html/knowledge-graph.html" target="_blank">Knowledge Graph</a>.`
       },
       {
         name: 'tomb-70',
