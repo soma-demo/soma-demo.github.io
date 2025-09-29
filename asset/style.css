@@ -31,7 +31,7 @@ h1, h2, h3, h4, .navbar-brand {
 }
 
 .hero {
-  background: url("img/UniFreiburgAthCitybeneathCity.jpg") center/cover no-repeat;
+  background: url("../img/UniFreiburgAthCitybeneathCity.jpg") center/cover no-repeat;
   color: white;
   padding: 8rem 1rem;
   text-align: center;

@@ -19,7 +19,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato:wght@400;500&display=swap" rel="stylesheet">
-  <link href="style.css" rel="stylesheet" />
+  <link href="../asset/style.css" rel="stylesheet" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -139,7 +139,7 @@
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg bg-light fixed-top" data-bs-theme="light">
     <div class="container">
-      <a class="navbar-brand" href="index.html">S O M A</a>
+      <a class="navbar-brand" href="../index.html">S O M A</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -281,7 +281,7 @@
       let vocTypes = new Set();
       async function loadSomavocTypes(){
         try {
-          const text = await fetch('somavoc.ttl').then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); });
+          const text = await fetch('../data/somavoc.ttl').then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); });
           const parser = new Parser({ format:'text/turtle' });
           const vocStore = new Store(parser.parse(text));
           const seen = new Set();
@@ -1351,7 +1351,7 @@
       (async () => {
         try {
           await loadSomavocTypes();
-          await loadFromUrl('soma.ttl');
+          await loadFromUrl('../data/soma.ttl');
         } catch (e) {
           console.error('Auto-load failed:', e);
         }
@@ -1377,7 +1377,7 @@
   <!--FOOTER-->
   <div id="footer"></div>
   <script>
-    fetch("asset/footer.html")
+    fetch("../asset/footer.html")
       .then(response => response.text())
       .then(data => {
         document.getElementById("footer").innerHTML = data;
@@ -1389,7 +1389,7 @@
 
   <!--Demo Message-->
   <script>
-    fetch("asset/demo.html")
+    fetch("../asset/demo.html")
       .then(response => response.text())
       .then(html => {
         document.getElementById("demo-container").innerHTML = html;

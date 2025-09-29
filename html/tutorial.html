@@ -12,7 +12,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato:wght@400;500&display=swap" rel="stylesheet">
-   <link href="style.css" rel="stylesheet" />
+   <link href="../asset/style.css" rel="stylesheet" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -32,7 +32,7 @@
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg bg-light fixed-top" data-bs-theme="light">
     <div class="container">
-      <a class="navbar-brand" href="index.html">S O M A</a>
+      <a class="navbar-brand" href="../index.html">S O M A</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -85,7 +85,7 @@
             Results will appear in a list. Clicking one opens its details.</p>
           <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
             <video controls class="w-100 h-100" style="object-fit: contain;">
-              <source src="mp4/search-box-soma.mp4" type="video/mp4">
+              <source src="../mp4/search-box-soma.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -100,7 +100,7 @@
             Dropdown menus and a breadcrumb line help you follow the path.</p>
           <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
             <video controls class="w-100 h-100" style="object-fit: contain;">
-              <source src="mp4/hierarchy.mp4" type="video/mp4">
+              <source src="../mp4/hierarchy.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -133,7 +133,7 @@
         </ul>
         <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
             <video controls class="w-100 h-100" style="object-fit: contain;">
-              <source src="mp4/class-property-badges.mp4" type="video/mp4">
+              <source src="../mp4/class-property-badges.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -153,7 +153,7 @@
         </p>
         <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
             <video controls class="w-100 h-100" style="object-fit: contain;">
-              <source src="mp4/vocabulary.mp4" type="video/mp4">
+              <source src="../mp4/vocabulary.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -170,7 +170,7 @@
         
         <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
             <video controls class="w-100 h-100" style="object-fit: contain;">
-              <source src="mp4/chatbot.mp4" type="video/mp4">
+              <source src="../mp4/chatbot.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -181,7 +181,7 @@
   <!--FOOTER-->
   <div id="footer"></div>
   <script>
-    fetch("asset/footer.html")
+    fetch("../asset/footer.html")
       .then(response => response.text())
       .then(data => {
         document.getElementById("footer").innerHTML = data;
@@ -195,7 +195,7 @@
 
   <!--Demo Message-->
   <script>
-    fetch("asset/demo.html")
+    fetch("../asset/demo.html")
       .then(response => response.text())
       .then(html => {
         document.getElementById("demo-container").innerHTML = html;

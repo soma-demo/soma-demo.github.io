@@ -11,7 +11,7 @@
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato:wght@400;500&display=swap" rel="stylesheet">
-  <link href="style.css" rel="stylesheet" />
+  <link href="../asset/style.css" rel="stylesheet" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -71,7 +71,7 @@
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg bg-light fixed-top" data-bs-theme="light">
     <div class="container">
-      <a class="navbar-brand" href="index.html">S O M A</a>
+      <a class="navbar-brand" href="../index.html">S O M A</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -121,7 +121,7 @@
       </div>
       <div class="col-lg-6 order-lg-1">
         <div class="image-wrap shadow-sm">
-          <img src="img/Parlama-Stampolidis2000S361-cropped.jpg" class="img-fluid rounded-3" alt="Artifacts and burial goods">
+          <img src="../img/Parlama-Stampolidis2000S361-cropped.jpg" class="img-fluid rounded-3" alt="Artifacts and burial goods">
         </div>
       </div>
     </section>
@@ -135,7 +135,7 @@
       </div>
       <div class="col-lg-6 order-lg-2">
         <div class="image-wrap shadow-sm">
-          <img src="img/Workflow_SOMA.jpg" class="img-fluid rounded-3" alt="Digital Humanities platform and tools">
+          <img src="../img/Workflow_SOMA.jpg" class="img-fluid rounded-3" alt="Digital Humanities platform and tools">
         </div>
       </div>
     </section>
@@ -143,7 +143,7 @@
 
   <div id="footer"></div>
   <script>
-    fetch("asset/footer.html")
+    fetch("../asset/footer.html")
       .then(response => response.text())
       .then(data => {
         document.getElementById("footer").innerHTML = data;
@@ -168,7 +168,7 @@
 
   <!--Demo Message-->
   <script>
-    fetch("asset/demo.html")
+    fetch("../asset/demo.html")
       .then(response => response.text())
       .then(html => {
         document.getElementById("demo-container").innerHTML = html;
