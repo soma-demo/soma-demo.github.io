@@ -74,7 +74,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto me-5">
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="map.html">Map</a></li>
           <li class="nav-item"><a class="nav-link" href="knowledge-graph.html">Knowledge Graph</a></li>
@@ -88,7 +88,7 @@
   </nav>
 
   <div class="mt-3 ms-3">
-    <button id="btnBack" class="btn btn-sm btn-outline-warning back-btn" title="Go back">Back</button>
+    <button id="btnBack" class="btn btn-sm btn-primary back-btn" title="Go back">Back</button>
   </div>
 
   <div class="container mt-4 mb-5">
@@ -96,7 +96,7 @@
       <h1 id="pageTitle" class="h3 mb-0">Vocabulary</h1>
       <div class="sticky-actions d-flex gap-2">
         <input id="search" class="form-control" placeholder="Filter terms…" style="min-width: 260px" />
-        <button class="btn btn-outline-secondary btn-sm" id="btnClear">Clear</button>
+        <button class="btn btn-primary btn-sm" id="btnClear">Clear</button>
       </div>
 
     </div>
@@ -352,10 +352,10 @@
       .then(response => response.text())
       .then(html => {
         document.getElementById("demo-container").innerHTML = html;
-        if (!sessionStorage.getItem("hasVisitedSOMA")) {
+        if (!localStorage.getItem("hasVisitedSOMA")) {
           var demoModal = new bootstrap.Modal(document.getElementById('demoModal'));
           demoModal.show();
-          sessionStorage.setItem("hasVisitedSOMA", "true");
+          localStorage.setItem("hasVisitedSOMA", "true");
         }
       })
   </script>

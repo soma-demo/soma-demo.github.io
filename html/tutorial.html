@@ -37,7 +37,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto me-5">
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="map.html">Map</a></li>
           <li class="nav-item"><a class="nav-link" href="knowledge-graph.html">Knowledge Graph</a></li>
@@ -51,7 +51,7 @@
   </nav>
 
   <div class="mt-3 ms-3">
-    <button id="btnBack" class="btn btn-sm btn-outline-warning back-btn" title="Go back">Back</button>
+    <button id="btnBack" class="btn btn-sm btn-primary back-btn" title="Go back">Back</button>
   </div>
 
   <div class="container py-3 mb-5">
@@ -85,7 +85,7 @@
             Results will appear in a list. Clicking one opens its details.</p>
           <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
             <video controls class="w-100 h-100" style="object-fit: contain;">
-              <source src="../mp4/search-box-soma.mp4" type="video/mp4">
+              <source src="../mp4/search-box-soma-update.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -100,12 +100,13 @@
             Dropdown menus and a breadcrumb line help you follow the path.</p>
           <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
             <video controls class="w-100 h-100" style="object-fit: contain;">
-              <source src="../mp4/hierarchy.mp4" type="video/mp4">
+              <source src="../mp4/hierarchy-update.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
         </div>
       </div>
+
       
       <!-- Entity Details -->
       <div class="my-5">
@@ -133,11 +134,29 @@
         </ul>
         <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
             <video controls class="w-100 h-100" style="object-fit: contain;">
-              <source src="../mp4/class-property-badges.mp4" type="video/mp4">
+              <source src="../mp4/class-property-badges-update.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
 
+      </div>
+
+      <!-- Chatbot window KG -->
+       <div class="mb-4">
+        <h4>Chatbot Window</h4>
+        <p>
+          While exploring the Knowledge Graph, you can also interact with a 
+          <strong>chatbot window</strong> that appears at the bottom right of the page. 
+          The chatbot helps you navigate the sample data by asking questions in natural 
+          language or using quick suggestions. In addition, the website includes a dedicated Chatbot page, accessible from the main navigation menu, which offers the same functionality in its own tab.
+          For more details about the chatbot functionalities, see the section <a href="#chatbot">Chatbot</a> below. 
+        </p>
+        <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
+            <video controls class="w-100 h-100" style="object-fit: contain;">
+              <source src="../mp4/chatbot-window-KG.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
       </div>
       <hr/>
 
@@ -153,7 +172,7 @@
         </p>
         <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center text-muted rounded shadow-sm mx-auto" style="max-width: 800px; height: 350px;">
             <video controls class="w-100 h-100" style="object-fit: contain;">
-              <source src="../mp4/vocabulary.mp4" type="video/mp4">
+              <source src="../mp4/vocabulary-update.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -161,7 +180,7 @@
       <hr/>
 
         <!-- Chatbot -->
-      <div class="my-5">
+      <div class="my-5" id="chatbot">
         <h3>Chatbot</h3>
         <p>
           The Chatbot let you ask questions in natural language and get answers directly from the Knowledge Graph.
@@ -199,10 +218,10 @@
       .then(response => response.text())
       .then(html => {
         document.getElementById("demo-container").innerHTML = html;
-        if (!sessionStorage.getItem("hasVisitedSOMA")) {
+        if (!localStorage.getItem("hasVisitedSOMA")) {
           var demoModal = new bootstrap.Modal(document.getElementById('demoModal'));
           demoModal.show();
-          sessionStorage.setItem("hasVisitedSOMA", "true");
+          localStorage.setItem("hasVisitedSOMA", "true");
         }
       })
   </script>

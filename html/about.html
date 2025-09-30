@@ -76,7 +76,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto me-5">
           <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="map.html">Map</a></li>
           <li class="nav-item"><a class="nav-link" href="knowledge-graph.html">Knowledge Graph</a></li>
@@ -90,7 +90,7 @@
   </nav>
 
   <div class="mt-3 ms-3">
-    <button id="btnBack" class="btn btn-sm btn-outline-warning back-btn" title="Go back">Back</button>
+    <button id="btnBack" class="btn btn-sm btn-primary back-btn" title="Go back">Back</button>
   </div>
 
   <div class="container py-3 about-sections mb-5">
@@ -104,7 +104,7 @@
 
     <section class="about-row row align-items-center reveal mt-4">
         <p class="mb-4">
-          We will study how societies in this area used burial practices and material culture to express status, cultural identities, concepts of the world, and aesthetic preferences. We will create and publish a corpus of ca 5.000 graves from that periods excavated by the Greek Antiquities Authorities (“Ephorate”) of the City of Athens, thereby integrating archaeological and scientific data (ancient DNA, isotopes) about relatedness, mobility, health and nutrition.  Our corpus will comprise all contextual information of ca 20.000 objects (pottery, body adornments, grave stelae, inscriptions etc.) and the anthropological and scientific data. As published contextual and anthropological information for 2nd and 1st mill. BC graves from Athens are very limited at the moment, we will contribute significantly to Greek Archaeology and Ancient History. 
+          Studying these societies, their practices of belonging, diversity and the role of migration is crucial, as it helps us to understand - among others - the roots of democracy. We will study how societies in this area used burial practices and material culture to express status, cultural identities, concepts of the world, and aesthetic preferences. We will create and publish a corpus of ca 5.000 graves from that periods excavated by the Greek Antiquities Authorities (“Ephorate”) of the City of Athens, thereby integrating archaeological and scientific data (ancient DNA, isotopes) about relatedness, mobility, health and nutrition.  Our corpus will comprise all contextual information of ca 20.000 objects (pottery, body adornments, grave stelae, inscriptions etc.) and the anthropological and scientific data. As published contextual and anthropological information for 2nd and 1st mill. BC graves from Athens are very limited at the moment, we will contribute significantly to Greek Archaeology and Ancient History. 
           We will make this material accessible to the scientific and wider audience and provide answers to long-existing but so-far unanswerable questions regarding e.g. the (trans)formation of kinship and related practices over time and the scale, impact and role of migrant groups. We will study the interplay of biological and social factors with regard to belonging, age/stages of life, sex/gender, diet and health and the correlation of these aspects with burial goods and grave architecture. We will compare population genomic and cultural transformations over time, infectious diseases, specific marital practices like cousin-cousin-unions and the role of material culture and images in this dynamic interplay of genes and practices.
 
         </p>
@@ -172,10 +172,10 @@
       .then(response => response.text())
       .then(html => {
         document.getElementById("demo-container").innerHTML = html;
-        if (!sessionStorage.getItem("hasVisitedSOMA")) {
+        if (!localStorage.getItem("hasVisitedSOMA")) {
           var demoModal = new bootstrap.Modal(document.getElementById('demoModal'));
           demoModal.show();
-          sessionStorage.setItem("hasVisitedSOMA", "true");
+          localStorage.setItem("hasVisitedSOMA", "true");
         }
       })
   </script>

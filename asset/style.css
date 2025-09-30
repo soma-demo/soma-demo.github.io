@@ -64,7 +64,18 @@ h1, h2, h3, h4, .navbar-brand {
 .btn-primary:hover {
   background-color: #e9b02b;
   border-color: #e9b02b;
-  color:white;
+  color:white!important;
+}
+
+.btn-chat {
+  background-color: #e9b02b;
+  border-color: white;
+  color: white;
+}
+.btn-chat:hover {
+  background-color: white;
+  border-color: #e9b02b;
+  color:#e9b02b;
 }
 
 .explore-button{
@@ -140,6 +151,9 @@ footer {
       transform: rotate(45deg);  /* flip direction for bottom-left */
     }
     #btnBack{
+      display: none;
+    }
+    #btnCopyUrl{
       display: none;
     }
     .navbar.navbar-transparent {
