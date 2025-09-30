@@ -36,6 +36,7 @@ The demo provides an interactive exploration of the SOMA project's data model an
 
 - **asset/**  
   Contains shared resources used across the site:  
+  - `chatbot.js` - JavaScript logic for the chatbot.
   - `demo.html` - modal with demo message.  
   - `footer.html` - common footer included in all pages.  
   - `style.css` - custom styling.  
