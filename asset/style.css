@@ -31,11 +31,12 @@ h1, h2, h3, h4, .navbar-brand {
 }
 
 .hero {
-  background: url("../img/UniFreiburgAthCitybeneathCity.jpg") center/cover no-repeat;
+  background: url("../img/UniFreiburgAthCitybeneathCity.jpg") center center/cover no-repeat;
   color: white;
   padding: 8rem 1rem;
   text-align: center;
   position: relative;
+  height: 100vh;
 }
 .hero::before {
   content: "";
@@ -47,6 +48,7 @@ h1, h2, h3, h4, .navbar-brand {
   position: relative;
   z-index: 2;
 }
+
 .stats-icon {
   font-size: 2rem;
 }
@@ -143,6 +145,10 @@ footer {
   }
 
  @media (max-width: 991.98px) {
+  .hero {
+  height: auto;
+}
+  
     .corner-ribbon {
       top: auto;
       right: auto;
@@ -172,3 +178,5 @@ footer {
       color: black !important;
     }
   }
+
+  
